@@ -17,11 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-    - name: Setting directory
-      uses: ./source
     - name: Restore dependencies 🔁
-      run: dotnet restore
+      run: dotnet restore source/LokConLib.sln
     - name: Build 🚧
-      run: dotnet build --no-restore
+      run: dotnet build source/LokConLib.sln --no-restore 
     - name: Test 🧪
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test source/LokConLib.sln --no-build --verbosity normal
