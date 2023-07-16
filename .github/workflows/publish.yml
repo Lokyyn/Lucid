@@ -1,0 +1,31 @@
+name: Publish package
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+
+    steps:
+    - name: Checkout repository ⬇️☁️
+      uses: actions/checkout@v2
+
+    - name: Setup .NET 🛠
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies 🔁
+      run: dotnet restore
+
+    - name: Build 🚧
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Pack 📦
+      run: dotnet pack --configuration Release --no-build --output ./artifacts
+
+    - name: Publish to NuGet 📦➡️☁️
+      run: dotnet nuget push ./artifacts/*.nupkg --source "https://api.nuget.org/v3/index.json"
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
