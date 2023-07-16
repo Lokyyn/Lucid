@@ -6,8 +6,18 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<AssemblyName>LCL</AssemblyName>
-	<RootNamespace>LCL</RootNamespace>
+	<AssemblyName>Lucid</AssemblyName>
+	<RootNamespace>Lucid</RootNamespace>
+	  <PackageId>LucidUI</PackageId>
+	  <Authors>Lokyyn</Authors>
+	  <Title>LucidUI</Title>
+	  <Description>A WinForms Control Library with Theming, Docking and custom controls</Description>
+	  <PackageTags>dotnet .net windows theming docking control library winforms</PackageTags>
+	  <PackageProjectUrl>https://github.com/xmln17/Lucid</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/xmln17/Lucid</RepositoryUrl>
+	  <RepositoryType>Git</RepositoryType>
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
 </Project>
