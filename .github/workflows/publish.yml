@@ -28,9 +28,10 @@ jobs:
       run: dotnet build source/Lucid.sln --configuration Release --no-restore
 
     - name: Pack 📦
-      run: dotnet pack source/Lucid.sln --configuration Release --no-build --output ./artifacts
-           export PACKAGE_FILE=$(find $PWD/artifacts -name "*.nupkg" -print -quit)
-           echo "::set-env name=PACKAGE_FILE::$PACKAGE_FILE"
+      run: | 
+          dotnet pack source/Lucid.sln --configuration Release --no-build --output ./artifacts
+          export PACKAGE_FILE=$(find $PWD/artifacts -name "*.nupkg" -print -quit)
+          echo "::set-env name=PACKAGE_FILE::$PACKAGE_FILE"
 
     - name: Publish to NuGet 📦➡️☁️
       run: dotnet nuget push D:/a/Lucid/source/artifacts/*.nupkg --source "https://api.nuget.org/v3/index.json"
