@@ -19,15 +19,15 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies 🔁
-      run: dotnet restore
+      run: dotnet restore source/Lucid.sln
 
     - name: Build 🚧
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build source/Lucid.sln --configuration Release --no-restore
 
     - name: Pack 📦
-      run: dotnet pack --configuration Release --no-build --output ./artifacts
+      run: dotnet pack source/Lucid.sln --configuration Release --no-build --output ./artifacts
 
     - name: Publish to NuGet 📦➡️☁️
-      run: dotnet nuget push ./artifacts/*.nupkg --source "https://api.nuget.org/v3/index.json"
+      run: dotnet nuget push source/Lucid.sln ./artifacts/*.nupkg --source "https://api.nuget.org/v3/index.json"
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
