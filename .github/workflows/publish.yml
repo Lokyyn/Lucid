@@ -31,6 +31,4 @@ jobs:
       run: dotnet pack source/Lucid.sln --configuration Release /p:Version=1.0.1 --no-build --output ./artifacts # ${{ github.event.release.tag_name }}
 
     - name: Publish to NuGet 📦➡️☁️
-      run: dotnet nuget push **/*.nupkg --source "https://api.nuget.org/v3/index.json"
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json"
