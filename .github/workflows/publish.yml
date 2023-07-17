@@ -1,8 +1,6 @@
 name: Publish package
 
 on:
-  push:
-    branches: [main]
   release:
     types:
       - created
@@ -28,7 +26,7 @@ jobs:
       run: dotnet build source/Lucid.sln --configuration Release --no-restore
 
     - name: Pack 📦
-      run: dotnet pack source/Lucid.sln --configuration Release /p:Version=1.0.1 --no-build --output ./artifacts # ${{ github.event.release.tag_name }}
+      run: dotnet pack source/Lucid.sln --configuration Release /p:Version=${{ github.event.release.tag_name }} --no-build --output ./artifacts
 
     - name: Publish to NuGet 📦➡️☁️
       run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json"
