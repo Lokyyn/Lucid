@@ -17,6 +17,8 @@
 	  <RepositoryType>Git</RepositoryType>
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	  <AssemblyVersion>1.0.1</AssemblyVersion>
+	  <FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
 </Project>
