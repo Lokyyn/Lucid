@@ -3,17 +3,10 @@ using Lucid.Theming;
 using Lucid.Extensions;
 using Lucid.Forms;
 using Lucid.Icons;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Linq;
 using System.Drawing.Drawing2D;
-using Microsoft.Win32;
 using Lucid.Common;
 
 namespace Lucid.Controls

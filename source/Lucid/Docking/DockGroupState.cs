@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Lucid.Docking
+﻿namespace Lucid.Docking
 {
     public class DockGroupState
     {

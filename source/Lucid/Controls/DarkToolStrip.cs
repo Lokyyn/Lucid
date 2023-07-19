@@ -1,6 +1,4 @@
 ﻿using Lucid.Renderers;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Controls
 {

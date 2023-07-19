@@ -1,9 +1,6 @@
 ﻿using Lucid.Theming;
 using Lucid.Docking;
 using Lucid.Forms;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Win32
 {

@@ -1,6 +1,4 @@
 ﻿using Lucid.Collections;
-using System;
-using System.Drawing;
 using Lucid.Controls.DataClasses.Badge;
 
 namespace Lucid.Controls

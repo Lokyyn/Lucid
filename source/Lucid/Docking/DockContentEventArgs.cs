@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lucid.Docking
+﻿namespace Lucid.Docking
 {
     public class DockContentEventArgs : EventArgs
     {

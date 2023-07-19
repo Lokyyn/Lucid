@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace Lucid.Win32
+﻿namespace Lucid.Win32
 {
     public class ControlScrollFilter : IMessageFilter
     {

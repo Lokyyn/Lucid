@@ -1,8 +1,6 @@
 ﻿using Lucid.Theming;
 using Lucid.Extensions;
 using Lucid.Icons;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Renderers
 {

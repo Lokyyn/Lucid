@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Lucid.Collections
+﻿namespace Lucid.Collections
 {
     public class ObservableListModified<T> : EventArgs
     {

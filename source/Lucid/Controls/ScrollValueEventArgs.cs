@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lucid.Controls
+﻿namespace Lucid.Controls
 {
     public class ScrollValueEventArgs : EventArgs
     {

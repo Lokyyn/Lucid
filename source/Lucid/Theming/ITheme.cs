@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Lucid.Theming
+﻿namespace Lucid.Theming
 {
     public interface ITheme
     {

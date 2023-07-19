@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-
-namespace Lucid.Docking
+﻿namespace Lucid.Docking
 {
     public class DockRegionState
     {

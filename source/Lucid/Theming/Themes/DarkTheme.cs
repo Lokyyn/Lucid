@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Lucid.Theming.Themes
+﻿namespace Lucid.Theming.Themes
 {
     public class DarkTheme : BaseThemes.BaseDarkTheme
     {

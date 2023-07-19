@@ -1,8 +1,4 @@
-﻿using Lucid.Theming;
-using System;
-using System.Drawing;
-
-namespace Lucid.Controls
+﻿namespace Lucid.Controls
 {
     public class DarkListItem
     {

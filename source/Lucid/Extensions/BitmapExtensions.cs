@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Lucid.Extensions
+﻿namespace Lucid.Extensions
 {
     internal static class BitmapExtensions
     {

@@ -1,7 +1,5 @@
 ﻿using Lucid.Controls;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
 using System.Globalization;
 
 namespace Lucid.Forms

@@ -1,8 +1,6 @@
 ﻿using Lucid.Theming;
 using System.ComponentModel;
 using Lucid.Controls;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Docking
 {

@@ -1,7 +1,4 @@
 ﻿using Lucid.Forms;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Docking
 {

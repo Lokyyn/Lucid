@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lucid.Win32
+﻿namespace Lucid.Win32
 {
     /// <summary>
     /// Windows Messages

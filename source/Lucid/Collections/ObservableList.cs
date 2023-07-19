@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Lucid.Collections
+﻿namespace Lucid.Collections
 {
     public class ObservableList<T> : List<T>, IDisposable
     {

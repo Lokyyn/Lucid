@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace Lucid.Controls
+﻿namespace Lucid.Controls
 {
     public class DarkDropdownItem
     {

@@ -1,8 +1,5 @@
 ﻿using Lucid.Theming;
-using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using Lucid.Helper;
 

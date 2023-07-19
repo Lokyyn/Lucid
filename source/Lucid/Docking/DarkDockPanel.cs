@@ -1,10 +1,6 @@
 ﻿using Lucid.Theming;
 using Lucid.Win32;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace Lucid.Docking
 {

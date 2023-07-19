@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Lucid.Theming.Themes;
+﻿using Lucid.Theming.Themes;
 using Lucid.Theming.Themes.BaseThemes;
 
 namespace Lucid.Theming

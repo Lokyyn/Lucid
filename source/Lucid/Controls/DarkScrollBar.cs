@@ -1,9 +1,5 @@
 ﻿using Lucid.Theming;
-using Lucid.Icons;
-using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Controls
 {

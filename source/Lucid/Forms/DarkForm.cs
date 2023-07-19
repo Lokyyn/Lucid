@@ -1,7 +1,5 @@
 ﻿using Lucid.Theming;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lucid.Forms
 {

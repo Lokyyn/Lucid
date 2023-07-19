@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Lucid.Docking
+﻿namespace Lucid.Docking
 {
     internal class DarkDockTab
     {

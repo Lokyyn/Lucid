@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lucid.Docking.OwnDevelopment
+﻿namespace Lucid.Docking.OwnDevelopment
 {
     public class ControllableDockPanel : DarkDockPanel
     {
