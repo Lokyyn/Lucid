@@ -21,6 +21,8 @@
 	  <AssemblyVersion>1.0.3</AssemblyVersion>
 	  <FileVersion>1.0.3</FileVersion>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
