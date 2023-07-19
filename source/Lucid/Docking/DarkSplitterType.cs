@@ -1,10 +1,9 @@
-﻿namespace Lucid.Docking
+﻿namespace Lucid.Docking;
+
+public enum DarkSplitterType
 {
-    public enum DarkSplitterType
-    {
-        Left,
-        Right,
-        Top,
-        Bottom
-    }
+    Left,
+    Right,
+    Top,
+    Bottom
 }

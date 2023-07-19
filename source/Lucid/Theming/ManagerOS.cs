@@ -1,73 +1,72 @@
 ﻿using Microsoft.Win32;
 
-namespace Lucid.Theming
+namespace Lucid.Theming;
+
+internal static class ManagerOS
 {
-    internal static class ManagerOS
+    internal static CurrentOS WindowsVersion
     {
-        internal static CurrentOS WindowsVersion
+        get
         {
-            get
-            {
-                var ver = Environment.OSVersion.Version.Build;
+            var ver = Environment.OSVersion.Version.Build;
 
-                if (ver < 19000)
-                    return CurrentOS.OlderThanWindows10;
-                if (ver >= 19000 && ver < 22000)
-                    return CurrentOS.Windows10;
-                else if (ver >= 22000)
-                    return CurrentOS.Windows11;
-                else
-                    return CurrentOS.NewerThanWindows11;
-            }
+            if (ver < 19000)
+                return CurrentOS.OlderThanWindows10;
+            if (ver >= 19000 && ver < 22000)
+                return CurrentOS.Windows10;
+            else if (ver >= 22000)
+                return CurrentOS.Windows11;
+            else
+                return CurrentOS.NewerThanWindows11;
+        }
+    }
+
+    internal static bool IsWindows10OrWindows11()
+    {
+        return WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11;
+    }
+
+    private static object RegistryValue(string keyName, string valueName, object defaultValue)
+    {
+        try
+        {
+            return Registry.GetValue(keyName, valueName, defaultValue);
+        }
+        catch
+        {
+            return defaultValue;
+        }
+    }
+
+    /// <summary>
+    /// Gets the current accent color if the OS Version is Windows 10 or Windows 11
+    /// </summary>
+    /// <returns></returns>
+    internal static Color GetAccentColor()
+    {
+        if (WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11)
+        {
+            int accentColorDWord = (int)RegistryValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", "AccentColor", 0);
+            return ParseDWordColor(accentColorDWord);
         }
 
-        internal static bool IsWindows10OrWindows11()
-        {
-            return WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11;
-        }
+        return Color.Empty;
+    }
 
-        private static object RegistryValue(string keyName, string valueName, object defaultValue)
-        {
-            try
-            {
-                return Registry.GetValue(keyName, valueName, defaultValue);
-            }
-            catch
-            {
-                return defaultValue;
-            }
-        }
+    #region Private methods
 
-        /// <summary>
-        /// Gets the current accent color if the OS Version is Windows 10 or Windows 11
-        /// </summary>
-        /// <returns></returns>
-        internal static Color GetAccentColor()
-        {
-            if (WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11)
-            {
-                int accentColorDWord = (int)RegistryValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", "AccentColor", 0);
-                return ParseDWordColor(accentColorDWord);
-            }
+    private static Color ParseDWordColor(int dword)
+    {
+        return Color.FromArgb((dword >> 24) & 0xFF, (dword >> 0) & 0xFF, (dword >> 8) & 0xFF, (dword >> 16) & 0xFF);
+    }
 
-            return Color.Empty;
-        }
+    #endregion
 
-        #region Private methods
-
-        private static Color ParseDWordColor(int dword)
-        {
-            return Color.FromArgb((dword >> 24) & 0xFF, (dword >> 0) & 0xFF, (dword >> 8) & 0xFF, (dword >> 16) & 0xFF);
-        }
-
-        #endregion
-
-        internal enum CurrentOS
-        {
-            OlderThanWindows10,
-            Windows10,
-            Windows11,
-            NewerThanWindows11
-        }
+    internal enum CurrentOS
+    {
+        OlderThanWindows10,
+        Windows10,
+        Windows11,
+        NewerThanWindows11
     }
 }

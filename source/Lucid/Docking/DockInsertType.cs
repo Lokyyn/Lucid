@@ -1,9 +1,8 @@
-﻿namespace Lucid.Docking
+﻿namespace Lucid.Docking;
+
+public enum DockInsertType
 {
-    public enum DockInsertType
-    {
-        None,
-        Before,
-        After
-    }
+    None,
+    Before,
+    After
 }

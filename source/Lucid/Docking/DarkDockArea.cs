@@ -1,11 +1,10 @@
-﻿namespace Lucid.Docking
+﻿namespace Lucid.Docking;
+
+public enum DarkDockArea
 {
-    public enum DarkDockArea
-    {
-        None,
-        Document,
-        Left,
-        Right,
-        Bottom
-    }
+    None,
+    Document,
+    Left,
+    Right,
+    Bottom
 }

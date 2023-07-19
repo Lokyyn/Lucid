@@ -1,9 +1,8 @@
-﻿namespace Lucid.Controls
+﻿namespace Lucid.Controls;
+
+public enum DarkControlState
 {
-    public enum DarkControlState
-    {
-        Normal,
-        Hover,
-        Pressed
-    }
+    Normal,
+    Hover,
+    Pressed
 }

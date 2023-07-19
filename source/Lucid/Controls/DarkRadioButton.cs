@@ -2,327 +2,326 @@
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
 
-namespace Lucid.Controls
+namespace Lucid.Controls;
+
+public class DarkRadioButton : RadioButton
 {
-    public class DarkRadioButton : RadioButton
+    #region Field Region
+
+    private DarkControlState _controlState = DarkControlState.Normal;
+
+    private bool _spacePressed;
+
+    private bool _AllowCustomBackColor;
+
+    #endregion
+
+    #region Property Region
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new Appearance Appearance
     {
-        #region Field Region
+        get { return base.Appearance; }
+    }
 
-        private DarkControlState _controlState = DarkControlState.Normal;
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new bool AutoEllipsis
+    {
+        get { return base.AutoEllipsis; }
+    }
 
-        private bool _spacePressed;
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new Image BackgroundImage
+    {
+        get { return base.BackgroundImage; }
+    }
 
-        private bool _AllowCustomBackColor;
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new ImageLayout BackgroundImageLayout
+    {
+        get { return base.BackgroundImageLayout; }
+    }
 
-        #endregion
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new bool FlatAppearance
+    {
+        get { return false; }
+    }
 
-        #region Property Region
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new FlatStyle FlatStyle
+    {
+        get { return base.FlatStyle; }
+    }
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Appearance Appearance
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new Image Image
+    {
+        get { return base.Image; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new ContentAlignment ImageAlign
+    {
+        get { return base.ImageAlign; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new int ImageIndex
+    {
+        get { return base.ImageIndex; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new string ImageKey
+    {
+        get { return base.ImageKey; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new ImageList ImageList
+    {
+        get { return base.ImageList; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new ContentAlignment TextAlign
+    {
+        get { return base.TextAlign; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new TextImageRelation TextImageRelation
+    {
+        get { return base.TextImageRelation; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new bool UseCompatibleTextRendering
+    {
+        get { return false; }
+    }
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public new bool UseVisualStyleBackColor
+    {
+        get { return false; }
+    }
+
+    public bool AllowCustomBackColor
+    {
+        get { return _AllowCustomBackColor; }
+        set { _AllowCustomBackColor = value; }
+    }
+
+    #endregion
+
+    #region Constructor Region
+
+    public DarkRadioButton()
+    {
+        SetStyle(ControlStyles.SupportsTransparentBackColor |
+                 ControlStyles.OptimizedDoubleBuffer |
+                 ControlStyles.ResizeRedraw |
+                 ControlStyles.UserPaint, true);
+    }
+
+    #endregion
+
+    #region Method Region
+
+    private void SetControlState(DarkControlState controlState)
+    {
+        if (_controlState != controlState)
         {
-            get { return base.Appearance; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool AutoEllipsis
-        {
-            get { return base.AutoEllipsis; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image BackgroundImage
-        {
-            get { return base.BackgroundImage; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImageLayout BackgroundImageLayout
-        {
-            get { return base.BackgroundImageLayout; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool FlatAppearance
-        {
-            get { return false; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new FlatStyle FlatStyle
-        {
-            get { return base.FlatStyle; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image Image
-        {
-            get { return base.Image; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment ImageAlign
-        {
-            get { return base.ImageAlign; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new int ImageIndex
-        {
-            get { return base.ImageIndex; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new string ImageKey
-        {
-            get { return base.ImageKey; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ImageList ImageList
-        {
-            get { return base.ImageList; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new ContentAlignment TextAlign
-        {
-            get { return base.TextAlign; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new TextImageRelation TextImageRelation
-        {
-            get { return base.TextImageRelation; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseCompatibleTextRendering
-        {
-            get { return false; }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool UseVisualStyleBackColor
-        {
-            get { return false; }
-        }
-
-        public bool AllowCustomBackColor
-        {
-            get { return _AllowCustomBackColor; }
-            set { _AllowCustomBackColor = value; }
-        }
-
-        #endregion
-
-        #region Constructor Region
-
-        public DarkRadioButton()
-        {
-            SetStyle(ControlStyles.SupportsTransparentBackColor |
-                     ControlStyles.OptimizedDoubleBuffer |
-                     ControlStyles.ResizeRedraw |
-                     ControlStyles.UserPaint, true);
-        }
-
-        #endregion
-
-        #region Method Region
-
-        private void SetControlState(DarkControlState controlState)
-        {
-            if (_controlState != controlState)
-            {
-                _controlState = controlState;
-                Invalidate();
-            }
-        }
-
-        #endregion
-
-        #region Event Handler Region
-
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            base.OnMouseMove(e);
-
-            if (_spacePressed)
-                return;
-
-            if (e.Button == MouseButtons.Left)
-            {
-                if (ClientRectangle.Contains(e.Location))
-                    SetControlState(DarkControlState.Pressed);
-                else
-                    SetControlState(DarkControlState.Hover);
-            }
-            else
-            {
-                SetControlState(DarkControlState.Hover);
-            }
-        }
-
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            base.OnMouseDown(e);
-
-            if (!ClientRectangle.Contains(e.Location))
-                return;
-
-            SetControlState(DarkControlState.Pressed);
-        }
-
-        protected override void OnMouseUp(MouseEventArgs e)
-        {
-            base.OnMouseUp(e);
-
-            if (_spacePressed)
-                return;
-
-            SetControlState(DarkControlState.Normal);
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-
-            if (_spacePressed)
-                return;
-
-            SetControlState(DarkControlState.Normal);
-        }
-
-        protected override void OnMouseCaptureChanged(EventArgs e)
-        {
-            base.OnMouseCaptureChanged(e);
-
-            if (_spacePressed)
-                return;
-
-            var location = Cursor.Position;
-
-            if (!ClientRectangle.Contains(location))
-                SetControlState(DarkControlState.Normal);
-        }
-
-        protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-
+            _controlState = controlState;
             Invalidate();
         }
+    }
 
-        protected override void OnLostFocus(EventArgs e)
+    #endregion
+
+    #region Event Handler Region
+
+    protected override void OnMouseMove(MouseEventArgs e)
+    {
+        base.OnMouseMove(e);
+
+        if (_spacePressed)
+            return;
+
+        if (e.Button == MouseButtons.Left)
         {
-            base.OnLostFocus(e);
-
-            _spacePressed = false;
-
-            var location = Cursor.Position;
-
-            if (!ClientRectangle.Contains(location))
-                SetControlState(DarkControlState.Normal);
+            if (ClientRectangle.Contains(e.Location))
+                SetControlState(DarkControlState.Pressed);
             else
                 SetControlState(DarkControlState.Hover);
         }
-
-        #endregion
-
-        #region Paint Region
-
-        protected override void OnPaint(PaintEventArgs e)
+        else
         {
-            var g = e.Graphics;
-            var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
+            SetControlState(DarkControlState.Hover);
+        }
+    }
 
-            var size = ThemeProvider.Theme.Sizes.RadioButtonSize;
+    protected override void OnMouseDown(MouseEventArgs e)
+    {
+        base.OnMouseDown(e);
 
-            var textColor = ThemeProvider.Theme.Colors.LightText;
-            var borderColor = ThemeProvider.Theme.Colors.LightText;
-            var fillColor = ThemeProvider.Theme.Colors.LightText;
+        if (!ClientRectangle.Contains(e.Location))
+            return;
 
-            if (Enabled)
+        SetControlState(DarkControlState.Pressed);
+    }
+
+    protected override void OnMouseUp(MouseEventArgs e)
+    {
+        base.OnMouseUp(e);
+
+        if (_spacePressed)
+            return;
+
+        SetControlState(DarkControlState.Normal);
+    }
+
+    protected override void OnMouseLeave(EventArgs e)
+    {
+        base.OnMouseLeave(e);
+
+        if (_spacePressed)
+            return;
+
+        SetControlState(DarkControlState.Normal);
+    }
+
+    protected override void OnMouseCaptureChanged(EventArgs e)
+    {
+        base.OnMouseCaptureChanged(e);
+
+        if (_spacePressed)
+            return;
+
+        var location = Cursor.Position;
+
+        if (!ClientRectangle.Contains(location))
+            SetControlState(DarkControlState.Normal);
+    }
+
+    protected override void OnGotFocus(EventArgs e)
+    {
+        base.OnGotFocus(e);
+
+        Invalidate();
+    }
+
+    protected override void OnLostFocus(EventArgs e)
+    {
+        base.OnLostFocus(e);
+
+        _spacePressed = false;
+
+        var location = Cursor.Position;
+
+        if (!ClientRectangle.Contains(location))
+            SetControlState(DarkControlState.Normal);
+        else
+            SetControlState(DarkControlState.Hover);
+    }
+
+    #endregion
+
+    #region Paint Region
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        var g = e.Graphics;
+        var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
+
+        var size = ThemeProvider.Theme.Sizes.RadioButtonSize;
+
+        var textColor = ThemeProvider.Theme.Colors.LightText;
+        var borderColor = ThemeProvider.Theme.Colors.LightText;
+        var fillColor = ThemeProvider.Theme.Colors.LightText;
+
+        if (Enabled)
+        {
+            if (Focused)
             {
-                if (Focused)
-                {
-                    borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
-                    fillColor = ThemeProvider.Theme.Colors.MainAccent;
-                }
-
-                if (_controlState == DarkControlState.Hover)
-                {
-                    borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
-                    fillColor = ThemeProvider.Theme.Colors.MainAccent;
-                }
-                else if (_controlState == DarkControlState.Pressed)
-                {
-                    borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
-                    fillColor = ThemeProvider.Theme.Colors.GreySelection;
-                }
+                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                fillColor = ThemeProvider.Theme.Colors.MainAccent;
             }
-            else
+
+            if (_controlState == DarkControlState.Hover)
             {
-                textColor = ThemeProvider.Theme.Colors.DisabledText;
+                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                fillColor = ThemeProvider.Theme.Colors.MainAccent;
+            }
+            else if (_controlState == DarkControlState.Pressed)
+            {
                 borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
                 fillColor = ThemeProvider.Theme.Colors.GreySelection;
             }
+        }
+        else
+        {
+            textColor = ThemeProvider.Theme.Colors.DisabledText;
+            borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
+            fillColor = ThemeProvider.Theme.Colors.GreySelection;
+        }
 
-            //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
-            var backColor = _AllowCustomBackColor ? BackColor : ThemeProvider.Theme.Colors.MainBackgroundColor;
+        //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        var backColor = _AllowCustomBackColor ? BackColor : ThemeProvider.Theme.Colors.MainBackgroundColor;
 
-            using (var b = new SolidBrush(backColor))
+        using (var b = new SolidBrush(backColor))
+        {
+            g.FillRectangle(b, rect);
+        }
+
+        g.SmoothingMode = SmoothingMode.HighQuality;
+
+        using (var p = new Pen(borderColor))
+        {
+            var boxRect = new Rectangle(0, (rect.Height / 2) - (size / 2), size, size);
+            g.DrawEllipse(p, boxRect);
+        }
+
+        if (Checked)
+        {
+            using (var b = new SolidBrush(fillColor))
             {
-                g.FillRectangle(b, rect);
-            }
-
-            g.SmoothingMode = SmoothingMode.HighQuality;
-
-            using (var p = new Pen(borderColor))
-            {
-                var boxRect = new Rectangle(0, (rect.Height / 2) - (size / 2), size, size);
-                g.DrawEllipse(p, boxRect);
-            }
-
-            if (Checked)
-            {
-                using (var b = new SolidBrush(fillColor))
-                {
-                    Rectangle boxRect = new Rectangle(3, (rect.Height / 2) - ((size - 7) / 2) - 1, size - 6, size - 6);
-                    g.FillEllipse(b, boxRect);
-                }
-            }
-
-            g.SmoothingMode = SmoothingMode.Default;
-
-            using (var b = new SolidBrush(textColor))
-            {
-                var stringFormat = new StringFormat
-                {
-                    LineAlignment = StringAlignment.Center,
-                    Alignment = StringAlignment.Near
-                };
-
-                var modRect = new Rectangle(size + 4, 0, rect.Width - size, rect.Height);
-                g.DrawString(Text, Font, b, modRect, stringFormat);
+                Rectangle boxRect = new Rectangle(3, (rect.Height / 2) - ((size - 7) / 2) - 1, size - 6, size - 6);
+                g.FillEllipse(b, boxRect);
             }
         }
 
-        #endregion
+        g.SmoothingMode = SmoothingMode.Default;
+
+        using (var b = new SolidBrush(textColor))
+        {
+            var stringFormat = new StringFormat
+            {
+                LineAlignment = StringAlignment.Center,
+                Alignment = StringAlignment.Near
+            };
+
+            var modRect = new Rectangle(size + 4, 0, rect.Width - size, rect.Height);
+            g.DrawString(Text, Font, b, modRect, stringFormat);
+        }
     }
+
+    #endregion
 }

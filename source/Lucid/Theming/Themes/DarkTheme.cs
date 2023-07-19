@@ -1,15 +1,14 @@
-﻿namespace Lucid.Theming.Themes
+﻿namespace Lucid.Theming.Themes;
+
+public class DarkTheme : BaseThemes.BaseDarkTheme
 {
-    public class DarkTheme : BaseThemes.BaseDarkTheme
+    public DarkTheme() 
+        : base()
     {
-        public DarkTheme() 
-            : base()
-        {
-            Enabled = true;
-            MultilanguageKey = "Analyst.Settings.Theme.Dark";
-            ImageKey = "dark_theme";
-            ThemeName = "Dark";
-            OrderNo = 1;
-        }
+        Enabled = true;
+        MultilanguageKey = "Analyst.Settings.Theme.Dark";
+        ImageKey = "dark_theme";
+        ThemeName = "Dark";
+        OrderNo = 1;
     }
 }

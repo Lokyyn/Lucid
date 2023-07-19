@@ -1,16 +1,15 @@
 ﻿using Lucid.Renderers;
 
-namespace Lucid.Controls
+namespace Lucid.Controls;
+
+public class DarkContextMenu : ContextMenuStrip
 {
-    public class DarkContextMenu : ContextMenuStrip
+    #region Constructor Region
+
+    public DarkContextMenu()
     {
-        #region Constructor Region
-
-        public DarkContextMenu()
-        {
-            Renderer = new DarkMenuRenderer();
-        }
-
-        #endregion
+        Renderer = new DarkMenuRenderer();
     }
+
+    #endregion
 }

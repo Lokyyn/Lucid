@@ -1,8 +1,7 @@
-﻿namespace Lucid.Controls
+﻿namespace Lucid.Controls;
+
+public enum DarkScrollOrientation
 {
-    public enum DarkScrollOrientation
-    {
-        Vertical,
-        Horizontal
-    }
+    Vertical,
+    Horizontal
 }

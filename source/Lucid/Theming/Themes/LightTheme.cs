@@ -1,15 +1,14 @@
-﻿namespace Lucid.Theming.Themes
+﻿namespace Lucid.Theming.Themes;
+
+public class LightTheme : BaseThemes.BaseLightTheme
 {
-    public class LightTheme : BaseThemes.BaseLightTheme
+    public LightTheme()
+        : base()
     {
-        public LightTheme()
-            : base()
-        {
-            Enabled = true;
-            MultilanguageKey = "Analyst.Settings.Theme.Light";
-            ImageKey = "light_theme";
-            ThemeName = "Light";
-            OrderNo = 2;
-        }
+        Enabled = true;
+        MultilanguageKey = "Analyst.Settings.Theme.Light";
+        ImageKey = "light_theme";
+        ThemeName = "Light";
+        OrderNo = 2;
     }
 }

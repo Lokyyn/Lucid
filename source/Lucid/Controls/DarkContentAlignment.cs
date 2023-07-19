@@ -1,9 +1,8 @@
-﻿namespace Lucid.Controls
+﻿namespace Lucid.Controls;
+
+public enum DarkContentAlignment
 {
-    public enum DarkContentAlignment
-    {
-        Center,
-        Left,
-        Right
-    }
+    Center,
+    Left,
+    Right
 }

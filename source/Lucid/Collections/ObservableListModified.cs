@@ -1,12 +1,11 @@
-﻿namespace Lucid.Collections
-{
-    public class ObservableListModified<T> : EventArgs
-    {
-        public IEnumerable<T> Items { get; private set; }
+﻿namespace Lucid.Collections;
 
-        public ObservableListModified(IEnumerable<T> items)
-        {
-            Items = items;
-        }
+public class ObservableListModified<T> : EventArgs
+{
+    public IEnumerable<T> Items { get; private set; }
+
+    public ObservableListModified(IEnumerable<T> items)
+    {
+        Items = items;
     }
 }

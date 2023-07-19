@@ -1,10 +1,9 @@
-﻿namespace Lucid.Forms
+﻿namespace Lucid.Forms;
+
+public enum DarkMessageBoxIcon
 {
-    public enum DarkMessageBoxIcon
-    {
-        None,
-        Information,
-        Warning,
-        Error
-    }
+    None,
+    Information,
+    Warning,
+    Error
 }

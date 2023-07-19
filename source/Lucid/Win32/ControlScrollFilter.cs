@@ -1,23 +1,22 @@
-﻿namespace Lucid.Win32
+﻿namespace Lucid.Win32;
+
+public class ControlScrollFilter : IMessageFilter
 {
-    public class ControlScrollFilter : IMessageFilter
+    public bool PreFilterMessage(ref Message m)
     {
-        public bool PreFilterMessage(ref Message m)
+        switch (m.Msg)
         {
-            switch (m.Msg)
-            {
-                case (int)WM.MOUSEWHEEL:
-                case (int)WM.MOUSEHWHEEL:
-                    var hControlUnderMouse = Native.WindowFromPoint(new Point((int)m.LParam));
+            case (int)WM.MOUSEWHEEL:
+            case (int)WM.MOUSEHWHEEL:
+                var hControlUnderMouse = Native.WindowFromPoint(new Point((int)m.LParam));
 
-                    if (hControlUnderMouse == m.HWnd)
-                        return false;
+                if (hControlUnderMouse == m.HWnd)
+                    return false;
 
-                    Native.SendMessage(hControlUnderMouse, (uint)m.Msg, m.WParam, m.LParam);
-                    return true;
-            }
-
-            return false;
+                Native.SendMessage(hControlUnderMouse, (uint)m.Msg, m.WParam, m.LParam);
+                return true;
         }
+
+        return false;
     }
 }

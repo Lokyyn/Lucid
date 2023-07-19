@@ -1,15 +1,14 @@
-﻿namespace Lucid.Controls
-{
-    public enum DarkButtonStyle
-    {
-        Normal,
-        Flat,
-        Rounded
-    }
+﻿namespace Lucid.Controls;
 
-    public enum RoundedCornerType
-    {
-        Abosolut,
-        Relative
-    }
+public enum DarkButtonStyle
+{
+    Normal,
+    Flat,
+    Rounded
+}
+
+public enum RoundedCornerType
+{
+    Abosolut,
+    Relative
 }

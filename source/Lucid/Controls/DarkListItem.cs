@@ -1,59 +1,58 @@
-﻿namespace Lucid.Controls
+﻿namespace Lucid.Controls;
+
+public class DarkListItem
 {
-    public class DarkListItem
+    #region Event Region
+
+    public event EventHandler TextChanged;
+
+    #endregion
+
+    #region Field Region
+
+    private string _text;
+
+    #endregion
+
+    #region Property Region
+
+    public string Text
     {
-        #region Event Region
-
-        public event EventHandler TextChanged;
-
-        #endregion
-
-        #region Field Region
-
-        private string _text;
-
-        #endregion
-
-        #region Property Region
-
-        public string Text
+        get { return _text; }
+        set
         {
-            get { return _text; }
-            set
-            {
-                _text = value;
+            _text = value;
 
-                if (TextChanged != null)
-                    TextChanged(this, new EventArgs());
-            }
+            if (TextChanged != null)
+                TextChanged(this, new EventArgs());
         }
-
-        public Rectangle Area { get; set; }
-
-        //public Color TextColor { get; set; }
-
-        public FontStyle FontStyle { get; set; }
-
-        public Bitmap Icon { get; set; }
-
-        public object Tag { get; set; }
-
-        #endregion
-
-        #region Constructor Region
-
-        public DarkListItem()
-        {
-            //TextColor = ThemeProvider.Theme.Colors.LightText;
-            FontStyle = FontStyle.Regular;
-        }
-
-        public DarkListItem(string text)
-            : this()
-        {
-            Text = text;
-        }
-
-        #endregion
     }
+
+    public Rectangle Area { get; set; }
+
+    //public Color TextColor { get; set; }
+
+    public FontStyle FontStyle { get; set; }
+
+    public Bitmap Icon { get; set; }
+
+    public object Tag { get; set; }
+
+    #endregion
+
+    #region Constructor Region
+
+    public DarkListItem()
+    {
+        //TextColor = ThemeProvider.Theme.Colors.LightText;
+        FontStyle = FontStyle.Regular;
+    }
+
+    public DarkListItem(string text)
+        : this()
+    {
+        Text = text;
+    }
+
+    #endregion
 }

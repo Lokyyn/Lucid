@@ -1,20 +1,19 @@
-﻿namespace Lucid.Docking.OwnDevelopment
+﻿namespace Lucid.Docking.OwnDevelopment;
+
+public class ControllableDockPanel : DarkDockPanel
 {
-    public class ControllableDockPanel : DarkDockPanel
+    private static ControllableDockPanel _instance;
+
+    private ControllableDockPanel()
     {
-        private static ControllableDockPanel _instance;
 
-        private ControllableDockPanel()
-        {
+    }
 
-        }
+    public static ControllableDockPanel GetInstance()
+    {
+        if (_instance == null)
+            _instance = new ControllableDockPanel();
 
-        public static ControllableDockPanel GetInstance()
-        {
-            if (_instance == null)
-                _instance = new ControllableDockPanel();
-
-            return _instance;
-        }
+        return _instance;
     }
 }

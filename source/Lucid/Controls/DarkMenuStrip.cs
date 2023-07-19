@@ -1,17 +1,16 @@
 ﻿using Lucid.Renderers;
 
-namespace Lucid.Controls
+namespace Lucid.Controls;
+
+public class DarkMenuStrip : MenuStrip
 {
-    public class DarkMenuStrip : MenuStrip
+    #region Constructor Region
+
+    public DarkMenuStrip()
     {
-        #region Constructor Region
-
-        public DarkMenuStrip()
-        {
-            Renderer = new DarkMenuRenderer();
-            Padding = new Padding(3, 2, 0, 2);
-        }
-
-        #endregion
+        Renderer = new DarkMenuRenderer();
+        Padding = new Padding(3, 2, 0, 2);
     }
+
+    #endregion
 }

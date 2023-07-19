@@ -1,33 +1,32 @@
-﻿namespace Lucid.Theming
+﻿namespace Lucid.Theming;
+
+public interface ITheme
 {
-    public interface ITheme
-    {
-        Sizes Sizes { get; }
-        
-        Colors Colors { get; }
+    Sizes Sizes { get; }
+    
+    Colors Colors { get; }
 
-        ThemeType Type { get; }
+    ThemeType Type { get; }
 
-        string MultilanguageKey { get; }
+    string MultilanguageKey { get; }
 
-        string ImageKey { get; }
-
-        /// <summary>
-        /// Indicates if the language can be displayed in the UI
-        /// </summary>
-        bool Enabled { get; }
-
-        string ThemeName { get; }
-
-        int OrderNo { get; }
-    }
+    string ImageKey { get; }
 
     /// <summary>
-    /// This enum indicates wether a theme has dark or light colors
+    /// Indicates if the language can be displayed in the UI
     /// </summary>
-    public enum ThemeType
-    {
-        Dark,
-        Light
-    }
+    bool Enabled { get; }
+
+    string ThemeName { get; }
+
+    int OrderNo { get; }
+}
+
+/// <summary>
+/// This enum indicates wether a theme has dark or light colors
+/// </summary>
+public enum ThemeType
+{
+    Dark,
+    Light
 }

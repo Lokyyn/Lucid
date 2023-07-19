@@ -1,13 +1,12 @@
-﻿namespace Lucid.Forms
+﻿namespace Lucid.Forms;
+
+public enum DarkDialogButton
 {
-    public enum DarkDialogButton
-    {
-        Ok,
-        Close,
-        OkCancel,
-        YesNo,
-        YesNoCancel,
-        AbortRetryIgnore,
-        RetryCancel
-    }
+    Ok,
+    Close,
+    OkCancel,
+    YesNo,
+    YesNoCancel,
+    AbortRetryIgnore,
+    RetryCancel
 }

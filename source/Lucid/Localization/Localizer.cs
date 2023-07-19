@@ -2,28 +2,27 @@
 using System.Reflection;
 using System.Resources;
 
-namespace Lucid.Localization
+namespace Lucid.Localization;
+
+public class Localizer
 {
-    public class Localizer
+    private static ResourceManager rm;
+
+    static Localizer()
     {
-        private static ResourceManager rm;
+        rm = new ResourceManager("Lucid.Localization.Resources.Strings", Assembly.GetExecutingAssembly());
+    }
 
-        static Localizer()
-        {
-            rm = new ResourceManager("Lucid.Localization.Resources.Strings", Assembly.GetExecutingAssembly());
-        }
+    public static string GetString(string key)
+    {
+        return rm.GetString(key);
+    }
 
-        public static string GetString(string key)
-        {
-            return rm.GetString(key);
-        }
+    public static string GetString(string key, CultureInfo culture)
+    {
+        if (culture == null)
+            return GetString(key);
 
-        public static string GetString(string key, CultureInfo culture)
-        {
-            if (culture == null)
-                return GetString(key);
-
-            return rm.GetString(key, culture);
-        }
+        return rm.GetString(key, culture);
     }
 }
