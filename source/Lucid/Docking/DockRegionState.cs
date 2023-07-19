@@ -4,7 +4,7 @@ public class DockRegionState
 {
     #region Property Region
 
-    public DarkDockArea Area { get; set; }
+    public LucidDockArea Area { get; set; }
 
     public Size Size { get; set; }
 
@@ -19,13 +19,13 @@ public class DockRegionState
         Groups = new List<DockGroupState>();
     }
 
-    public DockRegionState(DarkDockArea area)
+    public DockRegionState(LucidDockArea area)
         : this()
     {
         Area = area;
     }
 
-    public DockRegionState(DarkDockArea area, Size size)
+    public DockRegionState(LucidDockArea area, Size size)
         : this(area)
     {
         Size = size;

@@ -2,13 +2,14 @@
 
   <PropertyGroup>
   <OutputType>Library</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-	<UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	<AssemblyName>Lucid</AssemblyName>
-	<Copyright>Copyright © Maximilian Ehrentraut</Copyright>
-	<RootNamespace>Lucid</RootNamespace>
+      <TargetFramework>net6.0-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <PlatformName>windows</PlatformName>
+      <ImplicitUsings>enable</ImplicitUsings>
+      <Nullable>disable</Nullable>
+	  <AssemblyName>Lucid</AssemblyName>
+	  <Copyright>Copyright © Maximilian Ehrentraut</Copyright>
+	  <RootNamespace>Lucid</RootNamespace>
 	  <PackageId>LucidUI</PackageId>
 	  <Authors>Lokyyn</Authors>
 	  <Title>LucidUI</Title>
@@ -31,6 +32,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
 </Project>

@@ -2,9 +2,9 @@
 
 public class DockContentEventArgs : EventArgs
 {
-    public DarkDockContent Content { get; private set; }
+    public LucidDockContent Content { get; private set; }
 
-    public DockContentEventArgs(DarkDockContent content)
+    public DockContentEventArgs(LucidDockContent content)
     {
         Content = content;
     }

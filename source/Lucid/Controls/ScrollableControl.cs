@@ -1,9 +1,12 @@
-﻿namespace Lucid.Controls;
+﻿using System.ComponentModel;
 
+namespace Lucid.Controls;
+
+[ToolboxItem(false)]
 public partial class ScrollableControl : UserControl
 {
-    private readonly DarkScrollBar hscrollbar;
-    private readonly DarkScrollBar vscrollbar;
+    private readonly LucidScrollBar hscrollbar;
+    private readonly LucidScrollBar vscrollbar;
 
     private Point scroll_position = Point.Empty;
     private Size canvas_size = Size.Empty;
@@ -17,18 +20,18 @@ public partial class ScrollableControl : UserControl
     {
         //InitializeComponent();
 
-        hscrollbar = new DarkScrollBar()
+        hscrollbar = new LucidScrollBar()
         {
             Visible = true,
-            ScrollOrientation = DarkScrollOrientation.Horizontal,
+            ScrollOrientation = LucidScrollOrientation.Horizontal,
             Dock = DockStyle.Bottom
         };
         hscrollbar.ValueChanged += HandleScroll;
 
-        vscrollbar = new DarkScrollBar()
+        vscrollbar = new LucidScrollBar()
         {
             Visible = true,
-            ScrollOrientation = DarkScrollOrientation.Vertical,
+            ScrollOrientation = LucidScrollOrientation.Vertical,
             Dock = DockStyle.Right
         };
         vscrollbar.ValueChanged += HandleScroll;

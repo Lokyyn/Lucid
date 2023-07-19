@@ -6,18 +6,18 @@ public class DockResizeFilter : IMessageFilter
 {
     #region Field Region
 
-    private DarkDockPanel _dockPanel;
+    private LucidDockPanel _dockPanel;
 
     private System.Windows.Forms.Timer _dragTimer;
     private bool _isDragging;
     private Point _initialContact;
-    private DarkDockSplitter _activeSplitter;
+    private LucidDockSplitter _activeSplitter;
 
     #endregion
 
     #region Constructor Region
 
-    public DockResizeFilter(DarkDockPanel dockPanel)
+    public DockResizeFilter(LucidDockPanel dockPanel)
     {
         _dockPanel = dockPanel;
 
@@ -116,7 +116,7 @@ public class DockResizeFilter : IMessageFilter
 
     #region Method Region
 
-    private void StartDrag(DarkDockSplitter splitter)
+    private void StartDrag(LucidDockSplitter splitter)
     {
         _activeSplitter = splitter;
         Cursor.Current = _activeSplitter.ResizeCursor;
@@ -139,7 +139,7 @@ public class DockResizeFilter : IMessageFilter
         _isDragging = false;
     }
 
-    private DarkDockSplitter HotSplitter()
+    private LucidDockSplitter HotSplitter()
     {
         foreach (var splitter in _dockPanel.Splitters)
         {

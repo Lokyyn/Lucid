@@ -14,7 +14,7 @@ internal class DockDropCollection
 
     #region Constructor Region
 
-    internal DockDropCollection(DarkDockPanel dockPanel, DarkDockGroup group)
+    internal DockDropCollection(LucidDockPanel dockPanel, LucidDockGroup group)
     {
         DropArea = new DockDropArea(dockPanel, group, DockInsertType.None);
         InsertBeforeArea = new DockDropArea(dockPanel, group, DockInsertType.Before);

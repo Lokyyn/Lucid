@@ -2,10 +2,9 @@
 
 namespace Lucid.Helper;
 
-public static class RoundedRectangleHelper
+internal static class RoundedRectangleHelper
 {
-    // Make this internal (public just for testing)
-    public static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int radius)
+    internal static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int radius)
     {
         GraphicsPath path = new GraphicsPath();
 

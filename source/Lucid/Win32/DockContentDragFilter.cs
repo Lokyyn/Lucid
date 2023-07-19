@@ -8,29 +8,29 @@ public class DockContentDragFilter : IMessageFilter
 {
     #region Field Region
 
-    private DarkDockPanel _dockPanel;
+    private LucidDockPanel _dockPanel;
 
-    private DarkDockContent _dragContent;
+    private LucidDockContent _dragContent;
 
-    private DarkTranslucentForm _highlightForm;
+    private LucidTranslucentForm _highlightForm;
 
     private bool _isDragging = false;
-    private DarkDockRegion _targetRegion;
-    private DarkDockGroup _targetGroup;
+    private LucidDockRegion _targetRegion;
+    private LucidDockGroup _targetGroup;
     private DockInsertType _insertType = DockInsertType.None;
 
-    private Dictionary<DarkDockRegion, DockDropArea> _regionDropAreas = new Dictionary<DarkDockRegion, DockDropArea>();
-    private Dictionary<DarkDockGroup, DockDropCollection> _groupDropAreas = new Dictionary<DarkDockGroup, DockDropCollection>();
+    private Dictionary<LucidDockRegion, DockDropArea> _regionDropAreas = new Dictionary<LucidDockRegion, DockDropArea>();
+    private Dictionary<LucidDockGroup, DockDropCollection> _groupDropAreas = new Dictionary<LucidDockGroup, DockDropCollection>();
 
     #endregion
 
     #region Constructor Region
 
-    public DockContentDragFilter(DarkDockPanel dockPanel)
+    public DockContentDragFilter(LucidDockPanel dockPanel)
     {
         _dockPanel = dockPanel;
 
-        _highlightForm = new DarkTranslucentForm(ThemeProvider.Theme.Colors.DockMovedHighlight);
+        _highlightForm = new LucidTranslucentForm(ThemeProvider.Theme.Colors.DockMovedHighlight);
     }
 
     #endregion
@@ -93,15 +93,15 @@ public class DockContentDragFilter : IMessageFilter
 
     #region Method Region
 
-    public void StartDrag(DarkDockContent content)
+    public void StartDrag(LucidDockContent content)
     {
-        _regionDropAreas = new Dictionary<DarkDockRegion, DockDropArea>();
-        _groupDropAreas = new Dictionary<DarkDockGroup, DockDropCollection>();
+        _regionDropAreas = new Dictionary<LucidDockRegion, DockDropArea>();
+        _groupDropAreas = new Dictionary<LucidDockGroup, DockDropCollection>();
 
         // Add all regions and groups to the drop collections
         foreach (var region in _dockPanel.Regions.Values)
         {
-            if (region.DockArea == DarkDockArea.Document)
+            if (region.DockArea == LucidDockArea.Document)
                 continue;
 
             // If the region is visible then build drop areas for the groups.

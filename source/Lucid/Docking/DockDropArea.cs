@@ -4,15 +4,15 @@ internal class DockDropArea
 {
     #region Property Region
 
-    internal DarkDockPanel DockPanel { get; private set; }
+    internal LucidDockPanel DockPanel { get; private set; }
 
     internal Rectangle DropArea { get; private set; }
 
     internal Rectangle HighlightArea { get; private set; }
 
-    internal DarkDockRegion DockRegion { get; private set; }
+    internal LucidDockRegion DockRegion { get; private set; }
 
-    internal DarkDockGroup DockGroup { get; private set; }
+    internal LucidDockGroup DockGroup { get; private set; }
 
     internal DockInsertType InsertType { get; private set; }
 
@@ -20,7 +20,7 @@ internal class DockDropArea
 
     #region Constructor Region
 
-    internal DockDropArea(DarkDockPanel dockPanel, DarkDockRegion region)
+    internal DockDropArea(LucidDockPanel dockPanel, LucidDockRegion region)
     {
         DockPanel = dockPanel;
         DockRegion = region;
@@ -29,7 +29,7 @@ internal class DockDropArea
         BuildAreas();
     }
 
-    internal DockDropArea(DarkDockPanel dockPanel, DarkDockGroup group, DockInsertType insertType)
+    internal DockDropArea(LucidDockPanel dockPanel, LucidDockGroup group, DockInsertType insertType)
     {
         DockPanel = dockPanel;
         DockGroup = group;
@@ -54,7 +54,7 @@ internal class DockDropArea
     {
         switch (DockRegion.DockArea)
         {
-            case DarkDockArea.Left:
+            case LucidDockArea.Left:
 
                 var leftRect = new Rectangle
                 {
@@ -69,7 +69,7 @@ internal class DockDropArea
 
                 break;
 
-            case DarkDockArea.Right:
+            case LucidDockArea.Right:
 
                 var rightRect = new Rectangle
                 {
@@ -84,20 +84,20 @@ internal class DockDropArea
 
                 break;
 
-            case DarkDockArea.Bottom:
+            case LucidDockArea.Bottom:
 
                 var x = DockPanel.PointToScreen(Point.Empty).X;
                 var width = DockPanel.Width;
 
-                if (DockPanel.Regions[DarkDockArea.Left].Visible)
+                if (DockPanel.Regions[LucidDockArea.Left].Visible)
                 {
-                    x += DockPanel.Regions[DarkDockArea.Left].Width;
-                    width -= DockPanel.Regions[DarkDockArea.Left].Width;
+                    x += DockPanel.Regions[LucidDockArea.Left].Width;
+                    width -= DockPanel.Regions[LucidDockArea.Left].Width;
                 }
 
-                if (DockPanel.Regions[DarkDockArea.Right].Visible)
+                if (DockPanel.Regions[LucidDockArea.Right].Visible)
                 {
-                    width -= DockPanel.Regions[DarkDockArea.Right].Width;
+                    width -= DockPanel.Regions[LucidDockArea.Right].Width;
                 }
 
                 var bottomRect = new Rectangle
@@ -139,12 +139,12 @@ internal class DockDropArea
 
                 switch (DockGroup.DockArea)
                 {
-                    case DarkDockArea.Left:
-                    case DarkDockArea.Right:
+                    case LucidDockArea.Left:
+                    case LucidDockArea.Right:
                         beforeDropHeight = DockGroup.Height / 4;
                         break;
 
-                    case DarkDockArea.Bottom:
+                    case LucidDockArea.Bottom:
                         beforeDropWidth = DockGroup.Width / 4;
                         break;
                 }
@@ -170,13 +170,13 @@ internal class DockDropArea
 
                 switch (DockGroup.DockArea)
                 {
-                    case DarkDockArea.Left:
-                    case DarkDockArea.Right:
+                    case LucidDockArea.Left:
+                    case LucidDockArea.Right:
                         afterDropHeight = DockGroup.Height / 4;
                         afterDropY = DockGroup.PointToScreen(Point.Empty).Y + DockGroup.Height - afterDropHeight;
                         break;
 
-                    case DarkDockArea.Bottom:
+                    case LucidDockArea.Bottom:
                         afterDropWidth = DockGroup.Width / 4;
                         afterDropX = DockGroup.PointToScreen(Point.Empty).X + DockGroup.Width - afterDropWidth;
                         break;
