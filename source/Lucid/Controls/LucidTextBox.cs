@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 
 namespace Lucid.Controls;
 
-public class LucidextBox : TextBox
+public class LucidTextBox : TextBox
 {
     #region Constructor Region
 
-    public LucidextBox()
+    public LucidTextBox()
     {
         BackColor = ThemeProvider.Theme.Colors.LightBackground;
         ForeColor = ThemeProvider.Theme.Colors.LightText;
