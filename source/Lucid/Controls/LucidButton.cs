@@ -11,7 +11,7 @@ public class LucidButton : Button
 {
     #region Field Region
 
-    private LucidButtonStyle _style = LucidButtonStyle.Normal;
+    private LucidButtonStyle _style = LucidButtonStyle.Rounded;
     private LucidControlState _buttonState = LucidControlState.Normal;
 
     private int _roundedCornerRadius;

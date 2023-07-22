@@ -79,7 +79,6 @@ public class LucidDocument : LucidDockContent
 
     public LucidDocument()
     {
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
         base.DefaultDockArea = LucidDockArea.Document;
         base.LimitedTitleLength = true;
 
@@ -206,6 +205,15 @@ public class LucidDocument : LucidDockContent
 
     #endregion
 
+    #region Paint Region
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
+        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+    }
+
+    #endregion
 
     protected override void OnResize(System.EventArgs e)
     {

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucid.Sample", "Lucid.Sample\Lucid.Sample.csproj", "{6EFC7CA9-CE25-4466-8FD2-91E8549EE297}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EFC7CA9-CE25-4466-8FD2-91E8549EE297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFC7CA9-CE25-4466-8FD2-91E8549EE297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFC7CA9-CE25-4466-8FD2-91E8549EE297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFC7CA9-CE25-4466-8FD2-91E8549EE297}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC269A5C-CCA9-4486-9E22-1DC48430943E}
+	EndGlobalSection
+EndGlobal
