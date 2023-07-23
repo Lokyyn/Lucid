@@ -6,7 +6,7 @@ public class HalloweenTheme : BaseThemes.BaseDarkTheme
         : base()
     {
         Enabled = false;
-        MultilanguageKey = "Analyst.Settings.Theme.Halloween";
+        MultilanguageKey = "";
         ImageKey = "halloween_theme";
         ThemeName = "HalloweenDark";
         OrderNo = 20;

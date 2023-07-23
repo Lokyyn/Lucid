@@ -1,6 +1,6 @@
 ﻿namespace Lucid.Theming.Themes;
 
-public class CustomTheme : ITheme
+internal class CustomTheme : ITheme
 {
     public Sizes Sizes { get; } = new Sizes();
 

@@ -1,5 +1,8 @@
 ﻿namespace Lucid.Theming.Themes.BaseThemes;
 
+/// <summary>
+/// Functions as the base for all themes that are based on light colors
+/// </summary>
 public abstract class BaseLightTheme : ITheme
 {
     public Sizes Sizes { get; }

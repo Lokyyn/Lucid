@@ -1,14 +1,14 @@
 ﻿namespace Lucid.Theming.Themes;
 
-public class AnnaLenaTheme : BaseThemes.BaseDarkTheme
+internal class AnnaLenaTheme : BaseThemes.BaseDarkTheme
 {
     public AnnaLenaTheme() 
         : base()
     {
         Enabled = true;
-        MultilanguageKey = "Analyst.Settings.Theme.AnnaLenaTheme";
+        MultilanguageKey = "";
         ImageKey = "dark_theme";
-        ThemeName = "AnnaLenaTheme";
+        ThemeName = "";
         OrderNo = 3;
 
         // old cyan color that was to bright: #4db6ac

@@ -6,7 +6,7 @@ public class CustomAccentDarkTheme : BaseThemes.BaseDarkTheme
         : base()
     {
         Enabled = false;
-        MultilanguageKey = "Analyst.Settings.Theme.AccentDark";
+        MultilanguageKey = "";
         ImageKey = "dark_theme";
         ThemeName = "AccentDark";
         OrderNo = 10;
@@ -19,7 +19,7 @@ public class CustomAccentLightTheme : BaseThemes.BaseLightTheme
         : base()
     {
         Enabled = false;
-        MultilanguageKey = "Analyst.Settings.Theme.AccentLight";
+        MultilanguageKey = "";
         ImageKey = "light_theme";
         ThemeName = "AccentLight";
         OrderNo = 10;

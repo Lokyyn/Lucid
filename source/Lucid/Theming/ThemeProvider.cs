@@ -22,6 +22,9 @@ public class ThemeProvider
 
     public delegate void ThemeChangedHandler();
 
+    /// <summary>
+    /// The current active theme
+    /// </summary>
     public static ITheme Theme
     {
         get
@@ -68,5 +71,9 @@ public class ThemeProvider
         }
     }
 
+    /// <summary>
+    /// Returns a list with all available themes
+    /// <br><i> NOTE: Disabled themes won't appear in this list </i></br>
+    /// </summary>
     public static List<ITheme> GetAllThemes => _allThemes;
 }
