@@ -15,6 +15,7 @@ public partial class LucidSampleForm : Form
         Application.AddMessageFilter(lucidDockPanel.DockContentDragFilter);
         Application.AddMessageFilter(lucidDockPanel.DockResizeFilter);
 
+        var v = System.Reflection.Assembly.GetAssembly(typeof(Lucid.Theming.ThemeProvider)).GetName().Version.ToString(3);
 
         AddToolWindows();
         AddPages();

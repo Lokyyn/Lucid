@@ -14,7 +14,7 @@ public partial class MainPage : LucidDocument
         Color.Orange,
         Color.ForestGreen,
         Color.Yellow,
-        Color.Pink,
+        Color.IndianRed,
         Color.Teal
     };
 
@@ -35,6 +35,8 @@ public partial class MainPage : LucidDocument
         InitializeComponent();
 
         SetUpChipControl();
+
+        lucidScrollableControl1.Refresh();
     }
 
     private void SetUpChipControl()

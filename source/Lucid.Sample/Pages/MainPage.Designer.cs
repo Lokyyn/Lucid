@@ -31,6 +31,9 @@ partial class MainPage
         lucidChipControl1 = new Controls.LucidChipControl();
         btAddChip = new Controls.LucidButton();
         btRemoveChip = new Controls.LucidButton();
+        lucidScrollableControl1 = new Controls.LucidScrollableControl();
+        lucidButton1 = new Controls.LucidButton();
+        lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
         // 
         // lucidChipControl1
@@ -74,21 +77,45 @@ partial class MainPage
         btRemoveChip.Text = "Remove Chip";
         btRemoveChip.Click += btRemoveChip_Click;
         // 
+        // lucidScrollableControl1
+        // 
+        lucidScrollableControl1.BorderStyle = BorderStyle.FixedSingle;
+        lucidScrollableControl1.Controls.Add(lucidButton1);
+        lucidScrollableControl1.Location = new Point(27, 341);
+        lucidScrollableControl1.Name = "lucidScrollableControl1";
+        lucidScrollableControl1.Size = new Size(248, 174);
+        lucidScrollableControl1.TabIndex = 8;
+        // 
+        // lucidButton1
+        // 
+        lucidButton1.BackColor = Color.Transparent;
+        lucidButton1.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        lucidButton1.Location = new Point(205, 145);
+        lucidButton1.Name = "lucidButton1";
+        lucidButton1.Padding = new Padding(5);
+        lucidButton1.RoundedCornerRadius = 16;
+        lucidButton1.Size = new Size(75, 50);
+        lucidButton1.TabIndex = 9;
+        lucidButton1.Text = "lucidButton1";
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(lucidScrollableControl1);
         Controls.Add(btRemoveChip);
         Controls.Add(btAddChip);
         Controls.Add(lucidChipControl1);
         DockText = "MainPage";
         Name = "MainPage";
-        Size = new Size(488, 509);
+        Size = new Size(722, 606);
         Controls.SetChildIndex(_hScrollBar, 0);
         Controls.SetChildIndex(_vScrollBar, 0);
         Controls.SetChildIndex(lucidChipControl1, 0);
         Controls.SetChildIndex(btAddChip, 0);
         Controls.SetChildIndex(btRemoveChip, 0);
+        Controls.SetChildIndex(lucidScrollableControl1, 0);
+        lucidScrollableControl1.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -97,4 +124,6 @@ partial class MainPage
     private Controls.LucidChipControl lucidChipControl1;
     private Controls.LucidButton btAddChip;
     private Controls.LucidButton btRemoveChip;
+    private Controls.LucidScrollableControl lucidScrollableControl1;
+    private Controls.LucidButton lucidButton1;
 }

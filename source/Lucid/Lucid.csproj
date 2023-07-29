@@ -24,7 +24,7 @@
 	  <FileVersion>1.0.7</FileVersion>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
