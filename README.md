@@ -17,7 +17,7 @@ Lucid is a free WinForms control library with theming, docking and other functio
 
 This control allows you to create, select and highlight chips. When adding a chip to this control it has a default color which can be adjusted when needed. Furthermore it has two selection modes and different options for adjusting it's visual appearance.
 
-![ChipControl](sample\resources\ChipControl.gif)
+![ChipControl](sample/resources/ChipControl.gif)
 ~~~
 // Adding a chip
 lucidChipControl1.Chips.Add(new Controls.Chip() { Text = "Sample Chip", BackColor = Color.BlueViolet });
@@ -45,7 +45,7 @@ lucidChipControl1.ChipsEnabled = true;
 
 This TreeView has almost all features a normal TreeView has e.g. it has the option to set a node icon when collapsed or expanded. It also features badges which can be used to highlight individual nodes with an information. This badges are fully customizable with its color and text.
 
-![TreeView](sample\resources\TreeView.gif)
+![TreeView](sample/resources/TreeView.gif)
 
 Adding a node is pretty straight foward. Just add an node instance to the _Nodes_ collection.
 ~~~
