@@ -5,7 +5,7 @@ internal class AnnaLenaTheme : BaseThemes.BaseDarkTheme
     public AnnaLenaTheme() 
         : base()
     {
-        Enabled = true;
+        Enabled = false;
         MultilanguageKey = "";
         ImageKey = "dark_theme";
         ThemeName = "";

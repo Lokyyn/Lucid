@@ -55,7 +55,7 @@ public class ThemeProvider
 
     private static void LoadAddtionalThemes()
     {
-        if (ManagerOS.IsWindows10OrWindows11())
+        if (ManagerOS.IsWindows10OrWindows11)
         {
             var accentDark = new CustomAccentDarkTheme() { Enabled = true };
             var accentLight = new CustomAccentLightTheme() { Enabled = true };

@@ -21,10 +21,7 @@ internal static class ManagerOS
         }
     }
 
-    internal static bool IsWindows10OrWindows11()
-    {
-        return WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11;
-    }
+    internal static bool IsWindows10OrWindows11 => WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11;
 
     private static object RegistryValue(string keyName, string valueName, object defaultValue)
     {
@@ -44,7 +41,7 @@ internal static class ManagerOS
     /// <returns></returns>
     internal static Color GetAccentColor()
     {
-        if (WindowsVersion == CurrentOS.Windows10 || WindowsVersion == CurrentOS.Windows11)
+        if (IsWindows10OrWindows11)
         {
             int accentColorDWord = (int)RegistryValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", "AccentColor", 0);
             return ParseDWordColor(accentColorDWord);
