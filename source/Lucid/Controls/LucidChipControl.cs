@@ -45,7 +45,7 @@ public partial class LucidChipControl : UserControl
     public bool HighlightChipUnderCursor { get; set; } = true;
 
     /// <summary>
-    /// Defines if the chips in general are enabled. If <see cref="false"/> the chips selection and highlight color are now active.
+    /// Defines if the chips in general are enabled. If <see cref="false"/> the chips selection and highlight color are not active.
     /// </summary>
     public bool ChipsEnabled { get; set; } = true;
 
@@ -221,6 +221,8 @@ public partial class LucidChipControl : UserControl
                     var height = endingPoint.Y - startingPoint.Y;
                     var imageDrawPoint = new Point(endingPoint.X - deleteIcon.Width + 2, endingPoint.Y - height + 2);
 
+                    chip.DeleteRectangle = new Rectangle(imageDrawPoint, new Size(deleteIcon.Width, deleteIcon.Height));
+
                     g.DrawImage(deleteIcon, imageDrawPoint);
                     g.DrawString(chip.Text.Substring(0, Math.Max(0, chip.Text.Length - 3)) + "…", _BadgeFont, foreBrush, startingPoint);
 
@@ -247,6 +249,13 @@ public partial class LucidChipControl : UserControl
     public event OnChipSelectionChangedHandler OnChipSelectionChanged;
 
     public delegate void OnChipSelectionChangedHandler(Chip newSelectedChip, List<Chip> allSelectedChips);
+
+    /// <summary>
+    /// This event fires when an chip is deleted by clicking on it
+    /// </summary>
+    public event OnChipDeletedHandler OnChipDeleted;
+
+    public delegate void OnChipDeletedHandler(Chip deletedChip);
 
     #endregion
 
@@ -340,7 +349,15 @@ public partial class LucidChipControl : UserControl
 
         if (chipHit != null && chipHit.BadgeRectangle != Rectangle.Empty && ChipsEnabled)
         {
-            if (SelectionMode == SelectionMode.Multiple)
+            if (AllowChipDeletion && chipHit.DeleteRectangle.Contains(e.Location))
+            {
+                Chips.Remove(chipHit);
+
+                // Trigger event
+                if (OnChipDeleted != null)
+                    OnChipDeleted(chipHit);
+            }
+            else if (SelectionMode == SelectionMode.Multiple)
             {
                 chipHit.IsSelected = !chipHit.IsSelected;
 
@@ -379,6 +396,8 @@ public class Chip
     internal bool IsHot { get; set; } = false;
 
     internal Rectangle BadgeRectangle { get; set; } = Rectangle.Empty;
+
+    internal Rectangle DeleteRectangle { get; set; } = Rectangle.Empty;
 
     public string Text { get; set; }
 
