@@ -6,6 +6,7 @@ namespace Lucid.Theming;
 public class ThemeProvider
 {
     private static List<ITheme> _allThemes;
+    private static List<ITheme> _userRegisteredThemes;
     private static ITheme theme;
 
     static ThemeProvider()
@@ -43,6 +44,10 @@ public class ThemeProvider
         }
     }
 
+    /// <summary>
+    /// Sets a theme with the given theme name if it exists. Other wise it sets <see cref="DarkTheme"/> as the current theme.
+    /// </summary>
+    /// <param name="theme"></param>
     public static void SetThemeWithAlias(string theme)
     {
         var newTheme = GetAllThemes.FirstOrDefault(u => u.ThemeName == theme);
@@ -51,6 +56,19 @@ public class ThemeProvider
             Theme = newTheme;
         else
             Theme = new DarkTheme();
+    }
+
+    /// <summary>
+    /// Registers the given theme to the <see cref="ThemeProvider"/>.
+    /// </summary>
+    /// <param name="theme"></param>
+    /// <exception cref="NotSupportedException"></exception>
+    public static void RegisterTheme(ITheme theme)
+    {
+        if (theme.GetType().BaseType != typeof(BaseDarkTheme) && theme.GetType().BaseType != typeof(BaseLightTheme))
+            throw new NotSupportedException($"This method only allows themes with inheritence of the base dark or light theme. For more information see {typeof(BaseLightTheme).Namespace}.");
+        
+        _userRegisteredThemes.Add(theme);
     }
 
     private static void LoadAddtionalThemes()
@@ -72,8 +90,8 @@ public class ThemeProvider
     }
 
     /// <summary>
-    /// Returns a list with all available themes
+    /// Returns a list with all available themes (including user registered themes)
     /// <br><i> NOTE: Disabled themes won't appear in this list </i></br>
     /// </summary>
-    public static List<ITheme> GetAllThemes => _allThemes;
+    public static List<ITheme> GetAllThemes => new List<ITheme>(_allThemes).Concat(_userRegisteredThemes).ToList();
 }
