@@ -12,6 +12,7 @@ public class ThemeProvider
     static ThemeProvider()
     {
         _allThemes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(t => !t.IsInterface && (t.BaseType == typeof(BaseDarkTheme) || t.BaseType == typeof(BaseLightTheme))).Select(c => (ITheme)Activator.CreateInstance(c)).Where(u => u.Enabled).ToList();
+        _userRegisteredThemes = new List<ITheme>();
 
         LoadAddtionalThemes();
     }
