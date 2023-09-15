@@ -11,15 +11,15 @@ public abstract class BaseLightTheme : ITheme
 
     public ThemeType Type => ThemeType.Light;
 
-    public bool Enabled { get; internal set; }
+    public bool Enabled { get; set; }
 
-    public string MultilanguageKey { get; internal set; }
+    public string MultilanguageKey { get; set; }
 
-    public string ImageKey { get; internal set; }
+    public string ImageKey { get; set; }
 
-    public string ThemeName { get; internal set; }
+    public string ThemeName { get; set; }
 
-    public int OrderNo { get; internal set; }
+    public int OrderNo { get; set; }
 
     public BaseLightTheme()
     {
