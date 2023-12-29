@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using Lucid.Common;
+using Lucid.Helper;
 
 namespace Lucid.Controls;
 
@@ -173,6 +174,11 @@ public class LucidTreeView : LucidScrollView
     [Description("Determines whether icons are rendered with the tree nodes.")]
     [DefaultValue(false)]
     public bool ShowIcons { get; set; }
+
+    [Category("Appearance")]
+    [Description("Determines whether selected node is displayed with a rounded rectangle.")]
+    [DefaultValue(false)]
+    public bool ShowSelectedNodeRoundedRectangle { get; set; }
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
