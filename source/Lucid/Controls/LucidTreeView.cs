@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using Lucid.Common;
+using Lucid.Helper;
 
 namespace Lucid.Controls;
 
