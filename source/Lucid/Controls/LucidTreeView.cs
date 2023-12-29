@@ -175,6 +175,11 @@ public class LucidTreeView : LucidScrollView
     [DefaultValue(false)]
     public bool ShowIcons { get; set; }
 
+    [Category("Appearance")]
+    [Description("Determines whether selected node is displayed with a rounded rectangle.")]
+    [DefaultValue(false)]
+    public bool ShowSelectedNodeRoundedRectangle { get; set; }
+
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int VisibleNodeCount { get; private set; }
