@@ -39,6 +39,7 @@ partial class ToolWindow
         lucidTreeView.MaxDragChange = 20;
         lucidTreeView.Name = "lucidTreeView";
         lucidTreeView.Size = new Size(319, 273);
+        lucidTreeView.ShowSelectedNodeRoundedRectangle = true;
         lucidTreeView.TabIndex = 2;
         lucidTreeView.Text = "lucidTreeView1";
         // 
