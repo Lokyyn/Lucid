@@ -38,7 +38,7 @@ partial class MainPage
         // 
         // lucidChipControl1
         // 
-        lucidChipControl1.AllowChipDeletion = false;
+        lucidChipControl1.AllowChipDeletion = true;
         lucidChipControl1.AllowChipSelection = true;
         lucidChipControl1.BackColor = Color.FromArgb(60, 63, 65);
         lucidChipControl1.BorderStyle = BorderStyle.FixedSingle;
@@ -50,6 +50,7 @@ partial class MainPage
         lucidChipControl1.Size = new Size(256, 178);
         lucidChipControl1.SymmetricPadding = 10;
         lucidChipControl1.TabIndex = 4;
+        lucidChipControl1.OnChipDeleted += lucidChipControl1_OnChipDeleted;
         // 
         // btAddChip
         // 

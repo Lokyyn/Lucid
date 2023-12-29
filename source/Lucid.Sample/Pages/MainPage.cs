@@ -68,4 +68,9 @@ public partial class MainPage : LucidDocument
         lucidChipControl1.Chips.RemoveAt(r.Next(0, lucidChipControl1.Chips.Count - 1));
         lucidChipControl1.Refresh();
     }
+
+    private void lucidChipControl1_OnChipDeleted(Controls.Chip deletedChip)
+    {
+
+    }
 }
