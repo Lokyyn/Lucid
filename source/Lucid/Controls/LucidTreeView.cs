@@ -1382,6 +1382,10 @@ public class LucidTreeView : LucidScrollView
 
         using (var b = new SolidBrush(bgColor))
         {
+
+            if (ShowSelectedNodeRoundedRectangle)
+                g.FillPath(b, RoundedRectangleHelper.CreateRoundedRectanglePath(rect, 8));
+            else
             g.FillRectangle(b, rect);
         }
 
