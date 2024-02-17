@@ -786,7 +786,11 @@ public class LucidTreeView : LucidScrollView
             badgeWidth += textLength;
         }
 
-        node.BadgeArea = new Rectangle(node.TextArea.Right + 7, yOffset + 3, badgeWidth, 12);
+        var progressBarWidth = (int)node.ProgressbarSize;
+
+        node.ProgressBarArea = new Rectangle(node.TextArea.Right + 7, yOffset + 3, node.ShowProgressBar ? progressBarWidth + 18 : 0, 12);
+
+        node.BadgeArea = new Rectangle(node.ProgressBarArea.Right + 7, yOffset + 3, badgeWidth, 12);
 
         node.FullArea = new Rectangle(indent, yOffset, (node.BadgeArea.Right - indent), ItemHeight);
 
@@ -1392,7 +1396,7 @@ public class LucidTreeView : LucidScrollView
             if (ShowSelectedNodeRoundedRectangle)
                 g.FillPath(b, RoundedRectangleHelper.CreateRoundedRectanglePath(rect, 8));
             else
-            g.FillRectangle(b, rect);
+                g.FillRectangle(b, rect);
         }
 
         // 2. Draw plus/minus icon
@@ -1443,7 +1447,43 @@ public class LucidTreeView : LucidScrollView
                 g.DrawString(node.Text, Font, b, node.TextArea, stringFormat);
         }
 
-        // 5. Draw Badge
+        // 5. Draw Badge Progressbar
+        if (node.ShowProgressBar)
+        {
+            var progressBarBackColor = ColorTranslator.FromHtml("#939dd5");
+            var progressBarForeColor = ColorTranslator.FromHtml("#ffffff");
+            var progressBarFillColor = ColorTranslator.FromHtml("#5c6bc0");
+
+            var width = (int)node.ProgressbarSize;
+            var percentage = node.ProgressBarPercentage;
+
+            using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+            using (var gState = new SaveableGraphicsState(g))
+            using (var brushBack = new SolidBrush(progressBarBackColor))
+            using (var brushFore = new SolidBrush(progressBarForeColor))
+            using (var brushFill = new SolidBrush(progressBarFillColor))
+            {
+                var path = BadgePath(new SizeF(width, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y);
+
+                var progressBarWidth = path.GetBounds().Width;
+                var realPercentage = progressBarWidth * (percentage / 100);
+
+
+                var pathFilled = BadgePath(new SizeF((float)realPercentage, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y);
+
+
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = SmoothingMode.HighQuality;
+
+                g.FillPath(brushBack, path);
+                g.FillPath(brushFill, pathFilled);
+
+                //g.DrawPath(p, BadgeCornerPath(new SizeF(width, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y));
+            }
+        }
+
+        // 6. Draw Badge
         var newXPosition = 0;
         foreach (var badge in node.BadgeCollection.Badges)
         {
@@ -1511,7 +1551,7 @@ public class LucidTreeView : LucidScrollView
             }
         }
 
-        // 6. Draw child nodes
+        // 7. Draw child nodes
         DrawChildNodes(node, g);
     }
 
@@ -1532,6 +1572,58 @@ public class LucidTreeView : LucidScrollView
         path.AddLine(xCoordinate, yCoordinate + 9, xCoordinate, yCoordinate + 3);
 
         path.CloseFigure();
+        return path;
+    }
+
+    //private GraphicsPath BadgePathFilled(SizeF badgeSize, int xCoordinate, int yCoordinate)
+    //{
+    //    GraphicsPath path = new GraphicsPath();
+
+    //    // Top
+    //    path.AddLine(xCoordinate + 3, yCoordinate, xCoordinate + 15 + badgeSize.Width, yCoordinate);
+
+    //    // Right
+    //    path.AddLine(xCoordinate + 18 + badgeSize.Width, yCoordinate + 3, xCoordinate  badgeSize.Width, yCoordinate + 9);
+
+    //    // Bottom
+    //    path.AddLine(xCoordinate + 15 + badgeSize.Width, yCoordinate + 12, xCoordinate + 3, yCoordinate + 12);
+
+    //    // Left
+    //    path.AddLine(xCoordinate, yCoordinate + 9, xCoordinate, yCoordinate + 3);
+
+    //    path.CloseFigure();
+    //    return path;
+    //}
+
+
+    private GraphicsPath BadgeCornerPath(SizeF badgeSize, int xCoordinate, int yCoordinate)
+    {
+        GraphicsPath path = new GraphicsPath();
+
+        // Corner lower left
+        path.AddArc(xCoordinate, yCoordinate + 5, 7, 7, 90, 90);
+
+        // Corner upper left
+        path.AddArc(xCoordinate, yCoordinate, 7, 7, 180, 90);
+
+        // Corner upper right
+        path.AddArc(xCoordinate + 11 + badgeSize.Width, yCoordinate, 7, 7, 270, 90);
+
+        // Corner lower right
+        path.AddArc(xCoordinate + 11 + badgeSize.Width, yCoordinate + 5, 7, 7, 360, 90);
+
+        path.CloseFigure();
+
+        return path;
+    }
+
+    private GraphicsPath ProgessBarPercentagePath(double percentage, int xCoordinate, int yCoordinate)
+    {
+        GraphicsPath path = new GraphicsPath();
+
+        // Top
+        //path.AddLine(xCoordinate + 3, yCoordinate, xCoordinate + 15 + (int)percentage, yCoordinate);
+
         return path;
     }
 

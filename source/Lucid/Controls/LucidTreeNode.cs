@@ -1,5 +1,6 @@
 ﻿using Lucid.Collections;
 using Lucid.Controls.DataClasses.Badge;
+using Lucid.Controls.DataClasses.BadgeProgressbar;
 
 namespace Lucid.Controls;
 
@@ -55,9 +56,17 @@ public class LucidTreeNode
 
     internal Rectangle BadgeArea { get; set; }
 
+    internal Rectangle ProgressBarArea { get; set; }
+
     public BadgeCollection BadgeCollection { get; set; }
 
     public BadgeColorCollection BadgeColors { get; set; }
+
+    public bool ShowProgressBar { get; set; }
+
+    public eProgressbarSize ProgressbarSize { get; set; } = eProgressbarSize.Medium;
+
+    public double ProgressBarPercentage { get; set; } = 25;
 
     internal Rectangle FullArea { get; set; }
 
