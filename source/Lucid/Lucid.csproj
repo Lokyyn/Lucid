@@ -20,8 +20,8 @@
 	  <RepositoryType>Git</RepositoryType>
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	  <AssemblyVersion>1.0.12</AssemblyVersion>
-	  <FileVersion>1.0.12</FileVersion>
+	  <AssemblyVersion>1.0.13</AssemblyVersion>
+	  <FileVersion>1.0.13</FileVersion>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
