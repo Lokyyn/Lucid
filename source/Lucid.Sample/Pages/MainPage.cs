@@ -73,4 +73,18 @@ public partial class MainPage : LucidDocument
     {
 
     }
+
+    private void btnProgressBarAdd_Click(object sender, EventArgs e)
+    {
+        Random rnd = new Random();
+
+        lucidProgressBar.Value += rnd.Next(1, 15);
+    }
+
+    private void btnProgressBarRemove_Click(object sender, EventArgs e)
+    {
+        Random rnd = new Random();
+
+        lucidProgressBar.Value -= rnd.Next(1, 15);
+    }
 }

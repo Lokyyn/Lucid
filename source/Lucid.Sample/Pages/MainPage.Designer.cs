@@ -33,6 +33,9 @@ partial class MainPage
         btRemoveChip = new Controls.LucidButton();
         lucidScrollableControl1 = new Controls.LucidScrollableControl();
         lucidButton1 = new Controls.LucidButton();
+        lucidProgressBar = new Controls.LucidProgressBar();
+        btnProgressBarAdd = new Controls.LucidButton();
+        btnProgressBarRemove = new Controls.LucidButton();
         lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
         // 
@@ -99,10 +102,52 @@ partial class MainPage
         lucidButton1.TabIndex = 9;
         lucidButton1.Text = "lucidButton1";
         // 
+        // lucidProgressBar
+        // 
+        lucidProgressBar.AllowProgressBarColorOverride = false;
+        lucidProgressBar.Location = new Point(340, 107);
+        lucidProgressBar.Maximum = 100;
+        lucidProgressBar.Minimum = 0;
+        lucidProgressBar.Name = "lucidProgressBar";
+        lucidProgressBar.ProgressBarColor = Color.FromArgb(104, 151, 187);
+        lucidProgressBar.ShowPercentage = true;
+        lucidProgressBar.Size = new Size(283, 20);
+        lucidProgressBar.TabIndex = 9;
+        lucidProgressBar.Value = 0;
+        // 
+        // btnProgressBarAdd
+        // 
+        btnProgressBarAdd.BackColor = Color.Transparent;
+        btnProgressBarAdd.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnProgressBarAdd.Location = new Point(340, 78);
+        btnProgressBarAdd.Name = "btnProgressBarAdd";
+        btnProgressBarAdd.Padding = new Padding(5);
+        btnProgressBarAdd.RoundedCornerRadius = 16;
+        btnProgressBarAdd.Size = new Size(32, 23);
+        btnProgressBarAdd.TabIndex = 10;
+        btnProgressBarAdd.Text = "+";
+        btnProgressBarAdd.Click += btnProgressBarAdd_Click;
+        // 
+        // btnProgressBarRemove
+        // 
+        btnProgressBarRemove.BackColor = Color.Transparent;
+        btnProgressBarRemove.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnProgressBarRemove.Location = new Point(378, 78);
+        btnProgressBarRemove.Name = "btnProgressBarRemove";
+        btnProgressBarRemove.Padding = new Padding(5);
+        btnProgressBarRemove.RoundedCornerRadius = 16;
+        btnProgressBarRemove.Size = new Size(32, 23);
+        btnProgressBarRemove.TabIndex = 11;
+        btnProgressBarRemove.Text = "-";
+        btnProgressBarRemove.Click += btnProgressBarRemove_Click;
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(btnProgressBarRemove);
+        Controls.Add(btnProgressBarAdd);
+        Controls.Add(lucidProgressBar);
         Controls.Add(lucidScrollableControl1);
         Controls.Add(btRemoveChip);
         Controls.Add(btAddChip);
@@ -116,6 +161,9 @@ partial class MainPage
         Controls.SetChildIndex(btAddChip, 0);
         Controls.SetChildIndex(btRemoveChip, 0);
         Controls.SetChildIndex(lucidScrollableControl1, 0);
+        Controls.SetChildIndex(lucidProgressBar, 0);
+        Controls.SetChildIndex(btnProgressBarAdd, 0);
+        Controls.SetChildIndex(btnProgressBarRemove, 0);
         lucidScrollableControl1.ResumeLayout(false);
         ResumeLayout(false);
     }
@@ -127,4 +175,7 @@ partial class MainPage
     private Controls.LucidButton btRemoveChip;
     private Controls.LucidScrollableControl lucidScrollableControl1;
     private Controls.LucidButton lucidButton1;
+    private Controls.LucidProgressBar lucidProgressBar;
+    private Controls.LucidButton btnProgressBarAdd;
+    private Controls.LucidButton btnProgressBarRemove;
 }
