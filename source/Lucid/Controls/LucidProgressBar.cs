@@ -9,6 +9,23 @@ public partial class LucidProgressBar : UserControl
     int val = 0; // Current progress
     Color BarColor = ThemeProvider.Theme.Colors.ControlHighlight; // Color of progress meter
 
+    public bool ShowPercentage { get; set; }
+
+    public Color PercentageTextColor { get; set; } = Color.Black;
+
+    public Font PercentageFont { get; set; } = new Font(new FontFamily("Arial"), 7);
+
+
+    private float _CurrentPercentage
+    {
+        get
+        {
+            float percent = (float)(val - min) / (float)(max - min);
+
+            return percent;
+        }
+    }
+
     public LucidProgressBar()
     {
         InitializeComponent();
@@ -24,7 +41,6 @@ public partial class LucidProgressBar : UserControl
     {
         Graphics g = e.Graphics;
         SolidBrush brush = new SolidBrush(BarColor);
-        float percent = (float)(val - min) / (float)(max - min);
         Rectangle rect = this.ClientRectangle;
 
         // Draw Theming Colors
@@ -33,10 +49,22 @@ public partial class LucidProgressBar : UserControl
         g.FillRectangle(brushTheming, rect);
 
         // Calculate area for drawing the progress.
-        rect.Width = (int)((float)rect.Width * percent);
+        rect.Width = (int)((float)rect.Width * _CurrentPercentage);
 
         // Draw the progress meter.
         g.FillRectangle(brush, rect);
+
+        if (ShowPercentage)
+        {
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+            var percentageText = $"{Math.Round(_CurrentPercentage * 100)}%";
+            var measuredString = g.MeasureString(percentageText, PercentageFont);
+
+            var point = new Point((ClientRectangle.Width / 2) - (int)measuredString.Width / 2, (ClientRectangle.Height / 2) - (int)measuredString.Height / 2);
+
+            g.DrawString(percentageText, PercentageFont, new SolidBrush(PercentageTextColor), point);
+        }
 
         // Draw a three-dimensional border around the control.
         Draw3DBorder(g);
@@ -163,7 +191,7 @@ public partial class LucidProgressBar : UserControl
             updateRect.Height = this.Height;
 
             // Invalidate the intersection region only.
-            this.Invalidate(updateRect);
+            this.Invalidate();
         }
     }
 
