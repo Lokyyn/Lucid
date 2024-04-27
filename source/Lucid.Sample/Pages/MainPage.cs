@@ -87,4 +87,9 @@ public partial class MainPage : LucidDocument
 
         lucidProgressBar.Value -= rnd.Next(1, 15);
     }
+    
+    private void btnShowMessageBox_Click(object sender, EventArgs e)
+    {
+        Lucid.Forms.LucidMessageBox.ShowInformation("This is just an test message with an long text that has no meaning", "Information");
+    }
 }

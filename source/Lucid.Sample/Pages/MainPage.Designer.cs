@@ -28,6 +28,7 @@ partial class MainPage
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
         lucidChipControl1 = new Controls.LucidChipControl();
         btAddChip = new Controls.LucidButton();
         btRemoveChip = new Controls.LucidButton();
@@ -36,6 +37,8 @@ partial class MainPage
         lucidProgressBar = new Controls.LucidProgressBar();
         btnProgressBarAdd = new Controls.LucidButton();
         btnProgressBarRemove = new Controls.LucidButton();
+        btnShowMessageBox = new Controls.LucidButton();
+        lucidFileDrop1 = new Controls.LucidFileDrop();
         lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
         // 
@@ -140,6 +143,31 @@ partial class MainPage
         btnProgressBarRemove.TabIndex = 11;
         btnProgressBarRemove.Text = "-";
         btnProgressBarRemove.Click += btnProgressBarRemove_Click;
+        //
+        // btnShowMessageBox
+        // 
+        btnShowMessageBox.BackColor = Color.Transparent;
+        btnShowMessageBox.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnShowMessageBox.Location = new Point(449, 61);
+        btnShowMessageBox.Name = "btnShowMessageBox";
+        btnShowMessageBox.Padding = new Padding(5);
+        btnShowMessageBox.RoundedCornerRadius = 16;
+        btnShowMessageBox.Size = new Size(136, 23);
+        btnShowMessageBox.TabIndex = 9;
+        btnShowMessageBox.Text = "Show Message Box";
+        btnShowMessageBox.Click += btnShowMessageBox_Click;
+        // 
+        // lucidFileDrop1
+        // 
+        lucidFileDrop1.AllowDrop = true;
+        lucidFileDrop1.AllowedFileExtensions = (List<string>)resources.GetObject("lucidFileDrop1.AllowedFileExtensions");
+        lucidFileDrop1.BackColor = Color.FromArgb(60, 63, 65);
+        lucidFileDrop1.DisplayText = "Sample Text";
+        lucidFileDrop1.DisplayTextDragOver = "Sample Drag Over Text";
+        lucidFileDrop1.Location = new Point(374, 325);
+        lucidFileDrop1.Name = "lucidFileDrop1";
+        lucidFileDrop1.Size = new Size(261, 159);
+        lucidFileDrop1.TabIndex = 10;
         // 
         // MainPage
         // 
@@ -148,6 +176,8 @@ partial class MainPage
         Controls.Add(btnProgressBarRemove);
         Controls.Add(btnProgressBarAdd);
         Controls.Add(lucidProgressBar);
+        Controls.Add(lucidFileDrop1);
+        Controls.Add(btnShowMessageBox);
         Controls.Add(lucidScrollableControl1);
         Controls.Add(btRemoveChip);
         Controls.Add(btAddChip);
@@ -164,6 +194,8 @@ partial class MainPage
         Controls.SetChildIndex(lucidProgressBar, 0);
         Controls.SetChildIndex(btnProgressBarAdd, 0);
         Controls.SetChildIndex(btnProgressBarRemove, 0);
+        Controls.SetChildIndex(btnShowMessageBox, 0);
+        Controls.SetChildIndex(lucidFileDrop1, 0);
         lucidScrollableControl1.ResumeLayout(false);
         ResumeLayout(false);
     }
@@ -178,4 +210,6 @@ partial class MainPage
     private Controls.LucidProgressBar lucidProgressBar;
     private Controls.LucidButton btnProgressBarAdd;
     private Controls.LucidButton btnProgressBarRemove;
+    private Controls.LucidButton btnShowMessageBox;
+    private Controls.LucidFileDrop lucidFileDrop1;
 }
