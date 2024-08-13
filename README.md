@@ -1,4 +1,4 @@
-[![.NET 6 Build](https://github.com/xmln17/LokConLib/actions/workflows/dotnet_6_build.yml/badge.svg)](https://github.com/xmln17/LokConLib/actions/workflows/dotnet_6_build.yml)
+[![.NET 8 Build](https://github.com/Lokyyn/Lucid/actions/workflows/dotnet_8_build.yml/badge.svg)](https://github.com/Lokyyn/Lucid/actions/workflows/dotnet_8_build.yml)
 [![Publish package](https://github.com/xmln17/Lucid/actions/workflows/publish.yml/badge.svg?event=release)](https://github.com/xmln17/Lucid/actions/workflows/publish.yml)
 
 [![](https://img.shields.io/nuget/dt/lucidui?color=004880&label=Downloads&logo=NuGet)](https://www.nuget.org/packages/LucidUI/)
