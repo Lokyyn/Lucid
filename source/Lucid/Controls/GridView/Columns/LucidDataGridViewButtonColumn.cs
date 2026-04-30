@@ -160,7 +160,7 @@ public class LucidDataGridViewButtonCell : DataGridViewButtonCell
         else if (ButtonState.HasFlag(ButtonState.Checked) || ButtonState.HasFlag(ButtonState.Pushed))
             fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         else if (_mouseCurserCell == rowIndex) // Hover
-            fillColor = ThemeProvider.Theme.Colors.LighterBackground;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceDefault;
 
         // Paint button
         Rectangle contentBounds = new Rectangle(cellBounds.X + _padding.Left, cellBounds.Y + _padding.Top,
