@@ -40,7 +40,7 @@ internal class CustomTheme : ITheme
 
         // List
 
-        Colors.DarkBlueBackground = Color.FromArgb(52, 57, 66);
+        Colors.AccentSecondary = Color.FromArgb(52, 57, 66);
         Colors.BackgroundPrimary = Color.FromArgb(43, 43, 43);
         Colors.BackgroundPrimary = Color.FromArgb(49, 51, 53);
         Colors.BackgroundTertiary = Color.FromArgb(69, 73, 74);

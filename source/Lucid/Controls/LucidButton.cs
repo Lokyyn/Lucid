@@ -353,7 +353,7 @@ public class LucidButton : Button
 
         var textColor = ThemeProvider.Theme.Colors.LightText;
         var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
-        var fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBlueBackground : ThemeProvider.Theme.Colors.BackgroundTertiary;
+        var fillColor = _isDefault ? ThemeProvider.Theme.Colors.AccentSecondary : ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if (Enabled)
         {

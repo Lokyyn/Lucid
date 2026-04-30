@@ -289,7 +289,7 @@ public class LucidDropdownList : Control
         {
             if ((LucidDropdownItem)item.Tag == SelectedItem)
             {
-                item.BackColor = ThemeProvider.Theme.Colors.DarkBlueBackground;
+                item.BackColor = ThemeProvider.Theme.Colors.AccentSecondary;
                 item.Font = new Font(Font, FontStyle.Bold);
             }
             else
