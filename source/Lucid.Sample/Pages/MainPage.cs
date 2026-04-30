@@ -20,14 +20,17 @@ public partial class MainPage : LucidDocument
 
     List<string> _names = new List<string>()
     {
-        "Chip with some longer text",
-        "A",
-        "Sample",
-        "Something",
-        "Small",
-        "ABC",
-        "Text",
-        "Click me!"
+        "New Arrival",
+        "Limited Edition",
+        "Top Rated",
+        "Out of Stock",
+        "Best Seller",
+        "Free Shipping",
+        "In Stock",
+        "Refurbished",
+        "On Sale",
+        "International Shipping",
+        "Same-Day Delivery"
     };
 
     public MainPage()
@@ -35,17 +38,15 @@ public partial class MainPage : LucidDocument
         InitializeComponent();
 
         SetUpChipControl();
-
-        lucidScrollableControl1.Refresh();
     }
 
     private void SetUpChipControl()
     {
-        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = "Chip 1", BackColor = Color.SkyBlue });
-        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = "Click me!", BackColor = Color.BlueViolet });
-        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = "Chip 3", BackColor = Color.Orange });
-        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = "Chip 4", BackColor = Color.ForestGreen });
-        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = "Chip 5", BackColor = Color.Yellow });
+        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = _names[0], BackColor = Color.SkyBlue });
+        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = _names[1], BackColor = Color.BlueViolet });
+        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = _names[2], BackColor = Color.Orange });
+        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = _names[3], BackColor = Color.ForestGreen });
+        lucidChipControl1.Chips.Add(new Controls.Chip() { Text = _names[4], BackColor = Color.Yellow });
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -78,18 +79,13 @@ public partial class MainPage : LucidDocument
     {
         Random rnd = new Random();
 
-        lucidProgressBar.Value += rnd.Next(1, 15);
+        lucidProgressBar.Value += rnd.Next(6, 20);
     }
 
     private void btnProgressBarRemove_Click(object sender, EventArgs e)
     {
         Random rnd = new Random();
 
-        lucidProgressBar.Value -= rnd.Next(1, 15);
-    }
-    
-    private void btnShowMessageBox_Click(object sender, EventArgs e)
-    {
-        Lucid.Forms.LucidMessageBox.ShowInformation("This is just an test message with an long text that has no meaning", "Information");
+        lucidProgressBar.Value -= rnd.Next(6, 20);
     }
 }
