@@ -111,7 +111,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         var g = e.Graphics;
 
-        using (var img = MenuIcons.grip.SetColor(ThemeProvider.Theme.Colors.LightBorder))
+        using (var img = MenuIcons.grip.SetColor(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawImageUnscaled(img, new Point(e.AffectedBounds.Left, e.AffectedBounds.Top));
         }
@@ -135,7 +135,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
             g.DrawLine(p, rect.Left, rect.Top, rect.Left, rect.Height);
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawLine(p, rect.Left + 1, rect.Top, rect.Left + 1, rect.Height);
         }

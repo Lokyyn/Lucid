@@ -168,7 +168,7 @@ public class LucidToolWindow : LucidDockContent
         // Draw header
         var bgColor = isActive ? ThemeProvider.Theme.Colors.DockActive : ThemeProvider.Theme.Colors.SurfaceDefault;
         var darkColor = isActive ? ThemeProvider.Theme.Colors.DarkBlueBorder : ThemeProvider.Theme.Colors.DarkBorder;
-        var lightColor = isActive ? ThemeProvider.Theme.Colors.LightBlueBorder : ThemeProvider.Theme.Colors.LightBorder;
+        var lightColor = isActive ? ThemeProvider.Theme.Colors.LightBlueBorder : ThemeProvider.Theme.Colors.BorderDefault;
 
         using (var b = new SolidBrush(bgColor))
         {

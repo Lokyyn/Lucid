@@ -232,7 +232,7 @@ public partial class LucidProgressBar : Control
 
         // Track
         using (var path = RoundedRect(track, r))
-        using (var b = new SolidBrush(colors.LightBorder))
+        using (var b = new SolidBrush(Colors.BorderDefault))
             g.FillPath(b, path);
 
         // Fill

@@ -54,7 +54,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
     public LucidDataGridView()
     {
         Name = "LucidDataGridView";
-        OutlineColor = ThemeProvider.Theme.Colors.LightBorder;
+        OutlineColor = ThemeProvider.Theme.Colors.BorderDefault;
 
         // Configure inner data grid view
         _base.Name = "baseView";
@@ -188,7 +188,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _vScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _hScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
-        OutlineColor = ThemeProvider.Theme.Colors.LightBorder;
+        OutlineColor = ThemeProvider.Theme.Colors.BorderDefault;
 
         this.Invalidate();
     }

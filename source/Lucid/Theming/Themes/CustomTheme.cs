@@ -46,7 +46,7 @@ internal class CustomTheme : ITheme
         Colors.BackgroundTertiary = Color.FromArgb(69, 73, 74);
         Colors.SurfaceDefault = Color.FromArgb(95, 101, 102);
         Colors.SurfaceHighlight = Color.FromArgb(178, 178, 178);
-        Colors.LightBorder = Color.FromArgb(81, 81, 81);
+        Colors.BorderDefault = Color.FromArgb(81, 81, 81);
         Colors.DarkBorder = Color.FromArgb(51, 51, 51);
         Colors.LightText = Color.FromArgb(220, 220, 220);
         Colors.DisabledText = Color.FromArgb(153, 153, 153);

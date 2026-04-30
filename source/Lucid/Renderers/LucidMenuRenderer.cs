@@ -48,7 +48,7 @@ public class LucidMenuRenderer : ToolStripRenderer
 
         var rect = new Rectangle(0, 0, e.ToolStrip.Width - 1, e.ToolStrip.Height - 1);
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawRectangle(p, rect);
         }
@@ -61,7 +61,7 @@ public class LucidMenuRenderer : ToolStripRenderer
         var rect = new Rectangle(e.ImageRectangle.Left - 2, e.ImageRectangle.Top - 2,
                                      e.ImageRectangle.Width + 4, e.ImageRectangle.Height + 4);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBorder))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.FillRectangle(b, rect);
         }
@@ -84,7 +84,7 @@ public class LucidMenuRenderer : ToolStripRenderer
 
         var rect = new Rectangle(1, 3, e.Item.Width, 1);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBorder))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.FillRectangle(b, rect);
         }

@@ -413,7 +413,7 @@ public class LucidDropdownList : Control
         {
             if (ShowBorder)
             {
-                using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder, 1))
+                using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault, 1))
                 {
                     var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
                     g.DrawRectangle(p, modRect);
