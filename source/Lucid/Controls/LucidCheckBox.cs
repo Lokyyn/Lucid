@@ -283,7 +283,7 @@ public class LucidCheckBox : CheckBox
 
         var textColor = ThemeProvider.Theme.Colors.LightText;
         var borderColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = Checked ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.LightestBackground;
+        var fillColor = Checked ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (Enabled)
         {
