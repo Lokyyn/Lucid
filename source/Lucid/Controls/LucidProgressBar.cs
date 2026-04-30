@@ -1,233 +1,405 @@
 ﻿using Lucid.Theming;
+using System.ComponentModel;
+using System.Drawing.Drawing2D;
 
 namespace Lucid.Controls;
 
-public partial class LucidProgressBar : UserControl
+/// <summary>
+/// Display style for the progress label.
+/// </summary>
+public enum LucidProgressLabelStyle
 {
-    int min = 0; // Minimum value for progress range
-    int max = 100; // Maximum value for progress range
-    int val = 0; // Current progress
-    Color BarColor = ThemeProvider.Theme.Colors.ControlHighlight; // Color of progress meter
+    None,
+    Percentage,
+    ValueOverMax,
+    Custom          // uses LucidProgressBar.CustomLabel
+}
 
-    public bool ShowPercentage { get; set; }
+/// <summary>
+/// A themed, animated progress bar control.
+/// Supports determinate and indeterminate modes.
+/// </summary>
+[ToolboxBitmap(typeof(ProgressBar))]
+[DefaultEvent("ValueChanged")]
+public partial class LucidProgressBar : Control
+{
+    #region Constants
 
-    public Color PercentageTextColor { get; set; } = Color.Black;
+    private const int DefaultHeight = 8;
+    private const int IndeterminateBarWidth = 180;
+    private const int AnimationInterval = 12;      // ms per timer tick
 
-    public Font PercentageFont { get; set; } = new Font(new FontFamily("Arial"), 7);
+    #endregion
 
+    #region Fields
 
-    private float _CurrentPercentage
+    private double _minimum = 0;
+    private double _maximum = 100;
+    private double _value = 0;
+
+    private bool _indeterminate = false;
+    private LucidProgressLabelStyle _labelStyle = LucidProgressLabelStyle.Percentage;
+    private string _customLabel = string.Empty;
+    private ContentAlignment _labelAlignment = ContentAlignment.MiddleCenter;
+
+    // Indeterminate animation
+    private readonly System.Windows.Forms.Timer _timer = new();
+    private float _indeterminatePos = 0f;   // 0..1 normalised, cycles
+    private float _indeterminateDir = 1f;
+
+    // Determinate fill animation
+    private double _animatedValue = 0;
+    private readonly System.Windows.Forms.Timer _fillTimer = new();
+
+    #endregion
+
+    #region Events
+
+    [Category("Behavior")]
+    public event EventHandler? ValueChanged;
+
+    #endregion
+
+    #region Properties
+
+    [Category("Behavior"), DefaultValue(0.0)]
+    public double Minimum
     {
-        get
-        {
-            float percent = (float)(val - min) / (float)(max - min);
+        get => _minimum;
+        set { _minimum = value; ClampValue(); Invalidate(); }
+    }
 
-            return percent;
+    [Category("Behavior"), DefaultValue(100.0)]
+    public double Maximum
+    {
+        get => _maximum;
+        set { _maximum = value; ClampValue(); Invalidate(); }
+    }
+
+    [Category("Behavior"), DefaultValue(0.0)]
+    public double Value
+    {
+        get => _value;
+        set
+        {
+            var clamped = Clamp(value, _minimum, _maximum);
+            if (Math.Abs(clamped - _value) < 1e-10) return;
+            _value = clamped;
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+
+            _fillTimer.Start();
+            Invalidate();
         }
     }
+
+    [Category("Behavior"), DefaultValue(false)]
+    [Description("When true the bar animates continuously (indeterminate / loading state).")]
+    public bool Indeterminate
+    {
+        get => _indeterminate;
+        set
+        {
+            _indeterminate = value;
+            if (value)
+            {
+                _fillTimer.Stop();
+                _indeterminatePos = 0f;
+                _timer.Start();
+            }
+            else
+            {
+                _timer.Stop();
+                _animatedValue = _value;
+            }
+            Invalidate();
+        }
+    }
+
+    [Category("Appearance"), DefaultValue(LucidProgressLabelStyle.Percentage)]
+    public LucidProgressLabelStyle LabelStyle
+    {
+        get => _labelStyle;
+        set { _labelStyle = value; Invalidate(); }
+    }
+
+    [Category("Appearance"), DefaultValue("")]
+    [Description("Used when LabelStyle is set to Custom.")]
+    public string CustomLabel
+    {
+        get => _customLabel;
+        set { _customLabel = value; Invalidate(); }
+    }
+
+    [Category("Appearance"), DefaultValue(ContentAlignment.MiddleCenter)]
+    public ContentAlignment LabelAlignment
+    {
+        get => _labelAlignment;
+        set { _labelAlignment = value; Invalidate(); }
+    }
+
+    #endregion
+
+    #region Constructor
 
     public LucidProgressBar()
     {
-        InitializeComponent();
+        SetStyle(
+            ControlStyles.OptimizedDoubleBuffer |
+            ControlStyles.ResizeRedraw |
+            ControlStyles.UserPaint |
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.SupportsTransparentBackColor,
+            true);
+
+        Height = DefaultHeight;
+        MinimumSize = new Size(40, 6);
+
+        _timer.Interval = AnimationInterval;
+        _timer.Tick += (_, _) =>
+        {
+            _indeterminatePos += _indeterminateDir * 0.012f;
+            if (_indeterminatePos >= 1f) { _indeterminatePos = 1f; _indeterminateDir = -1f; }
+            if (_indeterminatePos <= 0f) { _indeterminatePos = 0f; _indeterminateDir = 1f; }
+            Invalidate();
+        };
+
+        _fillTimer.Interval = AnimationInterval;
+        _fillTimer.Tick += (_, _) =>
+        {
+            double diff = _value - _animatedValue;
+            if (Math.Abs(diff) < 0.01)
+            {
+                _animatedValue = _value;
+                _fillTimer.Stop();
+            }
+            else
+            {
+                _animatedValue += diff * 0.18;
+            }
+            Invalidate();
+        };
     }
 
-    protected override void OnResize(EventArgs e)
+    #endregion
+
+    #region Helpers
+
+    private void ClampValue() => _value = Clamp(_value, _minimum, _maximum);
+
+    private static double Clamp(double v, double min, double max) =>
+        v < min ? min : v > max ? max : v;
+
+    private double FillRatio => Math.Abs(_maximum - _minimum) < 1e-10
+        ? 0
+        : (_animatedValue - _minimum) / (_maximum - _minimum);
+
+    private Rectangle GetTrackRect()
     {
-        // Invalidate the control to get a repaint.
-        this.Invalidate();
+        bool hasLabel = _labelStyle != LucidProgressLabelStyle.None;
+        if (!hasLabel || _labelAlignment == ContentAlignment.MiddleCenter || Height <= 16)
+            return ClientRectangle;
+
+        if (_labelAlignment is ContentAlignment.TopLeft or ContentAlignment.TopCenter or ContentAlignment.TopRight)
+        {
+            int lh = (int)Font.GetHeight() + 2;
+            return new Rectangle(0, lh, ClientSize.Width, ClientSize.Height - lh);
+        }
+        else if (_labelAlignment is ContentAlignment.BottomLeft or ContentAlignment.BottomCenter or ContentAlignment.BottomRight)
+        {
+            int lh = (int)Font.GetHeight() + 2;
+            return new Rectangle(0, 0, ClientSize.Width, ClientSize.Height - lh);
+        }
+
+        return ClientRectangle;
     }
+
+    #endregion
+
+    #region Paint
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        Graphics g = e.Graphics;
-        SolidBrush brush = new SolidBrush(BarColor);
-        Rectangle rect = this.ClientRectangle;
+        var g = e.Graphics;
+        g.SmoothingMode = SmoothingMode.AntiAlias;
 
-        // Draw Theming Colors
-        //Rectangle rControl = this
-        SolidBrush brushTheming = new SolidBrush(ThemeProvider.Theme.Colors.InactivScrollbar); // todo: this color needs to be replaced with an official theming color
-        g.FillRectangle(brushTheming, rect);
+        var colors = ThemeProvider.Theme.Colors;
+        var track = GetTrackRect();
+        int r = track.Height / 4;
 
-        // Calculate area for drawing the progress.
-        rect.Width = (int)((float)rect.Width * _CurrentPercentage);
+        // Background
+        using (var b = new SolidBrush(colors.MainBackgroundColor))
+            g.FillRectangle(b, ClientRectangle);
 
-        // Draw the progress meter.
-        g.FillRectangle(brush, rect);
+        // Track
+        using (var path = RoundedRect(track, r))
+        using (var b = new SolidBrush(colors.LightBorder))
+            g.FillPath(b, path);
 
-        if (ShowPercentage)
+        // Fill
+        if (_indeterminate)
         {
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-            var percentageText = $"{Math.Round(_CurrentPercentage * 100)}%";
-            var measuredString = g.MeasureString(percentageText, PercentageFont);
-
-            var point = new Point((ClientRectangle.Width / 2) - (int)measuredString.Width / 2, (ClientRectangle.Height / 2) - (int)measuredString.Height / 2);
-
-            g.DrawString(percentageText, PercentageFont, new SolidBrush(PercentageTextColor), point);
+            PaintIndeterminate(g, colors, track, r);
         }
+        else
+        {
+            int fillWidth = (int)(track.Width * FillRatio);
+            if (fillWidth > 0)
+            {
+                var fillRect = new Rectangle(track.Left, track.Top, fillWidth, track.Height);
 
-        // Draw a three-dimensional border around the control.
-        Draw3DBorder(g);
+                using var trackClip = RoundedRect(track, r);
+                g.SetClip(trackClip);
 
-        // Clean up.
-        brush.Dispose();
-        g.Dispose();
+                using var fillPath = RoundedRect(fillRect, r);
+                using var fillBrush = new SolidBrush(colors.MainAccent);
+                g.FillPath(fillBrush, fillPath);
+
+                if (fillRect.Height > 2)
+                {
+                    var shineRect = new Rectangle(fillRect.Left, fillRect.Top, fillRect.Width, fillRect.Height);
+                    using var shinePath = RoundedRect(fillRect, r);
+                    using var shineBrush = new LinearGradientBrush(
+                        shineRect,
+                        Color.FromArgb(45, Color.White),
+                        Color.Transparent,
+                        LinearGradientMode.Vertical);
+                    g.FillPath(shineBrush, shinePath);
+                }
+
+                g.ResetClip();
+            }
+
+            // Label
+            if (_labelStyle != LucidProgressLabelStyle.None)
+                PaintLabel(g, colors, track);
+        }
     }
 
-    public int Minimum
+    private void PaintIndeterminate(Graphics g, Colors colors, Rectangle track, int r)
     {
-        get
+        using var clip = RoundedRect(track, r);
+        g.SetClip(clip);
+
+        float eased = (float)((1 - Math.Cos(_indeterminatePos * Math.PI)) / 2);
+        int travel = track.Width + IndeterminateBarWidth;
+        int blockLeft = track.Left - IndeterminateBarWidth + (int)(eased * travel);
+        int blockWidth = IndeterminateBarWidth;
+
+        var blockRect = new Rectangle(blockLeft, track.Top, blockWidth, track.Height);
+
+        using var brush = new LinearGradientBrush(
+            new Rectangle(blockRect.Left, blockRect.Top, blockRect.Width + 2, blockRect.Height + 1),
+            Color.Transparent,
+            Color.Transparent,
+            LinearGradientMode.Horizontal);
+
+        var blend = new ColorBlend(4)
         {
-            return min;
-        }
-
-        set
-        {
-            // Prevent a negative value.
-            if (value < 0)
+            Colors = new[]
             {
-                min = 0;
-            }
+                Color.Transparent,
+                colors.MainAccent,
+                colors.MainAccent,
+                Color.Transparent
+            },
+            Positions = new[] { 0f, 0.3f, 0.7f, 1f }
+        };
+        brush.InterpolationColors = blend;
 
-            // Make sure that the minimum value is never set higher than the maximum value.
-            if (value > max)
-            {
-                min = value;
-                min = value;
-            }
-
-            // Ensure value is still in range
-            if (val < min)
-            {
-                val = min;
-            }
-
-            // Invalidate the control to get a repaint.
-            this.Invalidate();
-        }
+        g.FillRectangle(brush, blockRect);
+        g.ResetClip();
     }
 
-    public int Maximum
+    private void PaintLabel(Graphics g, Colors colors, Rectangle track)
     {
-        get
+        string text = _labelStyle switch
         {
-            return max;
+            LucidProgressLabelStyle.Percentage => $"{FillRatio * 100:0}%",
+            LucidProgressLabelStyle.ValueOverMax => $"{_value:0.##} / {_maximum:0.##}",
+            LucidProgressLabelStyle.Custom => _customLabel,
+            _ => string.Empty
+        };
+
+        if (string.IsNullOrEmpty(text)) return;
+
+        using var b = new SolidBrush(colors.LightText);
+        var flags = StringFormat.GenericDefault;
+        var sf = new StringFormat
+        {
+            Alignment = _labelAlignment switch
+            {
+                ContentAlignment.TopLeft or ContentAlignment.MiddleLeft or ContentAlignment.BottomLeft
+                    => StringAlignment.Near,
+                ContentAlignment.TopRight or ContentAlignment.MiddleRight or ContentAlignment.BottomRight
+                    => StringAlignment.Far,
+                _ => StringAlignment.Center
+            },
+            LineAlignment = _labelAlignment switch
+            {
+                ContentAlignment.TopLeft or ContentAlignment.TopCenter or ContentAlignment.TopRight
+                    => StringAlignment.Near,
+                ContentAlignment.BottomLeft or ContentAlignment.BottomCenter or ContentAlignment.BottomRight
+                    => StringAlignment.Far,
+                _ => StringAlignment.Center
+            },
+            Trimming = StringTrimming.EllipsisCharacter
+        };
+
+        RectangleF labelRect = _labelAlignment switch
+        {
+            ContentAlignment.MiddleCenter or ContentAlignment.MiddleLeft or ContentAlignment.MiddleRight
+                => track,
+            ContentAlignment.TopLeft or ContentAlignment.TopCenter or ContentAlignment.TopRight
+                => new RectangleF(0, 0, ClientSize.Width, track.Top),
+            _ => new RectangleF(0, track.Bottom, ClientSize.Width, ClientSize.Height - track.Bottom)
+        };
+
+        if (_labelAlignment is ContentAlignment.MiddleCenter or ContentAlignment.MiddleLeft or ContentAlignment.MiddleRight)
+        {
+            using var whiteBrush = new SolidBrush(Color.White);
+            g.DrawString(text, Font, whiteBrush, labelRect, sf);
         }
-
-        set
+        else
         {
-            // Make sure that the maximum value is never set lower than the minimum value.
-            if (value < min)
-            {
-                min = value;
-            }
-
-            max = value;
-
-            // Make sure that value is still in range.
-            if (val > max)
-            {
-                val = max;
-            }
-
-            // Invalidate the control to get a repaint.
-            this.Invalidate();
+            g.DrawString(text, Font, b, labelRect, sf);
         }
     }
 
-    public int Value
+    private static GraphicsPath RoundedRect(Rectangle r, int radius)
     {
-        get
+        radius = Math.Max(0, Math.Min(radius, Math.Min(r.Width, r.Height) / 2));
+        var path = new GraphicsPath();
+        if (radius == 0 || r.Width == 0 || r.Height == 0)
         {
-            return val;
+            path.AddRectangle(r);
         }
-
-        set
+        else
         {
-            int oldValue = val;
-
-            // Make sure that the value does not stray outside the valid range.
-            if (value < min)
-            {
-                val = min;
-            }
-            else if (value > max)
-            {
-                val = max;
-            }
-            else
-            {
-                val = value;
-            }
-
-            // Invalidate only the changed area.
-            float percent;
-
-            Rectangle newValueRect = this.ClientRectangle;
-            Rectangle oldValueRect = this.ClientRectangle;
-
-            // Use a new value to calculate the rectangle for progress.
-            percent = (float)(val - min) / (float)(max - min);
-            newValueRect.Width = (int)((float)newValueRect.Width * percent);
-
-            // Use an old value to calculate the rectangle for progress.
-            percent = (float)(oldValue - min) / (float)(max - min);
-            oldValueRect.Width = (int)((float)oldValueRect.Width * percent);
-
-            Rectangle updateRect = new Rectangle();
-
-            // Find only the part of the screen that must be updated.
-            if (newValueRect.Width > oldValueRect.Width)
-            {
-                updateRect.X = oldValueRect.Size.Width;
-                updateRect.Width = newValueRect.Width - oldValueRect.Width;
-            }
-            else
-            {
-                updateRect.X = newValueRect.Size.Width;
-                updateRect.Width = oldValueRect.Width - newValueRect.Width;
-            }
-
-            updateRect.Height = this.Height;
-
-            // Invalidate the intersection region only.
-            this.Invalidate();
+            int d = radius * 2;
+            path.AddArc(r.Left, r.Top, d, d, 180, 90);
+            path.AddArc(r.Right - d, r.Top, d, d, 270, 90);
+            path.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
+            path.AddArc(r.Left, r.Bottom - d, d, d, 90, 90);
+            path.CloseFigure();
         }
+        return path;
     }
 
-    public Color ProgressBarColor
+    #endregion
+
+    #region Dispose
+
+    protected override void Dispose(bool disposing)
     {
-        get
+        if (disposing)
         {
-            return BarColor;
+            _timer.Stop();
+            _timer.Dispose();
+            _fillTimer.Stop();
+            _fillTimer.Dispose();
         }
-        set
-        {
-            if (AllowProgressBarColorOverride)
-                BarColor = value;
-
-            // Invalidate the control to get a repaint.
-            this.Invalidate();
-        }
+        base.Dispose(disposing);
     }
 
-    public bool AllowProgressBarColorOverride { get; set; } = false;
-
-    private void Draw3DBorder(Graphics g)
-    {
-        int PenWidth = (int)Pens.White.Width;
-
-        g.DrawLine(Pens.DarkGray,
-        new Point(this.ClientRectangle.Left, this.ClientRectangle.Top),
-        new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Top));
-        g.DrawLine(Pens.DarkGray,
-        new Point(this.ClientRectangle.Left, this.ClientRectangle.Top),
-        new Point(this.ClientRectangle.Left, this.ClientRectangle.Height - PenWidth));
-        g.DrawLine(Pens.DarkGray,
-        new Point(this.ClientRectangle.Left, this.ClientRectangle.Height - PenWidth),
-        new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
-        g.DrawLine(Pens.DarkGray,
-        new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Top),
-        new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
-    }
+    #endregion
 }
