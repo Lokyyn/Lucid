@@ -49,7 +49,7 @@ internal class CustomTheme : ITheme
         Colors.BorderDefault = Color.FromArgb(81, 81, 81);
         Colors.BorderDefault = Color.FromArgb(51, 51, 51);
         Colors.TextPrimary = Color.FromArgb(220, 220, 220);
-        Colors.DisabledText = Color.FromArgb(153, 153, 153);
+        Colors.TextDisabled = Color.FromArgb(153, 153, 153);
         Colors.Accent = Color.FromArgb(104, 151, 187);
         Colors.Accent = Color.FromArgb(186, 104, 104);        // Dock Move Highlight Color
         Colors.SurfaceDefault = Color.FromArgb(122, 128, 132);

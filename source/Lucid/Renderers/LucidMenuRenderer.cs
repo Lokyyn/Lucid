@@ -102,7 +102,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         var g = e.Graphics;
 
-        e.Item.ForeColor = e.Item.Enabled ? ThemeProvider.Theme.Colors.TextPrimary : ThemeProvider.Theme.Colors.DisabledText;
+        e.Item.ForeColor = e.Item.Enabled ? ThemeProvider.Theme.Colors.TextPrimary : ThemeProvider.Theme.Colors.TextDisabled;
 
         if (e.Item.Enabled)
         {

@@ -488,7 +488,7 @@ public class LucidDropdownList : Control
 
             // Draw Text
             using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
-            using (var bDisabled = new SolidBrush(ThemeProvider.Theme.Colors.DisabledText))
+            using (var bDisabled = new SolidBrush(ThemeProvider.Theme.Colors.TextDisabled))
             {
                 var stringFormat = new StringFormat
                 {

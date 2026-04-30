@@ -390,7 +390,7 @@ public class LucidButton : Button
         }
         else
         {
-            textColor = ThemeProvider.Theme.Colors.DisabledText;
+            textColor = ThemeProvider.Theme.Colors.TextDisabled;
             fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         }
 

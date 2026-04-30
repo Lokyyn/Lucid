@@ -807,7 +807,7 @@ public class LucidDockGroup : Panel
         };
 
         // Draw text
-        var textColor = isVisibleTab ? Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent) : ThemeProvider.Theme.Colors.DisabledText;
+        var textColor = isVisibleTab ? Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent) : ThemeProvider.Theme.Colors.TextDisabled;
 
         using (var b = new SolidBrush(textColor))
         {
@@ -867,7 +867,7 @@ public class LucidDockGroup : Panel
             Trimming = StringTrimming.EllipsisCharacter
         };
 
-        var textColor = isVisibleTab ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.DisabledText;
+        var textColor = isVisibleTab ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.TextDisabled;
         using (var b = new SolidBrush(textColor))
         {
             var textRect = new Rectangle(tabRect.Left + 5, tabRect.Top, tabRect.Width - 5, tabRect.Height);

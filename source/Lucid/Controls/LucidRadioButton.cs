@@ -278,7 +278,7 @@ public class LucidRadioButton : RadioButton
         }
         else
         {
-            textColor = ThemeProvider.Theme.Colors.DisabledText;
+            textColor = ThemeProvider.Theme.Colors.TextDisabled;
             borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
             fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         }
