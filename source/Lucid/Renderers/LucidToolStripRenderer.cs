@@ -60,7 +60,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         if (e.Item.Selected || e.Item.Pressed)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.SurfaceHighlight))
             {
                 g.FillRectangle(b, rect);
             }
@@ -72,7 +72,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
             if (castItem.Checked)
             {
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.SurfaceHighlight))
                 {
                     g.FillRectangle(b, rect);
                 }
@@ -97,7 +97,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         if (e.Item.Selected || e.Item.Pressed)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.SurfaceHighlight))
             {
                 g.FillRectangle(b, rect);
             }

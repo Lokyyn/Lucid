@@ -273,14 +273,14 @@ public class LucidRadioButton : RadioButton
             else if (_controlState == LucidControlState.Pressed)
             {
                 borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
-                fillColor = ThemeProvider.Theme.Colors.GreySelection;
+                fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
             }
         }
         else
         {
             textColor = ThemeProvider.Theme.Colors.DisabledText;
             borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
-            fillColor = ThemeProvider.Theme.Colors.GreySelection;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         }
 
         //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))

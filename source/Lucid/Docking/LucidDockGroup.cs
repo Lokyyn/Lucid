@@ -722,7 +722,7 @@ public class LucidDockGroup : Panel
         {
             // Color divider
             var isActiveGroup = DockPanel.ActiveGroup == this;
-            var divColor = isActiveGroup ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+            var divColor = isActiveGroup ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.SurfaceHighlight;
             using (var b = new SolidBrush(divColor))
             {
                 var divRect = new Rectangle(_tabArea.ClientRectangle.Left, _tabArea.ClientRectangle.Bottom - 2, _tabArea.ClientRectangle.Width, 2);
@@ -770,7 +770,7 @@ public class LucidDockGroup : Panel
         var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (!isActiveGroup)
-            bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.GreySelection : ThemeProvider.Theme.Colors.BackgroundPrimary;
+            bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.SurfaceHighlight : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
             bgColor = ThemeProvider.Theme.Colors.BackgroundPrimary;

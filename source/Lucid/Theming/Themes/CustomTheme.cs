@@ -53,7 +53,7 @@ internal class CustomTheme : ITheme
         Colors.ControlHighlight = Color.FromArgb(104, 151, 187);
         Colors.MainAccent = Color.FromArgb(186, 104, 104);        // Dock Move Highlight Color
         Colors.SurfaceDefault = Color.FromArgb(122, 128, 132);
-        Colors.GreySelection = Color.FromArgb(92, 92, 92);
+        Colors.SurfaceHighlight = Color.FromArgb(92, 92, 92);
         Colors.DarkGreySelection = Color.FromArgb(82, 82, 82);
         Colors.DarkBlueBorder = Color.FromArgb(51, 61, 78);
         Colors.LightBlueBorder = Color.FromArgb(86, 97, 114);

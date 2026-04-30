@@ -1385,10 +1385,10 @@ public class LucidTreeView : LucidScrollView
         var bgColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if (SelectedNodes.Count > 0 && SelectedNodes.Contains(node))
-            bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+            bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (IsDragging && _dropNode == node)
-            bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+            bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         using (var b = new SolidBrush(bgColor))
         {

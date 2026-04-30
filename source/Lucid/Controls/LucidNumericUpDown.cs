@@ -150,7 +150,7 @@ public class LucidNumericUpDown : NumericUpDown
         var g = e.Graphics;
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
-        var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+        var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (Focused && TabStop)
             borderColor = ThemeProvider.Theme.Colors.ControlHighlight;

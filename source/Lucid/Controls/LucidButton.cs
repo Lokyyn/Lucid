@@ -352,7 +352,7 @@ public class LucidButton : Button
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
         var textColor = ThemeProvider.Theme.Colors.LightText;
-        var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+        var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         var fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBlueBackground : ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if (Enabled)

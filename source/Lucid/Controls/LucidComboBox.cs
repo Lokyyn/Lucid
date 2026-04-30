@@ -107,7 +107,7 @@ public class LucidComboBox : ComboBox
             var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
-            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+            var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
             var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
             if (Focused && TabStop)
