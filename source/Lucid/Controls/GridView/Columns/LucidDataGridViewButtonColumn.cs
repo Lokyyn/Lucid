@@ -154,7 +154,7 @@ public class LucidDataGridViewButtonCell : DataGridViewButtonCell
 
         if (ButtonState.HasFlag(ButtonState.Inactive) || !Enabled)
         {
-            fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
             textColor = ThemeProvider.Theme.Colors.DisabledText;
         }
         else if (ButtonState.HasFlag(ButtonState.Checked) || ButtonState.HasFlag(ButtonState.Pushed))

@@ -391,7 +391,7 @@ public class LucidButton : Button
         else
         {
             textColor = ThemeProvider.Theme.Colors.DisabledText;
-            fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         }
 
 
