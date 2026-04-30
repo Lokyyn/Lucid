@@ -36,7 +36,7 @@ public class LucidTextBox : TextBox
         {
             var dc = GetWindowDC(Handle);
             using (Graphics g = Graphics.FromHdc(dc))
-            using (Pen accentColor = new Pen(ThemeProvider.Theme.Colors.MainAccent))
+            using (Pen accentColor = new Pen(ThemeProvider.Theme.Colors.Accent))
             {
                 g.DrawRectangle(accentColor, 0, 0, Width - 1, Height - 1);
             }

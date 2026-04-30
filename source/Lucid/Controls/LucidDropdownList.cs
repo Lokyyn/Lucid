@@ -435,7 +435,7 @@ public class LucidDropdownList : Control
                 g.FillRectangle(b, arrowRect);
             }
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.MainAccent, 1))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.Accent, 1))
             {
                 var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1 - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Height - 1);
                 g.DrawRectangle(p, modRect);
@@ -450,7 +450,7 @@ public class LucidDropdownList : Control
                 g.FillRectangle(b, ClientRectangle);
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainAccent))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
             {
                 var arrowRect = new Rectangle(ClientRectangle.Right - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Top, DropdownIcons.small_arrow.Width + 8, ClientRectangle.Height);
                 g.FillRectangle(b, arrowRect);

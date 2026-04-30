@@ -251,7 +251,7 @@ public partial class LucidProgressBar : Control
                 g.SetClip(trackClip);
 
                 using var fillPath = RoundedRect(fillRect, r);
-                using var fillBrush = new SolidBrush(colors.MainAccent);
+                using var fillBrush = new SolidBrush(Colors.Accent);
                 g.FillPath(fillBrush, fillPath);
 
                 if (fillRect.Height > 2)
@@ -298,8 +298,8 @@ public partial class LucidProgressBar : Control
             Colors = new[]
             {
                 Color.Transparent,
-                colors.MainAccent,
-                colors.MainAccent,
+                Colors.Accent,
+                Colors.Accent,
                 Color.Transparent
             },
             Positions = new[] { 0f, 0.3f, 0.7f, 1f }

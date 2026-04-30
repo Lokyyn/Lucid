@@ -515,7 +515,7 @@ public class LucidListView : LucidScrollView
             var bgColor = !odd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundTertiary;
 
             if (SelectedIndices.Count > 0 && SelectedIndices.Contains(i))
-                bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.SurfaceHighlight;
+                bgColor = Focused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
             using (var b = new SolidBrush(bgColor))
             {

@@ -722,7 +722,7 @@ public class LucidDockGroup : Panel
         {
             // Color divider
             var isActiveGroup = DockPanel.ActiveGroup == this;
-            var divColor = isActiveGroup ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.SurfaceHighlight;
+            var divColor = isActiveGroup ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight;
             using (var b = new SolidBrush(divColor))
             {
                 var divRect = new Rectangle(_tabArea.ClientRectangle.Left, _tabArea.ClientRectangle.Bottom - 2, _tabArea.ClientRectangle.Width, 2);
@@ -767,7 +767,7 @@ public class LucidDockGroup : Panel
         var isVisibleTab = VisibleContent == tab.DockContent;
         var isActiveGroup = DockPanel.ActiveGroup == this;
 
-        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.BackgroundPrimary;
+        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (!isActiveGroup)
             bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.SurfaceHighlight : ThemeProvider.Theme.Colors.BackgroundPrimary;
@@ -807,7 +807,7 @@ public class LucidDockGroup : Panel
         };
 
         // Draw text
-        var textColor = isVisibleTab ? Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.MainAccent) : ThemeProvider.Theme.Colors.DisabledText;
+        var textColor = isVisibleTab ? Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent) : ThemeProvider.Theme.Colors.DisabledText;
 
         using (var b = new SolidBrush(textColor))
         {

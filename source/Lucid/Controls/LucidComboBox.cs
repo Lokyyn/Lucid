@@ -173,7 +173,7 @@ public class LucidComboBox : ComboBox
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected ||
             (e.State & DrawItemState.Focus) == DrawItemState.Focus ||
             (e.State & DrawItemState.NoFocusRect) != DrawItemState.NoFocusRect)
-            fillColor = ThemeProvider.Theme.Colors.MainAccent;
+            fillColor = ThemeProvider.Theme.Colors.Accent;
 
         using (var b = new SolidBrush(fillColor))
         {

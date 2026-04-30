@@ -108,7 +108,7 @@ public class LucidMenuRenderer : ToolStripRenderer
         {
 
             //var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.SurfaceDefault : e.Item.BackColor;
-            var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.BackgroundSecondary;
+            var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
             // Normal item
             var rect = new Rectangle(2, 0, e.Item.Width - 3, e.Item.Height - 2);
@@ -128,7 +128,7 @@ public class LucidMenuRenderer : ToolStripRenderer
             {
                 if (((ToolStripMenuItem)e.Item).DropDown.Visible && e.Item.IsOnDropDown == false)
                 {
-                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainAccent))
+                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
                     using (var sgs = new SaveableGraphicsState(g))
                     {
                         var path = Helper.RoundedRectangleHelper.CreateRoundedRectanglePath(rect, 6);
@@ -136,7 +136,7 @@ public class LucidMenuRenderer : ToolStripRenderer
                         g.FillPath(b, path);
 
                         // Handle this as it has the main accent so when this item does not have focus shows the correct fore color
-                        e.Item.ForeColor = Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.MainAccent);
+                        e.Item.ForeColor = Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent);
                     }
                 }
             }

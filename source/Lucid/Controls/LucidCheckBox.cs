@@ -290,13 +290,13 @@ public class LucidCheckBox : CheckBox
             if (Focused)
             {
                 borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
-                fillColor = ThemeProvider.Theme.Colors.MainAccent;
+                fillColor = ThemeProvider.Theme.Colors.Accent;
             }
 
             if (_controlState == LucidControlState.Hover)
             {
                 borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
-                fillColor = ThemeProvider.Theme.Colors.MainAccent;
+                fillColor = ThemeProvider.Theme.Colors.Accent;
             }
             else if (_controlState == LucidControlState.Pressed)
             {
@@ -332,7 +332,7 @@ public class LucidCheckBox : CheckBox
 
                 if (Checked)
                 {
-                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainAccent))
+                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
                     {
                         // Blue fill color
                         g.FillPath(b, Helper.RoundedRectangleHelper.CreateRoundedRectanglePath(new Rectangle(1, (rect.Height / 2) - (size / 2) + 1, size - 1, size - 1), 2));
