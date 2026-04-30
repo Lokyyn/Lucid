@@ -111,7 +111,7 @@ public class LucidLinkLabel : Label
     protected override void OnPaint(PaintEventArgs e)
     {
         if (!_overrideForeColor)
-            ForeColor = _mouseHovered ? ThemeProvider.Theme.Colors.LabelLinkHoveredAccent : ThemeProvider.Theme.Colors.Accent;
+            ForeColor = _mouseHovered ? ThemeProvider.Theme.Colors.AccentSecondary : ThemeProvider.Theme.Colors.Accent;
 
         base.OnPaint(e);
 
@@ -152,7 +152,7 @@ public class LucidLinkLabel : Label
     protected override void OnMouseEnter(EventArgs e)
     {
         base.OnMouseEnter(e);
-        ForeColor = ThemeProvider.Theme.Colors.LabelLinkHoveredAccent;
+        ForeColor = ThemeProvider.Theme.Colors.AccentSecondary;
         _mouseHovered = true;
     }
 
