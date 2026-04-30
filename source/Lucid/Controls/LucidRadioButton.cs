@@ -283,8 +283,8 @@ public class LucidRadioButton : RadioButton
             fillColor = ThemeProvider.Theme.Colors.GreySelection;
         }
 
-        //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
-        var backColor = _AllowCustomBackColor ? BackColor : ThemeProvider.Theme.Colors.MainBackgroundColor;
+        //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
+        var backColor = _AllowCustomBackColor ? BackColor : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(backColor))
         {

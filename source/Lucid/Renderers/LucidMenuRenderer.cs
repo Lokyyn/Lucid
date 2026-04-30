@@ -12,7 +12,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         base.Initialize(toolStrip);
 
-        toolStrip.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        toolStrip.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         toolStrip.ForeColor = Helper.ColorExtender.GetContrastColor(toolStrip.BackColor);
     }
 
@@ -20,7 +20,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         base.InitializeItem(item);
 
-        item.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        item.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         item.ForeColor = Helper.ColorExtender.GetContrastColor(item.BackColor);
 
         if (item.GetType() == typeof(ToolStripSeparator))
@@ -36,7 +36,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
     {
         var g = e.Graphics;
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, e.AffectedBounds);
         }
@@ -108,7 +108,7 @@ public class LucidMenuRenderer : ToolStripRenderer
         {
 
             //var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.GreyHighlight : e.Item.BackColor;
-            var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.MainBackgroundColor;
+            var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
             // Normal item
             var rect = new Rectangle(2, 0, e.Item.Width - 3, e.Item.Height - 2);

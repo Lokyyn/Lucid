@@ -377,7 +377,7 @@ public class LucidButton : Button
                 switch (ButtonState)
                 {
                     case LucidControlState.Normal:
-                        fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+                        fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
                         break;
                     case LucidControlState.Hover:
                         fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;

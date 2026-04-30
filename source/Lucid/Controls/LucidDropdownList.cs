@@ -294,7 +294,7 @@ public class LucidDropdownList : Control
             }
             else
             {
-                item.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+                item.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
                 item.Font = new Font(Font, FontStyle.Regular);
             }
         }

@@ -36,7 +36,7 @@ public class LucidGroupBox : GroupBox
         var stringSize = g.MeasureString(Text, Font);
 
         var textColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(fillColor))
         {

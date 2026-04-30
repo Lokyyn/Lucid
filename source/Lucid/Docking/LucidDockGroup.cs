@@ -697,7 +697,7 @@ public class LucidDockGroup : Panel
     {
         var g = e.Graphics;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
@@ -840,7 +840,7 @@ public class LucidDockGroup : Panel
 
         var isVisibleTab = VisibleContent == tab.DockContent;
 
-        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.BackgroundPrimary;
+        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
             bgColor = ThemeProvider.Theme.Colors.BackgroundPrimary;

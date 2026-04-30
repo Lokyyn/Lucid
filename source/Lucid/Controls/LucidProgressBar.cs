@@ -227,7 +227,7 @@ public partial class LucidProgressBar : Control
         int r = track.Height / 4;
 
         // Background
-        using (var b = new SolidBrush(colors.MainBackgroundColor))
+        using (var b = new SolidBrush(Colors.BackgroundSecondary))
             g.FillRectangle(b, ClientRectangle);
 
         // Track

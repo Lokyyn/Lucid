@@ -34,7 +34,7 @@ public partial class LucidFileDrop : UserControl
     {
         base.OnPaint(e);
 
-        BackColor = Theming.ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = Theming.ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         var rectPath = Helper.RoundedRectangleHelper.CreateRoundedRectanglePath(new Rectangle(2, 2, Width - 4, Height - 4), 20);
 

@@ -69,7 +69,7 @@ public partial class LucidChipControl : UserControl
     {
         InitializeComponent();
         DoubleBuffered = true;
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         Chips = new List<Chip>();
 
         VScrollBar.ValueChanged += VScrollBar_ValueChanged;
@@ -90,7 +90,7 @@ public partial class LucidChipControl : UserControl
         //e.Graphics.DrawRectangle(new Pen(Color.Red), _DrawingArea); // Drawing Area (DEBUG)
 
 
-        BackColor = Theming.ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = Theming.ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         if (Chips != null)
         {

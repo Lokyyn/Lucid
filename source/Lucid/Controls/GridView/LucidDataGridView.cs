@@ -37,7 +37,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
             // Darker colors:
             // BackColor = isOdd ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary,
             BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary :
-                    (isOdd ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.HeaderBackground),
+                    (isOdd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.HeaderBackground),
             ForeColor = ThemeProvider.Theme.Colors.LightText,
             SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection,
             SelectionForeColor = ThemeProvider.Theme.Colors.LightText
@@ -70,7 +70,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.AllowDrop = true;
         _dataGridViewDoubleBuffered.SetValue(_base, true, null);
 
-        _base.BackgroundColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
         _base.GridColor = ThemeProvider.Theme.Colors.DarkBorder;
         _base.DefaultCellStyle = _cellStyleUnfocusedEven;
@@ -177,7 +177,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     private void ThemeProvider_OnThemeChanged()
     {
-        _base.BackgroundColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
         _base.GridColor = ThemeProvider.Theme.Colors.DarkBorder;
         _base.DefaultCellStyle = GetCellStyle(false, false, false);

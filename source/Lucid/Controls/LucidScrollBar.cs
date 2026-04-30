@@ -469,7 +469,7 @@ public class LucidScrollBar : Control
         var g = e.Graphics;
 
         // DEBUG: Scrollbar bg
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, ClientRectangle);
         }/**/

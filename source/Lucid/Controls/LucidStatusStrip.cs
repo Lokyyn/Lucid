@@ -9,7 +9,7 @@ public class LucidStatusStrip : StatusStrip
     public LucidStatusStrip()
     {
         AutoSize = false;
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         ForeColor = ThemeProvider.Theme.Colors.LightText;
         Padding = new Padding(0, 5, 0, 3);
         Size = new Size(Size.Width, 24);
@@ -24,7 +24,7 @@ public class LucidStatusStrip : StatusStrip
     {
         var g = e.Graphics;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, ClientRectangle);
         }

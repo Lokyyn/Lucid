@@ -38,7 +38,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         if (e.ToolStrip.GetType() == typeof(ToolStripOverflow))
         {
-            using (var p = new Pen(ThemeProvider.Theme.Colors.MainBackgroundColor))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BackgroundSecondary))
             {
                 var rect = new Rectangle(e.AffectedBounds.Left, e.AffectedBounds.Top, e.AffectedBounds.Width - 1, e.AffectedBounds.Height - 1);
                 g.DrawRectangle(p, rect);

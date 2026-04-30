@@ -90,7 +90,7 @@ public class LucidSectionPanel : Panel
         var roundPath = RoundedRectangleHelper.CreateRoundedRectanglePath(modRect, 16);
 
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, rect);
         }
@@ -141,12 +141,12 @@ public class LucidSectionPanel : Panel
             completePath.AddPath(roundPath, true);
 
             // Draw the corners so the round effect is hown correctly
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
                 g.FillPath(b, completePath);
 
             // Draw a rectangle so the wrong pixels outside the path are painted with the back color
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            g.DrawRectangle(new Pen(ThemeProvider.Theme.Colors.MainBackgroundColor, 1), new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1));
+            g.DrawRectangle(new Pen(ThemeProvider.Theme.Colors.BackgroundSecondary, 1), new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1));
             g.DrawPath(p, roundPath);
         }
 

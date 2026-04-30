@@ -311,7 +311,7 @@ public class LucidCheckBox : CheckBox
             fillColor = ThemeProvider.Theme.Colors.GreySelection;
         }
 
-        var backColor = UseBackColorProperty ? this.BackColor : ThemeProvider.Theme.Colors.MainBackgroundColor;
+        var backColor = UseBackColorProperty ? this.BackColor : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var sg = new Common.SaveableGraphicsState(g))
         {

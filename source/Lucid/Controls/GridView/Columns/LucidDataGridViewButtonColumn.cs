@@ -147,7 +147,7 @@ public class LucidDataGridViewButtonCell : DataGridViewButtonCell
         // Choose button colors
         Color textColor = cellStyle.ForeColor;
         Color borderColor = ThemeProvider.Theme.Colors.GreySelection;
-        Color fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        Color fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         if (DataGridView.Focused && DataGridView.CurrentCellAddress == new Point(ColumnIndex, rowIndex))
             borderColor = ThemeProvider.Theme.Colors.MainAccent; //Selection

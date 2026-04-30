@@ -32,7 +32,7 @@ public class LucidForm : Form
 
     public LucidForm()
     {
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
     }
 
     #endregion
