@@ -521,7 +521,7 @@ public class LucidScrollBar : Control
             var scrollColor = _thumbHot ? ThemeProvider.Theme.Colors.SurfaceHighlight : ThemeProvider.Theme.Colors.SurfaceDefault;
 
             if (_isScrolling)
-                scrollColor = ThemeProvider.Theme.Colors.ActiveControl;
+                scrollColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
 
             using (var b = new SolidBrush(scrollColor))
             {
