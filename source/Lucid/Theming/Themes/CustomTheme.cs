@@ -30,7 +30,7 @@ internal class CustomTheme : ITheme
         Colors.BackgroundTertiary = Color.FromArgb(102, 106, 108);      // Color for Dock-Background
         Colors.BackgroundSecondary = Color.FromArgb(186, 104, 173);    // Color for Dock-Header (inactiv)
         Colors.Accent = Color.FromArgb(186, 104, 104);      // Color for Dock-Header
-        Colors.DockMovedHighlight = ColorTranslator.FromHtml("#611cce");
+        Colors.Accent = ColorTranslator.FromHtml("#611cce");
         // Dock
 
 
