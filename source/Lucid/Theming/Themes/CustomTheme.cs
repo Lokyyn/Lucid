@@ -36,7 +36,7 @@ internal class CustomTheme : ITheme
 
         // List
         Colors.RowEven = ColorTranslator.FromHtml("#e2330f"); // red
-        Colors.RowOdd = ColorTranslator.FromHtml("#1a13dd"); // blue
+        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#1a13dd"); // blue
 
         // List
 

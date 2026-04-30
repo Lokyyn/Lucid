@@ -512,7 +512,7 @@ public class LucidListView : LucidScrollView
 
             // Background
             var odd = i % 2 != 0;
-            var bgColor = !odd ? ThemeProvider.Theme.Colors.RowOdd : ThemeProvider.Theme.Colors.RowEven;
+            var bgColor = !odd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.RowEven;
 
             if (SelectedIndices.Count > 0 && SelectedIndices.Contains(i))
                 bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
