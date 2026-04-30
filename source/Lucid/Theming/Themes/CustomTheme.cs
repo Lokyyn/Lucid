@@ -24,7 +24,7 @@ internal class CustomTheme : ITheme
        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41");        // Standard Background Color for Controls
 
         Colors.SurfaceDefault = ColorTranslator.FromHtml("#02f47f");
-        Colors.DockActive = ColorTranslator.FromHtml("#0277f4");
+        Colors.Accent = ColorTranslator.FromHtml("#0277f4");
 
         // Dock
         Colors.BackgroundTertiary = Color.FromArgb(102, 106, 108);      // Color for Dock-Background
