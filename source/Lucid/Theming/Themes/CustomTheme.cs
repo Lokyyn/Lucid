@@ -55,7 +55,7 @@ internal class CustomTheme : ITheme
         Colors.SurfaceDefault = Color.FromArgb(122, 128, 132);
         Colors.SurfaceHighlight = Color.FromArgb(92, 92, 92);
         Colors.SurfaceHighlight = Color.FromArgb(82, 82, 82);
-        Colors.DarkBlueBorder = Color.FromArgb(51, 61, 78);
+        Colors.BorderAccent = Color.FromArgb(51, 61, 78);
         Colors.LightBlueBorder = Color.FromArgb(86, 97, 114);
         Colors.SurfaceHighlight = Color.FromArgb(159, 178, 196);   
 
