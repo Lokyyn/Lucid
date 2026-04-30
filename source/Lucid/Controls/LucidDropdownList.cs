@@ -429,7 +429,7 @@ public class LucidDropdownList : Control
                 g.FillRectangle(b, ClientRectangle);
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DarkBackground))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
             {
                 var arrowRect = new Rectangle(ClientRectangle.Right - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Top, DropdownIcons.small_arrow.Width + 8, ClientRectangle.Height);
                 g.FillRectangle(b, arrowRect);

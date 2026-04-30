@@ -158,7 +158,7 @@ public class LucidDataGridViewButtonCell : DataGridViewButtonCell
             textColor = ThemeProvider.Theme.Colors.DisabledText;
         }
         else if (ButtonState.HasFlag(ButtonState.Checked) || ButtonState.HasFlag(ButtonState.Pushed))
-            fillColor = ThemeProvider.Theme.Colors.DarkBackground;
+            fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         else if (_mouseCurserCell == rowIndex) // Hover
             fillColor = ThemeProvider.Theme.Colors.LighterBackground;
 

@@ -368,7 +368,7 @@ public class LucidButton : Button
                         fillColor = _isDefault ? ThemeProvider.Theme.Colors.BlueBackground : ThemeProvider.Theme.Colors.LighterBackground;
                         break;
                     case LucidControlState.Pressed:
-                        fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBackground : ThemeProvider.Theme.Colors.DarkBackground;
+                        fillColor = _isDefault ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary;
                         break;
                 }
             }
@@ -383,7 +383,7 @@ public class LucidButton : Button
                         fillColor = ThemeProvider.Theme.Colors.MediumBackground;
                         break;
                     case LucidControlState.Pressed:
-                        fillColor = ThemeProvider.Theme.Colors.DarkBackground;
+                        fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
                         break;
                 }
             }

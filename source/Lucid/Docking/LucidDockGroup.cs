@@ -767,10 +767,10 @@ public class LucidDockGroup : Panel
         var isVisibleTab = VisibleContent == tab.DockContent;
         var isActiveGroup = DockPanel.ActiveGroup == this;
 
-        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.DarkBackground;
+        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (!isActiveGroup)
-            bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.GreySelection : ThemeProvider.Theme.Colors.DarkBackground;
+            bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.GreySelection : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
             bgColor = ThemeProvider.Theme.Colors.MediumBackground;
@@ -840,7 +840,7 @@ public class LucidDockGroup : Panel
 
         var isVisibleTab = VisibleContent == tab.DockContent;
 
-        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.DarkBackground;
+        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
             bgColor = ThemeProvider.Theme.Colors.MediumBackground;

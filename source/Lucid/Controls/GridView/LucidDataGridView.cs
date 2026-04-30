@@ -35,7 +35,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         return new DataGridViewCellStyle
         {
             // Darker colors:
-            // BackColor = isOdd ? ThemeProvider.Theme.Colors.MediumBackground : ThemeProvider.Theme.Colors.DarkBackground,
+            // BackColor = isOdd ? ThemeProvider.Theme.Colors.MediumBackground : ThemeProvider.Theme.Colors.BackgroundPrimary,
             BackColor = isHeader ? ThemeProvider.Theme.Colors.MediumBackground :
                     (isOdd ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.HeaderBackground),
             ForeColor = ThemeProvider.Theme.Colors.LightText,
