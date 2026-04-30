@@ -360,7 +360,7 @@ public class LucidButton : Button
             if (ButtonStyle == LucidButtonStyle.Normal || ButtonStyle == LucidButtonStyle.Rounded)
             {
                 if (Focused && TabStop)
-                    borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                    borderColor = ThemeProvider.Theme.Colors.Accent;
 
                 switch (ButtonState)
                 {

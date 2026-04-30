@@ -66,7 +66,7 @@ public class LucidMenuRenderer : ToolStripRenderer
             g.FillRectangle(b, rect);
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.ControlHighlight))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.Accent))
         {
             var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
             g.DrawRectangle(p, modRect);

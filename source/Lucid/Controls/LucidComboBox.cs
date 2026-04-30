@@ -111,7 +111,7 @@ public class LucidComboBox : ComboBox
             var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
             if (Focused && TabStop)
-                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                borderColor = ThemeProvider.Theme.Colors.Accent;
 
             using (var b = new SolidBrush(fillColor))
             {

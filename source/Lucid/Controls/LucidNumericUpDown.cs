@@ -153,7 +153,7 @@ public class LucidNumericUpDown : NumericUpDown
         var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (Focused && TabStop)
-            borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+            borderColor = ThemeProvider.Theme.Colors.Accent;
 
         using (var p = new Pen(borderColor, 1))
         {

@@ -289,13 +289,13 @@ public class LucidCheckBox : CheckBox
         {
             if (Focused)
             {
-                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                borderColor = ThemeProvider.Theme.Colors.Accent;
                 fillColor = ThemeProvider.Theme.Colors.Accent;
             }
 
             if (_controlState == LucidControlState.Hover)
             {
-                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                borderColor = ThemeProvider.Theme.Colors.Accent;
                 fillColor = ThemeProvider.Theme.Colors.Accent;
             }
             else if (_controlState == LucidControlState.Pressed)

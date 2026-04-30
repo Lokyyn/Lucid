@@ -803,10 +803,10 @@ public class LucidTreeView : LucidScrollView
         DisposeIcons();
 
         _nodeClosed = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.LightText);
-        _nodeClosedHover = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.ControlHighlight);
+        _nodeClosedHover = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.Accent);
         _nodeClosedHoverSelected = TreeViewIcons.node_closed_full.SetColor(ThemeProvider.Theme.Colors.LightText);
         _nodeOpen = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.LightText);
-        _nodeOpenHover = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.ControlHighlight);
+        _nodeOpenHover = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.Accent);
         _nodeOpenHoverSelected = TreeViewIcons.node_open_empty.SetColor(ThemeProvider.Theme.Colors.LightText);
     }
 

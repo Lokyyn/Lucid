@@ -867,7 +867,7 @@ public class LucidDockGroup : Panel
             Trimming = StringTrimming.EllipsisCharacter
         };
 
-        var textColor = isVisibleTab ? ThemeProvider.Theme.Colors.ControlHighlight : ThemeProvider.Theme.Colors.DisabledText;
+        var textColor = isVisibleTab ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.DisabledText;
         using (var b = new SolidBrush(textColor))
         {
             var textRect = new Rectangle(tabRect.Left + 5, tabRect.Top, tabRect.Width - 5, tabRect.Height);
