@@ -122,12 +122,12 @@ public class LucidDockContent : UserControl
         BackColor = System.Drawing.Color.Transparent;// ThemeProvider.Theme.Colors.GreyBackground;
 
         // Configure scroll bars
-        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _vScrollBar.Minimum = 0;
         _vScrollBar.Maximum = 0;
         //_vScrollBar.ValueChanged += _vScrollBar_ValueChanged;
 
-        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _hScrollBar.Minimum = 0;
         _hScrollBar.Maximum = 0;
         //_hScrollBar.ValueChanged += _hScrollBar_ValueChanged;

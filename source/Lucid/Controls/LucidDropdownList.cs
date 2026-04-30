@@ -403,7 +403,7 @@ public class LucidDropdownList : Control
         var g = e.Graphics;
 
         // Draw background
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
         {
             g.FillRectangle(b, ClientRectangle);
         }

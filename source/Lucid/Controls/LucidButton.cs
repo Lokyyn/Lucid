@@ -380,7 +380,7 @@ public class LucidButton : Button
                         fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
                         break;
                     case LucidControlState.Hover:
-                        fillColor = ThemeProvider.Theme.Colors.MediumBackground;
+                        fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
                         break;
                     case LucidControlState.Pressed:
                         fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;

@@ -35,8 +35,8 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         return new DataGridViewCellStyle
         {
             // Darker colors:
-            // BackColor = isOdd ? ThemeProvider.Theme.Colors.MediumBackground : ThemeProvider.Theme.Colors.BackgroundPrimary,
-            BackColor = isHeader ? ThemeProvider.Theme.Colors.MediumBackground :
+            // BackColor = isOdd ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary,
+            BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary :
                     (isOdd ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.HeaderBackground),
             ForeColor = ThemeProvider.Theme.Colors.LightText,
             SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection,
@@ -110,12 +110,12 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.Scroll += BaseScrolled;
 
         // Configure scroll bars
-        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _vScrollBar.Minimum = 0;
         _vScrollBar.Maximum = 0;
         _vScrollBar.ValueChanged += _vScrollBar_ValueChanged;
 
-        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _hScrollBar.Minimum = 0;
         _hScrollBar.Maximum = 0;
         _hScrollBar.ValueChanged += _hScrollBar_ValueChanged;
@@ -185,8 +185,8 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.ColumnHeadersDefaultCellStyle = GetCellStyle(true, true, true);
         _base.RowHeadersDefaultCellStyle = GetCellStyle(true, true, true);
 
-        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
-        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
+        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         OutlineColor = ThemeProvider.Theme.Colors.LightBorder;
 

@@ -705,7 +705,7 @@ public class LucidDockGroup : Panel
         if (!_tabArea.Visible)
             return;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
         {
             g.FillRectangle(b, _tabArea.ClientRectangle);
         }
@@ -732,7 +732,7 @@ public class LucidDockGroup : Panel
             // Content dropdown list
             var dropdownRect = new Rectangle(_tabArea.DropdownRectangle.Left, _tabArea.DropdownRectangle.Top, _tabArea.DropdownRectangle.Width, _tabArea.DropdownRectangle.Height - 2);
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
             {
                 g.FillRectangle(b, dropdownRect);
             }
@@ -747,7 +747,7 @@ public class LucidDockGroup : Panel
                 // Dock settings icon
                 var dockSettingsRect = new Rectangle(_tabArea.DockSettingsRectangle.Left, _tabArea.DockSettingsRectangle.Top, _tabArea.DockSettingsRectangle.Width, _tabArea.DockSettingsRectangle.Height - 2);
 
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
                 {
                     g.FillRectangle(b, dockSettingsRect);
                 }
@@ -773,7 +773,7 @@ public class LucidDockGroup : Panel
             bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.GreySelection : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
-            bgColor = ThemeProvider.Theme.Colors.MediumBackground;
+            bgColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         using (var b = new SolidBrush(bgColor))
         {
@@ -843,7 +843,7 @@ public class LucidDockGroup : Panel
         var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
-            bgColor = ThemeProvider.Theme.Colors.MediumBackground;
+            bgColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         using (var b = new SolidBrush(bgColor))
         {
