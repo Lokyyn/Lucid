@@ -108,7 +108,7 @@ public class LucidComboBox : ComboBox
 
             var textColor = ThemeProvider.Theme.Colors.LightText;
             var borderColor = ThemeProvider.Theme.Colors.GreySelection;
-            var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+            var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
             if (Focused && TabStop)
                 borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
@@ -168,7 +168,7 @@ public class LucidComboBox : ComboBox
         var rect = e.Bounds;
 
         var textColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected ||
             (e.State & DrawItemState.Focus) == DrawItemState.Focus ||

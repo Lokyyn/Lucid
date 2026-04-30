@@ -10,7 +10,7 @@ public class LucidTextBox : TextBox
 
     public LucidTextBox()
     {
-        BackColor = ThemeProvider.Theme.Colors.LightBackground;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
         ForeColor = ThemeProvider.Theme.Colors.LightText;
         Padding = new Padding(2, 2, 2, 2);
         BorderStyle = BorderStyle.FixedSingle;
@@ -20,7 +20,7 @@ public class LucidTextBox : TextBox
 
     private void ThemeProvider_OnThemeChanged()
     {
-        BackColor = ThemeProvider.Theme.Colors.LightBackground;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
         ForeColor = ThemeProvider.Theme.Colors.LightText;
     }
 

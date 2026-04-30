@@ -24,7 +24,7 @@ public class LucidNumericUpDown : NumericUpDown
                ControlStyles.UserPaint, true);
 
         base.ForeColor = ThemeProvider.Theme.Colors.LightText;
-        base.BackColor = ThemeProvider.Theme.Colors.LightBackground;
+        base.BackColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
         
         Controls[0].Paint += LucidNumericUpDown_Paint;
 
@@ -52,7 +52,7 @@ public class LucidNumericUpDown : NumericUpDown
     private void ThemeProvider_OnThemeChanged()
     {
         base.ForeColor = ThemeProvider.Theme.Colors.LightText;
-        base.BackColor = ThemeProvider.Theme.Colors.LightBackground;
+        base.BackColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
     }
 
     protected override void Dispose(bool disposing)

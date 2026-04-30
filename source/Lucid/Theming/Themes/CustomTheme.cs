@@ -43,7 +43,7 @@ internal class CustomTheme : ITheme
         Colors.DarkBlueBackground = Color.FromArgb(52, 57, 66);
         Colors.BackgroundPrimary = Color.FromArgb(43, 43, 43);
         Colors.BackgroundPrimary = Color.FromArgb(49, 51, 53);
-        Colors.LightBackground = Color.FromArgb(69, 73, 74);
+        Colors.BackgroundTertiary = Color.FromArgb(69, 73, 74);
         Colors.LighterBackground = Color.FromArgb(95, 101, 102);
         Colors.LightestBackground = Color.FromArgb(178, 178, 178);
         Colors.LightBorder = Color.FromArgb(81, 81, 81);
