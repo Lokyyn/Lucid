@@ -97,7 +97,7 @@ public class LucidSectionPanel : Panel
 
         // Draw header
         var bgColor = ContainsFocus ? ThemeProvider.Theme.Colors.BlueBackground : ThemeProvider.Theme.Colors.BackgroundSecondary;
-        var darkColor = ContainsFocus ? ThemeProvider.Theme.Colors.DarkBlueBorder : ThemeProvider.Theme.Colors.DarkBorder;
+        var darkColor = ContainsFocus ? ThemeProvider.Theme.Colors.DarkBlueBorder : ThemeProvider.Theme.Colors.BorderDefault;
         var lightColor = ContainsFocus ? ThemeProvider.Theme.Colors.LightBlueBorder : ThemeProvider.Theme.Colors.BorderDefault;
 
         using (var b = new SolidBrush(bgColor))
@@ -135,7 +135,7 @@ public class LucidSectionPanel : Panel
         }
 
         // Draw border
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder, 1))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault, 1))
         using (var state = new SaveableGraphicsState(e.Graphics))
         {
             completePath.AddPath(roundPath, true);

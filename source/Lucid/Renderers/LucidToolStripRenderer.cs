@@ -130,7 +130,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         var rect = new Rectangle(3, 3, 2, e.Item.Height - 4);
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawLine(p, rect.Left, rect.Top, rect.Left, rect.Height);
         }

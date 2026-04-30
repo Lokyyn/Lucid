@@ -22,7 +22,7 @@ public class LucidSeparator : Control
     {
         var g = e.Graphics;
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawLine(p, ClientRectangle.Left, 0, ClientRectangle.Right, 0);
         }

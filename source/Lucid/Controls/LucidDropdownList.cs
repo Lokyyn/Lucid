@@ -424,7 +424,7 @@ public class LucidDropdownList : Control
         // Draw hover state
         if (ControlState == LucidControlState.Hover)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.FillRectangle(b, ClientRectangle);
             }
@@ -445,7 +445,7 @@ public class LucidDropdownList : Control
         // Draw pressed state
         if (ControlState == LucidControlState.Pressed)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.FillRectangle(b, ClientRectangle);
             }

@@ -783,7 +783,7 @@ public class LucidDockGroup : Panel
         // Draw separators
         if (tab.ShowSeparator)
         {
-            using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
             }
@@ -853,7 +853,7 @@ public class LucidDockGroup : Panel
         // Draw separators
         if (tab.ShowSeparator)
         {
-            using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
             }

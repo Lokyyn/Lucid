@@ -376,7 +376,7 @@ public class LucidDockRegion : Panel
         }
 
         // Draw border
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             // Top border
             if (DockArea == LucidDockArea.Document)

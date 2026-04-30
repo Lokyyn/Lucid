@@ -5,7 +5,7 @@ namespace Lucid.Controls;
 
 public class LucidGroupBox : GroupBox
 {
-    private Color _borderColor = ThemeProvider.Theme.Colors.DarkBorder;
+    private Color _borderColor = ThemeProvider.Theme.Colors.BorderDefault;
 
     [Category("Appearance")]
     [Description("Determines the color of the border.")]

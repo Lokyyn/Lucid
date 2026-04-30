@@ -29,7 +29,7 @@ public class LucidStatusStrip : StatusStrip
             g.FillRectangle(b, ClientRectangle);
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawLine(p, ClientRectangle.Left, 0, ClientRectangle.Right, 0);
         }

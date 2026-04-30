@@ -72,7 +72,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
         _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
-        _base.GridColor = ThemeProvider.Theme.Colors.DarkBorder;
+        _base.GridColor = ThemeProvider.Theme.Colors.BorderDefault;
         _base.DefaultCellStyle = _cellStyleUnfocusedEven;
         _base.AlternatingRowsDefaultCellStyle = _cellStyleUnfocusedOdd;
         _base.ColumnHeadersDefaultCellStyle = _cellStyleHeader;
@@ -179,7 +179,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
     {
         _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
-        _base.GridColor = ThemeProvider.Theme.Colors.DarkBorder;
+        _base.GridColor = ThemeProvider.Theme.Colors.BorderDefault;
         _base.DefaultCellStyle = GetCellStyle(false, false, false);
         _base.AlternatingRowsDefaultCellStyle = GetCellStyle(false, true, false);
         _base.ColumnHeadersDefaultCellStyle = GetCellStyle(true, true, true);

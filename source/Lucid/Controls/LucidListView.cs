@@ -523,7 +523,7 @@ public class LucidListView : LucidScrollView
             }
 
             // DEBUG: Border
-            /*using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+            /*using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.DrawLine(p, new Point(rect.Left, rect.Bottom - 1), new Point(rect.Right, rect.Bottom - 1));
             }*/
