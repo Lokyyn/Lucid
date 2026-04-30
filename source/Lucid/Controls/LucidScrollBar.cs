@@ -518,7 +518,7 @@ public class LucidScrollBar : Control
         // Draw thumb
         if (Enabled)
         {
-            var scrollColor = _thumbHot ? ThemeProvider.Theme.Colors.HotScrollbar : ThemeProvider.Theme.Colors.InactivScrollbar;
+            var scrollColor = _thumbHot ? ThemeProvider.Theme.Colors.HotScrollbar : ThemeProvider.Theme.Colors.SurfaceDefault;
 
             if (_isScrolling)
                 scrollColor = ThemeProvider.Theme.Colors.ActiveControl;
