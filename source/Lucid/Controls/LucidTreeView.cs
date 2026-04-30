@@ -1365,7 +1365,7 @@ public class LucidTreeView : LucidScrollView
     protected override void PaintContent(Graphics g)
     {
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DockBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundTertiary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
@@ -1381,8 +1381,8 @@ public class LucidTreeView : LucidScrollView
         var rect = GetNodeFullRowArea(node);
 
         // 1. Draw background
-        //var bgColor = node.Odd ? ThemeProvider.Theme.Colors.DockBackground : ThemeProvider.Theme.Colors.DockBackground;
-        var bgColor = ThemeProvider.Theme.Colors.DockBackground;
+        //var bgColor = node.Odd ? ThemeProvider.Theme.Colors.BackgroundTertiary : ThemeProvider.Theme.Colors.BackgroundTertiary;
+        var bgColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if (SelectedNodes.Count > 0 && SelectedNodes.Contains(node))
             bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;

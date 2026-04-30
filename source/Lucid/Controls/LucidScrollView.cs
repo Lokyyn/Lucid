@@ -24,7 +24,7 @@ public abstract class LucidScrollView : LucidScrollBase
         var g = e.Graphics;
 
         // Draw background
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DockBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundTertiary))
         {
             g.FillRectangle(b, ClientRectangle);
         }

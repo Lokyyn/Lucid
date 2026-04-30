@@ -158,7 +158,7 @@ public class LucidToolWindow : LucidDockContent
         var g = e.Graphics;
 
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DockBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundTertiary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
