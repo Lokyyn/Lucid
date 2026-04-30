@@ -37,7 +37,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
             // Darker colors:
             // BackColor = isOdd ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary,
             BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary :
-                    (isOdd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.HeaderBackground),
+                    (isOdd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundSecondary),
             ForeColor = ThemeProvider.Theme.Colors.LightText,
             SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection,
             SelectionForeColor = ThemeProvider.Theme.Colors.LightText

@@ -114,7 +114,7 @@ public class LucidNumericUpDown : NumericUpDown
         var g = e.Graphics;
         var rect = e.ClipRectangle;
 
-        var fillColor = ThemeProvider.Theme.Colors.HeaderBackground;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(fillColor))
         {
