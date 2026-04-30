@@ -107,7 +107,7 @@ public class LucidMenuRenderer : ToolStripRenderer
         if (e.Item.Enabled)
         {
 
-            //var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.GreyHighlight : e.Item.BackColor;
+            //var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.SurfaceDefault : e.Item.BackColor;
             var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
             // Normal item

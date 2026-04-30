@@ -30,7 +30,7 @@ public class LucidTitle : Label
             g.DrawString(Text, Font, b, new PointF(-2, 0));
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.GreyHighlight))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.SurfaceDefault))
         {
             var p1 = new PointF(textSize.Width + 5, textSize.Height / 2);
             var p2 = new PointF(rect.Width, textSize.Height / 2);

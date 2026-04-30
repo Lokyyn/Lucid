@@ -81,7 +81,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
             if (castItem.Checked && castItem.Selected)
             {
                 var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                using (var p = new Pen(ThemeProvider.Theme.Colors.GreyHighlight))
+                using (var p = new Pen(ThemeProvider.Theme.Colors.SurfaceDefault))
                 {
                     g.DrawRectangle(p, modRect);
                 }

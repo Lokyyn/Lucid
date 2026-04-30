@@ -300,14 +300,14 @@ public class LucidCheckBox : CheckBox
             }
             else if (_controlState == LucidControlState.Pressed)
             {
-                borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
+                borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
                 fillColor = ThemeProvider.Theme.Colors.GreySelection;
             }
         }
         else
         {
             textColor = ThemeProvider.Theme.Colors.DisabledText;
-            borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
+            borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
             fillColor = ThemeProvider.Theme.Colors.GreySelection;
         }
 
