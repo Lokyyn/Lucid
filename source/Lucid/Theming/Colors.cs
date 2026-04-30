@@ -1,113 +1,85 @@
-﻿namespace Lucid.Theming;
+namespace Lucid.Theming;
 
 public class Colors
 {
-    // New
+    // Backgrounds
 
     /// <summary>
-    /// Defines the background color for docks
+    /// The deepest background layer (e.g. outer shell, sidebar base, dark panels).
     /// </summary>
-    public Color DockBackground { get; set; }
+    /// <remarks>Replaces: DarkBackground, MediumBackground</remarks>
+    public Color BackgroundPrimary { get; set; }
 
     /// <summary>
-    /// Defines the color for odd rows (e.g. Listview)
+    /// The standard background for most controls, forms and dock panels.
     /// </summary>
-    public Color RowOdd { get; set; }
+    /// <remarks>Replaces: MainBackgroundColor, HeaderBackground, RowOdd</remarks>
+    public Color BackgroundSecondary { get; set; }
 
     /// <summary>
-    /// Defines the color for even rows (e.g. Listview)
+    /// A slightly elevated background for surfaces, cards and alternate rows.
     /// </summary>
-    public Color RowEven { get; set; }
+    /// <remarks>Replaces: LightBackground, DockBackground, RowEven</remarks>
+    public Color BackgroundTertiary { get; set; }
+
+    // Surface / Interaction States
 
     /// <summary>
-    /// Defines the color for the highlight area if a dock is moved
+    /// Default surface color for hovered or mildly highlighted areas
+    /// (e.g. menu hover, scrollbar track, inactive dock header).
     /// </summary>
-    public Color DockMovedHighlight { get; set; }
+    /// <remarks>Replaces: LighterBackground, GreyHighlight, DockInactive, InactivScrollbar</remarks>
+    public Color SurfaceDefault { get; set; }
 
     /// <summary>
-    /// Defines the header color when a dock is inactive
+    /// Stronger highlight for selected or active surface areas
+    /// (e.g. selected list item, pressed button bg, scrollbar thumb hover).
     /// </summary>
-    public Color DockInactive { get; set; }
+    /// <remarks>Replaces: LightestBackground, GreySelection, DarkGreySelection, HotScrollbar, ActiveControl</remarks>
+    public Color SurfaceHighlight { get; set; }
+
+    // Borders
 
     /// <summary>
-    /// Defines the header color when a dock is active
+    /// Neutral border for separators, panel edges and control outlines.
     /// </summary>
-    public Color DockActive { get; set; }
-
-    // New
+    /// <remarks>Replaces: LightBorder, DarkBorder</remarks>
+    public Color BorderDefault { get; set; }
 
     /// <summary>
-    /// Defines the standard Control background color (Forms, Dockpanels, ...)
+    /// Accent-tinted border used around focused or active controls.
     /// </summary>
-    /// <remarks>Old name: GreyBackground</remarks>
-    public Color MainBackgroundColor { get; set; }
+    /// <remarks>Replaces: DarkBlueBorder, LightBlueBorder</remarks>
+    public Color BorderAccent { get; set; }
 
-    public Color HeaderBackground { get; set; }
-
-    public Color BlueBackground { get; set; }
-
-    public Color DarkBlueBackground { get; set; }
-
-    public Color DarkBackground { get; set; }
-
-    public Color MediumBackground { get; set; }
-
-    public Color LightBackground { get; set; }
-
-    public Color LighterBackground { get; set; }
-
-    public Color LightestBackground { get; set; }
-
-    public Color LightBorder { get; set; }
-
-    public Color DarkBorder { get; set; }
-
-    public Color LightText { get; set; }
-
-    public Color DisabledText { get; set; }
+    // Accent / Brand
 
     /// <summary>
-    /// Defines the highlight color for activ controls
+    /// Primary accent / brand color used for active selections, highlights,
+    /// focused controls, dock move indicator and link labels.
     /// </summary>
-    public Color ControlHighlight { get; set; }
+    /// <remarks>Replaces: MainAccent, BlueBackground, DockMovedHighlight, DockActive,
+    /// ControlHighlight, LabelLinkAccent</remarks>
+    public Color Accent { get; set; }
 
     /// <summary>
-    /// Defines the main accent color
+    /// Softer / secondary accent for hover states on accent elements
+    /// (e.g. hovered link labels, secondary badge).
     /// </summary>
-    public Color MainAccent { get; set; }
+    /// <remarks>Replaces: DarkBlueBackground, LabelLinkHoveredAccent</remarks>
+    public Color AccentSecondary { get; set; }
+
+    // Text
 
     /// <summary>
-    /// Defines the color that can be used for LinkLabels as an highlight color
+    /// Main foreground / text color for all readable content.
     /// </summary>
-    public Color LabelLinkAccent { get; set; }
+    /// <remarks>Replaces: LightText</remarks>
+    public Color TextPrimary { get; set; }
 
     /// <summary>
-    /// Defines the color that can be used for LinkLabels as an hovered highlight color
+    /// Muted text color for disabled labels, placeholders and hints.
     /// </summary>
-    public Color LabelLinkHoveredAccent { get; set; }
-
-    public Color GreyHighlight { get; set; }
-
-    public Color GreySelection { get; set; }
-
-    public Color DarkGreySelection { get; set; }
-
-    public Color DarkBlueBorder { get; set; }
-
-    public Color LightBlueBorder { get; set; }
-
-    /// <summary>
-    /// The active color of an scrollbar
-    /// </summary>
-    public Color ActiveControl { get; set; }
-
-    /// <summary>
-    /// The inactiv color for an scroll bar
-    /// </summary>
-    public Color InactivScrollbar { get; set; }
-
-    /// <summary>
-    /// The hit color for an scroll bar
-    /// </summary>
-    public Color HotScrollbar { get; set; }
+    /// <remarks>Replaces: DisabledText</remarks>
+    public Color TextDisabled { get; set; }
 }
