@@ -92,7 +92,7 @@ public class LucidMenuRenderer : ToolStripRenderer
 
     protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
     {
-        e.ArrowColor = ThemeProvider.Theme.Colors.LightText;
+        e.ArrowColor = ThemeProvider.Theme.Colors.TextPrimary;
         e.ArrowRectangle = new Rectangle(new Point(e.ArrowRectangle.Left, e.ArrowRectangle.Top - 1), e.ArrowRectangle.Size);
 
         base.OnRenderArrow(e);
@@ -102,7 +102,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         var g = e.Graphics;
 
-        e.Item.ForeColor = e.Item.Enabled ? ThemeProvider.Theme.Colors.LightText : ThemeProvider.Theme.Colors.DisabledText;
+        e.Item.ForeColor = e.Item.Enabled ? ThemeProvider.Theme.Colors.TextPrimary : ThemeProvider.Theme.Colors.DisabledText;
 
         if (e.Item.Enabled)
         {

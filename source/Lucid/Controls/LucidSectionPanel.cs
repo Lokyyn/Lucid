@@ -119,7 +119,7 @@ public class LucidSectionPanel : Panel
 
         var xOffset = 3;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             var textRect = new Rectangle(xOffset, 0, rect.Width - 4 - xOffset, 25);
 

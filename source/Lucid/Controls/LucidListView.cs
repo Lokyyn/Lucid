@@ -535,7 +535,7 @@ public class LucidListView : LucidScrollView
             }
 
             // Text
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
             {
                 var stringFormat = new StringFormat
                 {

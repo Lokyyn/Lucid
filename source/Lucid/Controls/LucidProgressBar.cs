@@ -322,7 +322,7 @@ public partial class LucidProgressBar : Control
 
         if (string.IsNullOrEmpty(text)) return;
 
-        using var b = new SolidBrush(colors.LightText);
+        using var b = new SolidBrush(Colors.TextPrimary);
         var flags = StringFormat.GenericDefault;
         var sf = new StringFormat
         {

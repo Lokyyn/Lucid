@@ -44,7 +44,7 @@ public class LucidListItem
 
     public LucidListItem()
     {
-        //TextColor = ThemeProvider.Theme.Colors.LightText;
+        //TextColor = ThemeProvider.Theme.Colors.TextPrimary;
         FontStyle = FontStyle.Regular;
     }
 

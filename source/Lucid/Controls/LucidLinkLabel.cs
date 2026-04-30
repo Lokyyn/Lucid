@@ -117,7 +117,7 @@ public class LucidLinkLabel : Label
 
         if (_lineVisible && !base.AutoSize)
         {
-            using (Pen p = new Pen(ThemeProvider.Theme.Colors.LightText, 0.5f))
+            using (Pen p = new Pen(ThemeProvider.Theme.Colors.TextPrimary, 0.5f))
             {
                 Point p1 = new Point(TextRenderer.MeasureText(Text, Font).Width + 3, Height / 2);
                 Point p2 = new Point(Width, p1.Y);

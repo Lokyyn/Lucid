@@ -38,8 +38,8 @@ public partial class LucidFileDrop : UserControl
 
         var rectPath = Helper.RoundedRectangleHelper.CreateRoundedRectanglePath(new Rectangle(2, 2, Width - 4, Height - 4), 20);
 
-        using (var borderPen = new Pen(ThemeProvider.Theme.Colors.LightText))
-        using (var fontBrush = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var borderPen = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
+        using (var fontBrush = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         using (var state = new SaveableGraphicsState(e.Graphics))
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;

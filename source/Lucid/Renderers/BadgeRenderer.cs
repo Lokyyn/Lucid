@@ -40,7 +40,7 @@ internal static class BadgeRenderer
                 var badgeBackColor = collection.ColorCollection.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.BackColor ?? ColorTranslator.FromHtml("#5c6bc0");
                 var badgeForeColor = collection.ColorCollection.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.ForeColor ?? ColorTranslator.FromHtml("#ffffff");
 
-                using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+                using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
                 using (var b = new SolidBrush(badgeBackColor))
                 using (var bF = new SolidBrush(badgeForeColor))
                 {
@@ -86,7 +86,7 @@ internal static class BadgeRenderer
         // Draw the badge
         using (var backBrush = new SolidBrush(backColor))
         using (var foreBrush = new SolidBrush(foreColor))
-        using (var borderPen = new Pen(ThemeProvider.Theme.Colors.LightText))
+        using (var borderPen = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
         {
             g.FillPath(backBrush, badgePath);
             g.DrawPath(borderPen, badgePath);
@@ -124,7 +124,7 @@ internal static class BadgeRenderer
             var badgeBackColor = collection.ColorCollection.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.BackColor ?? ColorTranslator.FromHtml("#5c6bc0");
             var badgeForeColor = collection.ColorCollection.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.ForeColor ?? ColorTranslator.FromHtml("#ffffff");
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
             using (var pr = new Pen(Color.Red))
             using (var b = new SolidBrush(badgeBackColor))
             using (var bF = new SolidBrush(badgeForeColor))

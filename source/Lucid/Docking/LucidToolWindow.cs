@@ -197,7 +197,7 @@ public class LucidToolWindow : LucidDockContent
         }
 
         // Draw text
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             var textRect = new Rectangle(xOffset, 0, ClientRectangle.Width - 4 - xOffset, ThemeProvider.Theme.Sizes.ToolWindowHeaderSize);
 

@@ -25,7 +25,7 @@ public class LucidTitle : Label
 
         var textSize = g.MeasureString(Text, Font);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             g.DrawString(Text, Font, b, new PointF(-2, 0));
         }

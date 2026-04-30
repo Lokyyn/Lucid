@@ -38,9 +38,9 @@ public class LucidDataGridView : UserControl, ISupportInitialize
             // BackColor = isOdd ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary,
             BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary :
                     (isOdd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundSecondary),
-            ForeColor = ThemeProvider.Theme.Colors.LightText,
+            ForeColor = ThemeProvider.Theme.Colors.TextPrimary,
             SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight,
-            SelectionForeColor = ThemeProvider.Theme.Colors.LightText
+            SelectionForeColor = ThemeProvider.Theme.Colors.TextPrimary
         };
     }
 

@@ -35,7 +35,7 @@ public class LucidGroupBox : GroupBox
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
         var stringSize = g.MeasureString(Text, Font);
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
         var fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(fillColor))

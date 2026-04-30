@@ -802,12 +802,12 @@ public class LucidTreeView : LucidScrollView
     {
         DisposeIcons();
 
-        _nodeClosed = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.LightText);
+        _nodeClosed = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
         _nodeClosedHover = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.Accent);
-        _nodeClosedHoverSelected = TreeViewIcons.node_closed_full.SetColor(ThemeProvider.Theme.Colors.LightText);
-        _nodeOpen = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.LightText);
+        _nodeClosedHoverSelected = TreeViewIcons.node_closed_full.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
+        _nodeOpen = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
         _nodeOpenHover = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.Accent);
-        _nodeOpenHoverSelected = TreeViewIcons.node_open_empty.SetColor(ThemeProvider.Theme.Colors.LightText);
+        _nodeOpenHoverSelected = TreeViewIcons.node_open_empty.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
     }
 
     private void DisposeIcons()
@@ -1432,7 +1432,7 @@ public class LucidTreeView : LucidScrollView
         }
 
         // 4. Draw text
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         using (var bContrast = new SolidBrush(Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent)))
         {
             var stringFormat = new StringFormat
@@ -1457,7 +1457,7 @@ public class LucidTreeView : LucidScrollView
             var width = (int)node.ProgressbarSize;
             var percentage = node.ProgressBarPercentage;
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
             using (var gState = new SaveableGraphicsState(g))
             using (var brushBack = new SolidBrush(progressBarBackColor))
             using (var brushFore = new SolidBrush(progressBarForeColor))
@@ -1494,7 +1494,7 @@ public class LucidTreeView : LucidScrollView
             var badgeBackColor2 = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.BackColor2 ?? ColorTranslator.FromHtml("#5c6bc0");
             var badgeForeColor = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.ForeColor ?? ColorTranslator.FromHtml("#ffffff");
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
             using (var pr = new Pen(Color.Red))
             using (var b = new SolidBrush(badgeBackColor))
             using (var bF = new SolidBrush(badgeForeColor))

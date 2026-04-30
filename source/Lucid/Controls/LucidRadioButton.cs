@@ -253,9 +253,9 @@ public class LucidRadioButton : RadioButton
 
         var size = ThemeProvider.Theme.Sizes.RadioButtonSize;
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
-        var borderColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = ThemeProvider.Theme.Colors.LightText;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var borderColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var fillColor = ThemeProvider.Theme.Colors.TextPrimary;
 
         if (Enabled)
         {

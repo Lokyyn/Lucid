@@ -281,8 +281,8 @@ public class LucidCheckBox : CheckBox
 
         var size = ThemeProvider.Theme.Sizes.CheckBoxSize;
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
-        var borderColor = ThemeProvider.Theme.Colors.LightText;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var borderColor = ThemeProvider.Theme.Colors.TextPrimary;
         var fillColor = Checked ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (Enabled)
