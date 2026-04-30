@@ -40,6 +40,9 @@ partial class MainPage
         lucidProgressBar1 = new Controls.LucidProgressBar();
         lbFileDrop = new Controls.LucidLabel();
         lbChipControl = new Controls.LucidLabel();
+        lucidSlider1 = new Controls.LucidSlider();
+        lbSlider = new Controls.LucidLabel();
+        btnToggleSliderMode = new Controls.LucidButton();
         SuspendLayout();
         // 
         // lucidChipControl1
@@ -143,7 +146,6 @@ partial class MainPage
         // 
         // lucidProgressBar1
         // 
-        lucidProgressBar1.Indeterminate = true;
         lucidProgressBar1.Location = new Point(340, 134);
         lucidProgressBar1.MinimumSize = new Size(40, 6);
         lucidProgressBar1.Name = "lucidProgressBar1";
@@ -172,10 +174,48 @@ partial class MainPage
         lbChipControl.TabIndex = 17;
         lbChipControl.Text = "ChipControl";
         // 
+        // lucidSlider1
+        // 
+        lucidSlider1.CustomValueLabel = "$";
+        lucidSlider1.Location = new Point(340, 391);
+        lucidSlider1.MinimumSize = new Size(60, 28);
+        lucidSlider1.Mode = Lucid.Controls.LucidSliderMode.Range;
+        lucidSlider1.Name = "lucidSlider1";
+        lucidSlider1.Size = new Size(283, 57);
+        lucidSlider1.TabIndex = 18;
+        lucidSlider1.Text = "lucidSlider1";
+        // 
+        // lbSlider
+        // 
+        lbSlider.AutoSize = true;
+        lbSlider.BackColor = Color.Transparent;
+        lbSlider.ForeColor = Color.FromArgb(220, 220, 220);
+        lbSlider.Location = new Point(340, 369);
+        lbSlider.Name = "lbSlider";
+        lbSlider.Size = new Size(36, 15);
+        lbSlider.TabIndex = 19;
+        lbSlider.Text = "Slider";
+        // 
+        // btnToggleSliderMode
+        // 
+        btnToggleSliderMode.BackColor = Color.Transparent;
+        btnToggleSliderMode.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnToggleSliderMode.Location = new Point(400, 365);
+        btnToggleSliderMode.Name = "btnToggleSliderMode";
+        btnToggleSliderMode.Padding = new Padding(5);
+        btnToggleSliderMode.RoundedCornerRadius = 16;
+        btnToggleSliderMode.Size = new Size(97, 23);
+        btnToggleSliderMode.TabIndex = 20;
+        btnToggleSliderMode.Text = "Toggle Mode";
+        btnToggleSliderMode.Click += btnToggleSliderMode_Click;
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(btnToggleSliderMode);
+        Controls.Add(lbSlider);
+        Controls.Add(lucidSlider1);
         Controls.Add(lbChipControl);
         Controls.Add(lbFileDrop);
         Controls.Add(lucidProgressBar1);
@@ -203,6 +243,9 @@ partial class MainPage
         Controls.SetChildIndex(lucidProgressBar1, 0);
         Controls.SetChildIndex(lbFileDrop, 0);
         Controls.SetChildIndex(lbChipControl, 0);
+        Controls.SetChildIndex(lucidSlider1, 0);
+        Controls.SetChildIndex(lbSlider, 0);
+        Controls.SetChildIndex(btnToggleSliderMode, 0);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -220,4 +263,7 @@ partial class MainPage
     private Controls.LucidProgressBar lucidProgressBar1;
     private Controls.LucidLabel lbFileDrop;
     private Controls.LucidLabel lbChipControl;
+    private Controls.LucidSlider lucidSlider1;
+    private Controls.LucidLabel lbSlider;
+    private Controls.LucidButton btnToggleSliderMode;
 }

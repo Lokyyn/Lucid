@@ -88,4 +88,12 @@ public partial class MainPage : LucidDocument
 
         lucidProgressBar.Value -= rnd.Next(6, 20);
     }
+
+    private void btnToggleSliderMode_Click(object sender, EventArgs e)
+    {
+        if (lucidSlider1.Mode == Lucid.Controls.LucidSliderMode.SingleValue)
+            lucidSlider1.Mode = Lucid.Controls.LucidSliderMode.Range;
+        else
+            lucidSlider1.Mode = Lucid.Controls.LucidSliderMode.SingleValue;
+    }
 }
