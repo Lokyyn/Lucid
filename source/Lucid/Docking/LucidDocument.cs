@@ -4,6 +4,10 @@ using Lucid.Controls;
 
 namespace Lucid.Docking;
 
+/// <summary>
+/// A scrollable document pane hosted in the centre area of a <see cref="LucidDockPanel"/>.
+/// Inherit from this class to create custom editor or viewer tabs.
+/// </summary>
 [ToolboxItem(false)]
 public class LucidDocument : LucidDockContent
 {
@@ -16,6 +20,10 @@ public class LucidDocument : LucidDockContent
         get { return base.DefaultDockArea; }
     }
 
+    /// <summary>
+    /// The visible rectangle of the document in content coordinates, updated whenever
+    /// the scroll position or control size changes.
+    /// </summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Rectangle Viewport
@@ -30,6 +38,10 @@ public class LucidDocument : LucidDockContent
         }
     }
 
+    /// <summary>
+    /// The logical size of the document's content area.
+    /// When this exceeds the visible area, scroll bars become active.
+    /// </summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Size ContentSize
@@ -46,6 +58,10 @@ public class LucidDocument : LucidDockContent
     }
 
 
+    /// <summary>
+    /// When <see langword="true"/> (default), scroll bars are hidden when <see cref="ContentSize"/> fits
+    /// within the visible area. Set to <see langword="false"/> to keep them always visible.
+    /// </summary>
     [Category("Behavior")]
     [Description("Determines whether scrollbars will remain visible when disabled.")]
     [DefaultValue(true)]
