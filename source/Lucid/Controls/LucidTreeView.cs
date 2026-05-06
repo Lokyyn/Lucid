@@ -16,8 +16,11 @@ public class LucidTreeView : LucidScrollView
 {
     #region Event Region
 
+    /// <summary>Raised when the collection of selected nodes changes.</summary>
     public event EventHandler SelectedNodesChanged;
+    /// <summary>Raised after a node is expanded by the user or programmatically.</summary>
     public event EventHandler AfterNodeExpand;
+    /// <summary>Raised after a node is collapsed by the user or programmatically.</summary>
     public event EventHandler AfterNodeCollapse;
 
     #endregion
@@ -85,6 +88,7 @@ public class LucidTreeView : LucidScrollView
         }
     }
 
+    /// <summary>Font used to render badge labels on tree nodes.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Font BadgeFont
@@ -93,6 +97,7 @@ public class LucidTreeView : LucidScrollView
         set => _badgeFont = value;
     }
 
+    /// <summary>The root-level node collection. Add or remove <see cref="LucidTreeNode"/> instances here to populate the tree.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public ObservableList<LucidTreeNode> Nodes
@@ -121,6 +126,7 @@ public class LucidTreeView : LucidScrollView
         }
     }
 
+    /// <summary>Read-only collection of all currently selected nodes.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public ObservableCollection<LucidTreeNode> SelectedNodes
@@ -180,10 +186,15 @@ public class LucidTreeView : LucidScrollView
     [DefaultValue(false)]
     public bool ShowSelectedNodeRoundedRectangle { get; set; }
 
+    /// <summary>Number of nodes that are currently visible (expanded and in the viewport).</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int VisibleNodeCount { get; private set; }
 
+    /// <summary>
+    /// Custom comparer applied whenever nodes are added or a node's text changes.
+    /// Set to <see langword="null"/> to disable automatic sorting.
+    /// </summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public IComparer<LucidTreeNode> TreeViewNodeSorter { get; set; }

@@ -18,14 +18,18 @@ public class ThemeProvider
     }
 
     /// <summary>
-    /// This event fires when the current theme is changed
+    /// Raised on the UI thread whenever <see cref="Theme"/> is replaced with a new value.
+    /// Controls subscribe to this event to repaint themselves with the new color tokens.
     /// </summary>
     public static event ThemeChangedHandler OnThemeChanged;
 
+    /// <summary>Callback signature for <see cref="OnThemeChanged"/>.</summary>
     public delegate void ThemeChangedHandler();
 
     /// <summary>
-    /// The current active theme
+    /// Gets or sets the globally active theme.
+    /// Setting this property raises <see cref="OnThemeChanged"/> so all subscribed controls repaint.
+    /// Defaults to <see cref="DarkTheme"/> when first accessed.
     /// </summary>
     public static ITheme Theme
     {
@@ -46,12 +50,13 @@ public class ThemeProvider
     }
 
     /// <summary>
-    /// Sets a theme with the given theme name if it exists. Other wise it sets <see cref="DarkTheme"/> as the current theme.
+    /// Activates the theme whose <see cref="ITheme.ThemeName"/> matches <paramref name="themeName"/>.
+    /// Falls back to <see cref="DarkTheme"/> when no match is found.
     /// </summary>
-    /// <param name="theme"></param>
-    public static void SetThemeWithAlias(string theme)
+    /// <param name="themeName">The exact theme name to look up (case-sensitive).</param>
+    public static void SetThemeWithAlias(string themeName)
     {
-        var newTheme = GetAllThemes.FirstOrDefault(u => u.ThemeName == theme);
+        var newTheme = GetAllThemes.FirstOrDefault(u => u.ThemeName == themeName);
 
         if (newTheme != null)
             Theme = newTheme;
@@ -60,10 +65,11 @@ public class ThemeProvider
     }
 
     /// <summary>
-    /// Registers the given theme to the <see cref="ThemeProvider"/>.
+    /// Registers a custom theme so it appears in <see cref="GetAllThemes"/> and can be activated via <see cref="SetThemeWithAlias"/>.
+    /// The theme must inherit from <c>BaseDarkTheme</c> or <c>BaseLightTheme</c>.
     /// </summary>
-    /// <param name="theme"></param>
-    /// <exception cref="NotSupportedException"></exception>
+    /// <param name="theme">The theme instance to register.</param>
+    /// <exception cref="NotSupportedException">Thrown when <paramref name="theme"/> does not inherit from a supported base theme.</exception>
     public static void RegisterTheme(ITheme theme)
     {
         if (theme.GetType().BaseType != typeof(BaseDarkTheme) && theme.GetType().BaseType != typeof(BaseLightTheme))
@@ -91,8 +97,8 @@ public class ThemeProvider
     }
 
     /// <summary>
-    /// Returns a list with all available themes (including user registered themes)
-    /// <br><i> NOTE: Disabled themes won't appear in this list </i></br>
+    /// Returns all built-in themes plus any themes registered via <see cref="RegisterTheme"/>.
+    /// Themes with <c>Enabled = false</c> are excluded.
     /// </summary>
     public static List<ITheme> GetAllThemes => new List<ITheme>(_allThemes).Concat(_userRegisteredThemes).ToList();
 }
