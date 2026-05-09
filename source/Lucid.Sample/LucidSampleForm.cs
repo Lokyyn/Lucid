@@ -27,7 +27,6 @@ public partial class LucidSampleForm : Form
     private void AddToolWindows()
     {
         lucidDockPanel.AddContent(new ToolWindow());
-        lucidDockPanel.AddContent(new PropertiesToolWindow());
     }
 
     private void switchToDarkToolStripMenuItem_Click(object sender, EventArgs e)
