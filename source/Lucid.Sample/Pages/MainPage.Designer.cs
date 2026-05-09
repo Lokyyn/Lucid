@@ -51,6 +51,13 @@ partial class MainPage
         lucidButtonNormal = new Controls.LucidButton();
         lbTreeView = new Controls.LucidLabel();
         lucidTreeView1 = new Controls.LucidTreeView();
+        lucidScrollableControl1 = new Controls.LucidScrollableControl();
+        lucidButton3 = new Controls.LucidButton();
+        lucidButton2 = new Controls.LucidButton();
+        lucidButton1 = new Controls.LucidButton();
+        lbScrollableControl = new Controls.LucidLabel();
+        ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).BeginInit();
+        lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
         // 
         // lucidChipControl1
@@ -171,9 +178,9 @@ partial class MainPage
         lbFileDrop.Size = new Size(51, 15);
         lbFileDrop.TabIndex = 16;
         lbFileDrop.Text = "FileDrop";
-        //
+        // 
         // lbChipControl
-        //
+        // 
         lbChipControl.AutoSize = true;
         lbChipControl.BackColor = Color.Transparent;
         lbChipControl.ForeColor = Color.FromArgb(220, 220, 220);
@@ -182,43 +189,47 @@ partial class MainPage
         lbChipControl.Size = new Size(72, 15);
         lbChipControl.TabIndex = 17;
         lbChipControl.Text = "ChipControl";
-        //
+        // 
         // lbInputs
-        //
+        // 
         lbInputs.AutoSize = true;
         lbInputs.BackColor = Color.Transparent;
         lbInputs.ForeColor = Color.FromArgb(220, 220, 220);
         lbInputs.Location = new Point(27, 348);
         lbInputs.Name = "lbInputs";
+        lbInputs.Size = new Size(40, 15);
         lbInputs.TabIndex = 18;
         lbInputs.Text = "Inputs";
-        //
+        // 
         // lucidTextBox1
-        //
+        // 
+        lucidTextBox1.BorderStyle = BorderStyle.FixedSingle;
         lucidTextBox1.Location = new Point(27, 368);
         lucidTextBox1.Name = "lucidTextBox1";
         lucidTextBox1.PlaceholderText = "Enter text...";
         lucidTextBox1.Size = new Size(200, 23);
         lucidTextBox1.TabIndex = 19;
-        //
+        // 
         // lucidComboBox1
-        //
+        // 
+        lucidComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
         lucidComboBox1.Location = new Point(27, 397);
         lucidComboBox1.Name = "lucidComboBox1";
-        lucidComboBox1.Size = new Size(150, 23);
+        lucidComboBox1.Size = new Size(150, 24);
         lucidComboBox1.TabIndex = 20;
-        //
+        // 
         // lucidCheckBox1
-        //
+        // 
         lucidCheckBox1.BackColor = Color.Transparent;
         lucidCheckBox1.Location = new Point(27, 428);
         lucidCheckBox1.Name = "lucidCheckBox1";
         lucidCheckBox1.Size = new Size(150, 20);
         lucidCheckBox1.TabIndex = 21;
         lucidCheckBox1.Text = "CheckBox";
-        //
+        lucidCheckBox1.UseBackColorProperty = false;
+        // 
         // lucidCheckBox2
-        //
+        // 
         lucidCheckBox2.BackColor = Color.Transparent;
         lucidCheckBox2.Checked = true;
         lucidCheckBox2.CheckState = CheckState.Checked;
@@ -227,9 +238,11 @@ partial class MainPage
         lucidCheckBox2.Size = new Size(150, 20);
         lucidCheckBox2.TabIndex = 22;
         lucidCheckBox2.Text = "Checked";
-        //
+        lucidCheckBox2.UseBackColorProperty = false;
+        // 
         // lucidRadioButton1
-        //
+        // 
+        lucidRadioButton1.AllowCustomBackColor = false;
         lucidRadioButton1.BackColor = Color.Transparent;
         lucidRadioButton1.Checked = true;
         lucidRadioButton1.Location = new Point(27, 476);
@@ -238,56 +251,131 @@ partial class MainPage
         lucidRadioButton1.TabIndex = 23;
         lucidRadioButton1.TabStop = true;
         lucidRadioButton1.Text = "Option A";
-        //
+        // 
         // lucidRadioButton2
-        //
+        // 
+        lucidRadioButton2.AllowCustomBackColor = false;
         lucidRadioButton2.BackColor = Color.Transparent;
         lucidRadioButton2.Location = new Point(27, 497);
         lucidRadioButton2.Name = "lucidRadioButton2";
         lucidRadioButton2.Size = new Size(130, 20);
         lucidRadioButton2.TabIndex = 24;
         lucidRadioButton2.Text = "Option B";
-        //
+        // 
         // lucidNumericUpDown1
-        //
+        // 
         lucidNumericUpDown1.Location = new Point(27, 524);
         lucidNumericUpDown1.Name = "lucidNumericUpDown1";
         lucidNumericUpDown1.Size = new Size(100, 23);
         lucidNumericUpDown1.TabIndex = 25;
-        lucidNumericUpDown1.Value = 42;
-        //
+        lucidNumericUpDown1.Value = new decimal(new int[] { 42, 0, 0, 0 });
+        // 
         // lucidButtonNormal
-        //
+        // 
         lucidButtonNormal.BackColor = Color.Transparent;
-        lucidButtonNormal.ButtonStyle = Lucid.Controls.LucidButtonStyle.Normal;
+        lucidButtonNormal.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
         lucidButtonNormal.Location = new Point(150, 521);
         lucidButtonNormal.Name = "lucidButtonNormal";
         lucidButtonNormal.Padding = new Padding(5);
+        lucidButtonNormal.RoundedCornerRadius = 16;
         lucidButtonNormal.Size = new Size(90, 28);
         lucidButtonNormal.TabIndex = 26;
         lucidButtonNormal.Text = "Normal";
-        //
+        // 
         // lbTreeView
-        //
+        // 
         lbTreeView.AutoSize = true;
         lbTreeView.BackColor = Color.Transparent;
         lbTreeView.ForeColor = Color.FromArgb(220, 220, 220);
         lbTreeView.Location = new Point(340, 348);
         lbTreeView.Name = "lbTreeView";
+        lbTreeView.Size = new Size(54, 15);
         lbTreeView.TabIndex = 27;
         lbTreeView.Text = "TreeView";
-        //
+        // 
         // lucidTreeView1
-        //
+        // 
+        lucidTreeView1.ContextMenu = null;
         lucidTreeView1.Location = new Point(340, 368);
+        lucidTreeView1.MaxDragChange = 20;
         lucidTreeView1.Name = "lucidTreeView1";
         lucidTreeView1.Size = new Size(283, 210);
         lucidTreeView1.TabIndex = 28;
-        //
+        // 
+        // lucidScrollableControl1
+        // 
+        lucidScrollableControl1.Controls.Add(lucidButton3);
+        lucidScrollableControl1.Controls.Add(lucidButton2);
+        lucidScrollableControl1.Controls.Add(lucidButton1);
+        lucidScrollableControl1.Location = new Point(690, 107);
+        lucidScrollableControl1.Name = "lucidScrollableControl1";
+        lucidScrollableControl1.Size = new Size(401, 226);
+        lucidScrollableControl1.TabIndex = 29;
+        // 
+        // lucidButton3
+        // 
+        lucidButton3.BackColor = Color.Transparent;
+        lucidButton3.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        lucidButton3.Location = new Point(58, 315);
+        lucidButton3.Name = "lucidButton3";
+        lucidButton3.Padding = new Padding(5);
+        lucidButton3.RoundedCornerRadius = 16;
+        lucidButton3.Size = new Size(75, 23);
+        lucidButton3.TabIndex = 4;
+        lucidButton3.Text = "button3";
+        // 
+        // lucidButton2
+        // 
+        lucidButton2.BackColor = Color.Transparent;
+        lucidButton2.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        lucidButton2.Location = new Point(359, 27);
+        lucidButton2.Name = "lucidButton2";
+        lucidButton2.Padding = new Padding(5);
+        lucidButton2.RoundedCornerRadius = 16;
+        lucidButton2.Size = new Size(75, 23);
+        lucidButton2.TabIndex = 3;
+        lucidButton2.Text = "button2";
+        // 
+        // lucidButton1
+        // 
+        lucidButton1.BackColor = Color.Transparent;
+        lucidButton1.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        lucidButton1.Location = new Point(345, 200);
+        lucidButton1.Name = "lucidButton1";
+        lucidButton1.Padding = new Padding(5);
+        lucidButton1.RoundedCornerRadius = 16;
+        lucidButton1.Size = new Size(75, 23);
+        lucidButton1.TabIndex = 2;
+        lucidButton1.Text = "button1";
+        // 
+        // lbScrollableControl
+        // 
+        lbScrollableControl.AutoSize = true;
+        lbScrollableControl.BackColor = Color.Transparent;
+        lbScrollableControl.ForeColor = Color.FromArgb(220, 220, 220);
+        lbScrollableControl.Location = new Point(690, 82);
+        lbScrollableControl.Name = "lbScrollableControl";
+        lbScrollableControl.Size = new Size(98, 15);
+        lbScrollableControl.TabIndex = 30;
+        lbScrollableControl.Text = "ScrollableControl";
+        // 
         // MainPage
-        //
+        // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(lbScrollableControl);
+        Controls.Add(lucidScrollableControl1);
+        Controls.Add(lucidTreeView1);
+        Controls.Add(lbTreeView);
+        Controls.Add(lucidButtonNormal);
+        Controls.Add(lucidNumericUpDown1);
+        Controls.Add(lucidRadioButton2);
+        Controls.Add(lucidRadioButton1);
+        Controls.Add(lucidCheckBox2);
+        Controls.Add(lucidCheckBox1);
+        Controls.Add(lucidComboBox1);
+        Controls.Add(lucidTextBox1);
+        Controls.Add(lbInputs);
         Controls.Add(lbChipControl);
         Controls.Add(lbFileDrop);
         Controls.Add(lucidProgressBar1);
@@ -299,20 +387,9 @@ partial class MainPage
         Controls.Add(btRemoveChip);
         Controls.Add(btAddChip);
         Controls.Add(lucidChipControl1);
-        Controls.Add(lbInputs);
-        Controls.Add(lucidTextBox1);
-        Controls.Add(lucidComboBox1);
-        Controls.Add(lucidCheckBox1);
-        Controls.Add(lucidCheckBox2);
-        Controls.Add(lucidRadioButton1);
-        Controls.Add(lucidRadioButton2);
-        Controls.Add(lucidNumericUpDown1);
-        Controls.Add(lucidButtonNormal);
-        Controls.Add(lbTreeView);
-        Controls.Add(lucidTreeView1);
         DockText = "MainPage";
         Name = "MainPage";
-        Size = new Size(722, 610);
+        Size = new Size(1127, 642);
         Controls.SetChildIndex(_hScrollBar, 0);
         Controls.SetChildIndex(_vScrollBar, 0);
         Controls.SetChildIndex(lucidChipControl1, 0);
@@ -337,6 +414,10 @@ partial class MainPage
         Controls.SetChildIndex(lucidButtonNormal, 0);
         Controls.SetChildIndex(lbTreeView, 0);
         Controls.SetChildIndex(lucidTreeView1, 0);
+        Controls.SetChildIndex(lucidScrollableControl1, 0);
+        Controls.SetChildIndex(lbScrollableControl, 0);
+        ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).EndInit();
+        lucidScrollableControl1.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -365,4 +446,9 @@ partial class MainPage
     private Controls.LucidButton lucidButtonNormal;
     private Controls.LucidLabel lbTreeView;
     private Controls.LucidTreeView lucidTreeView1;
+    private Controls.LucidScrollableControl lucidScrollableControl1;
+    private Controls.LucidButton lucidButton1;
+    private Controls.LucidButton lucidButton3;
+    private Controls.LucidButton lucidButton2;
+    private Controls.LucidLabel lbScrollableControl;
 }

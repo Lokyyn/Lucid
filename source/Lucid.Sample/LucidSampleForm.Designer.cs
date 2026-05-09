@@ -31,11 +31,11 @@ partial class LucidSampleForm
         lucidDockPanel = new Docking.LucidDockPanel();
         lucidMenuStrip1 = new Controls.LucidMenuStrip();
         fileToolStripMenuItem = new ToolStripMenuItem();
-        windowsToolStripMenuItem = new ToolStripMenuItem();
-        pagesToolStripMenuItem = new ToolStripMenuItem();
         themesToolStripMenuItem = new ToolStripMenuItem();
         switchToDarkToolStripMenuItem = new ToolStripMenuItem();
         switchToLightToolStripMenuItem = new ToolStripMenuItem();
+        windowsToolStripMenuItem = new ToolStripMenuItem();
+        pagesToolStripMenuItem = new ToolStripMenuItem();
         lucidMenuStrip1.SuspendLayout();
         SuspendLayout();
         // 
@@ -45,7 +45,7 @@ partial class LucidSampleForm
         lucidDockPanel.Dock = DockStyle.Fill;
         lucidDockPanel.Location = new Point(0, 24);
         lucidDockPanel.Name = "lucidDockPanel";
-        lucidDockPanel.Size = new Size(1078, 621);
+        lucidDockPanel.Size = new Size(1344, 697);
         lucidDockPanel.TabIndex = 0;
         // 
         // lucidMenuStrip1
@@ -56,7 +56,7 @@ partial class LucidSampleForm
         lucidMenuStrip1.Location = new Point(0, 0);
         lucidMenuStrip1.Name = "lucidMenuStrip1";
         lucidMenuStrip1.Padding = new Padding(3, 2, 0, 2);
-        lucidMenuStrip1.Size = new Size(1078, 24);
+        lucidMenuStrip1.Size = new Size(1344, 24);
         lucidMenuStrip1.TabIndex = 1;
         lucidMenuStrip1.Text = "lucidMenuStrip1";
         // 
@@ -67,6 +67,33 @@ partial class LucidSampleForm
         fileToolStripMenuItem.Name = "fileToolStripMenuItem";
         fileToolStripMenuItem.Size = new Size(37, 20);
         fileToolStripMenuItem.Text = "File";
+        // 
+        // themesToolStripMenuItem
+        // 
+        themesToolStripMenuItem.BackColor = Color.FromArgb(60, 63, 65);
+        themesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { switchToDarkToolStripMenuItem, switchToLightToolStripMenuItem });
+        themesToolStripMenuItem.ForeColor = Color.FromArgb(220, 220, 220);
+        themesToolStripMenuItem.Name = "themesToolStripMenuItem";
+        themesToolStripMenuItem.Size = new Size(61, 20);
+        themesToolStripMenuItem.Text = "Themes";
+        // 
+        // switchToDarkToolStripMenuItem
+        // 
+        switchToDarkToolStripMenuItem.BackColor = Color.FromArgb(60, 63, 65);
+        switchToDarkToolStripMenuItem.ForeColor = Color.FromArgb(220, 220, 220);
+        switchToDarkToolStripMenuItem.Name = "switchToDarkToolStripMenuItem";
+        switchToDarkToolStripMenuItem.Size = new Size(153, 22);
+        switchToDarkToolStripMenuItem.Text = "Switch to Dark";
+        switchToDarkToolStripMenuItem.Click += switchToDarkToolStripMenuItem_Click;
+        // 
+        // switchToLightToolStripMenuItem
+        // 
+        switchToLightToolStripMenuItem.BackColor = Color.FromArgb(60, 63, 65);
+        switchToLightToolStripMenuItem.ForeColor = Color.FromArgb(220, 220, 220);
+        switchToLightToolStripMenuItem.Name = "switchToLightToolStripMenuItem";
+        switchToLightToolStripMenuItem.Size = new Size(153, 22);
+        switchToLightToolStripMenuItem.Text = "Switch to Light";
+        switchToLightToolStripMenuItem.Click += switchToLightToolStripMenuItem_Click;
         // 
         // windowsToolStripMenuItem
         // 
@@ -84,41 +111,15 @@ partial class LucidSampleForm
         pagesToolStripMenuItem.Size = new Size(50, 20);
         pagesToolStripMenuItem.Text = "Pages";
         // 
-        // themesToolStripMenuItem
-        // 
-        themesToolStripMenuItem.BackColor = Color.FromArgb(60, 63, 65);
-        themesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { switchToDarkToolStripMenuItem, switchToLightToolStripMenuItem });
-        themesToolStripMenuItem.ForeColor = Color.FromArgb(220, 220, 220);
-        themesToolStripMenuItem.Name = "themesToolStripMenuItem";
-        themesToolStripMenuItem.Size = new Size(60, 20);
-        themesToolStripMenuItem.Text = "Themes";
-        // 
-        // switchToDarkToolStripMenuItem
-        // 
-        switchToDarkToolStripMenuItem.BackColor = Color.FromArgb(60, 63, 65);
-        switchToDarkToolStripMenuItem.ForeColor = Color.FromArgb(220, 220, 220);
-        switchToDarkToolStripMenuItem.Name = "switchToDarkToolStripMenuItem";
-        switchToDarkToolStripMenuItem.Size = new Size(180, 22);
-        switchToDarkToolStripMenuItem.Text = "Switch to Dark";
-        switchToDarkToolStripMenuItem.Click += switchToDarkToolStripMenuItem_Click;
-        // 
-        // switchToLightToolStripMenuItem
-        // 
-        switchToLightToolStripMenuItem.BackColor = Color.FromArgb(60, 63, 65);
-        switchToLightToolStripMenuItem.ForeColor = Color.FromArgb(220, 220, 220);
-        switchToLightToolStripMenuItem.Name = "switchToLightToolStripMenuItem";
-        switchToLightToolStripMenuItem.Size = new Size(180, 22);
-        switchToLightToolStripMenuItem.Text = "Switch to Light";
-        switchToLightToolStripMenuItem.Click += switchToLightToolStripMenuItem_Click;
-        // 
         // LucidSampleForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1078, 645);
+        ClientSize = new Size(1344, 721);
         Controls.Add(lucidDockPanel);
         Controls.Add(lucidMenuStrip1);
         MainMenuStrip = lucidMenuStrip1;
+        MinimumSize = new Size(1100, 700);
         Name = "LucidSampleForm";
         Text = "LucidSampleForm";
         lucidMenuStrip1.ResumeLayout(false);

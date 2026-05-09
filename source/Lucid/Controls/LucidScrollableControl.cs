@@ -1,12 +1,19 @@
-﻿using System.ComponentModel;
+using Lucid.Theming;
+using System.ComponentModel;
 
 namespace Lucid.Controls;
 
-[ToolboxItem(false)]
+[ToolboxItem(true)]
 public partial class LucidScrollableControl : Panel
 {
-    private readonly LucidScrollBar hscrollbar;
-    private readonly LucidScrollBar vscrollbar;
+    private readonly LucidScrollBar _hScrollBar;
+    private readonly LucidScrollBar _vScrollBar;
+    private readonly Panel _scrollCorner;
+
+    private int _scrollX;
+    private int _scrollY;
+    private bool _updatingScrollBars;
+    private bool _movingChildren;
 
     public LucidScrollableControl()
     {
@@ -14,156 +21,206 @@ public partial class LucidScrollableControl : Panel
         DoubleBuffered = true;
         InitializeComponent();
 
-        hscrollbar = new LucidScrollBar()
+        _vScrollBar = new LucidScrollBar
         {
-            Visible = true,
-            ScrollOrientation = LucidScrollOrientation.Horizontal,
-            Dock = DockStyle.Bottom,
-            Name = "hscrollbar",
-            Location = new Point(0, 0),
-            Size = new Size(Width, 10)
-        };
-        hscrollbar.ValueChanged += Hscrollbar_ValueChanged; ;
-
-        vscrollbar = new LucidScrollBar()
-        {
-            Visible = true,
             ScrollOrientation = LucidScrollOrientation.Vertical,
-            Dock = DockStyle.Right,
-            Name = "vscrollbar",
-            Location = new Point(0, 0),
-            Size = new Size(10, Height)
+            Name = "vScrollBar"
         };
-        vscrollbar.ValueChanged += Vscrollbar_ValueChanged; ;
+        _hScrollBar = new LucidScrollBar
+        {
+            ScrollOrientation = LucidScrollOrientation.Horizontal,
+            Name = "hScrollBar"
+        };
 
-        SizeChanged += (o, e) => UpdateScrollbarVisibility();
-        VisibleChanged += (o, e) => UpdateScrollbarVisibility();
+        _scrollCorner = new Panel
+        {
+            Name = "scrollCorner",
+            Visible = false
+        };
 
-        Controls.Add(hscrollbar);
-        Controls.Add(vscrollbar);
+        _vScrollBar.ValueChanged += VScrollBar_ValueChanged;
+        _hScrollBar.ValueChanged += HScrollBar_ValueChanged;
+
+        Controls.Add(_scrollCorner);
+        Controls.Add(_vScrollBar);
+        Controls.Add(_hScrollBar);
     }
+
+    private bool IsScrollBar(Control c) => c == _vScrollBar || c == _hScrollBar || c == _scrollCorner;
 
     protected override void OnControlAdded(ControlEventArgs e)
     {
         base.OnControlAdded(e);
-        UpdateScrollbarVisibility();
+        if (IsScrollBar(e.Control)) return;
+        e.Control.SizeChanged += OnChildChanged;
+        e.Control.LocationChanged += OnChildChanged;
+        UpdateScrollBars();
     }
 
     protected override void OnControlRemoved(ControlEventArgs e)
     {
         base.OnControlRemoved(e);
-        UpdateScrollbarVisibility();
+        if (IsScrollBar(e.Control)) return;
+        e.Control.SizeChanged -= OnChildChanged;
+        e.Control.LocationChanged -= OnChildChanged;
+        UpdateScrollBars();
     }
 
-    protected override void OnResize(EventArgs eventargs)
+    private void OnChildChanged(object sender, EventArgs e)
     {
-        base.OnResize(eventargs);
-        UpdateScrollbarVisibility();
+        if (_movingChildren) return;
+        UpdateScrollBars();
     }
 
-    public override void Refresh()
+    protected override void OnResize(EventArgs e)
     {
-        base.Refresh();
-        UpdateScrollbarVisibility();
+        base.OnResize(e);
+        UpdateScrollBars();
     }
 
-    private void UpdateScrollbarVisibility()
+    private void VScrollBar_ValueChanged(object sender, ScrollValueEventArgs e)
     {
-        bool showVerticalScrollbar = false;
-        bool showHorizontalScrollbar = false;
+        if (_updatingScrollBars) return;
+        int delta = e.Value - _scrollY;
+        _scrollY = e.Value;
+        MoveChildren(0, -delta);
+        OnScroll(new ScrollEventArgs(ScrollEventType.ThumbPosition, e.Value));
+    }
 
-        foreach (Control control in Controls)
+    private void HScrollBar_ValueChanged(object sender, ScrollValueEventArgs e)
+    {
+        if (_updatingScrollBars) return;
+        int delta = e.Value - _scrollX;
+        _scrollX = e.Value;
+        MoveChildren(-delta, 0);
+        OnScroll(new ScrollEventArgs(ScrollEventType.ThumbPosition, e.Value));
+    }
+
+    private void MoveChildren(int dx, int dy)
+    {
+        _movingChildren = true;
+        SuspendLayout();
+        foreach (Control c in Controls)
         {
-            if (control.Bottom > Height)
+            if (IsScrollBar(c)) continue;
+            c.Left += dx;
+            c.Top += dy;
+        }
+        ResumeLayout(false);
+        _movingChildren = false;
+    }
+
+    private void UpdateScrollBars()
+    {
+        if (_updatingScrollBars) return;
+        _updatingScrollBars = true;
+        try
+        {
+            int sbSize = ThemeProvider.Theme.Sizes.ScrollBarSize;
+
+            // Logical content extents: screen position + current scroll offset = content position
+            int contentRight = 0;
+            int contentBottom = 0;
+            foreach (Control c in Controls)
             {
-                showVerticalScrollbar = true;
-                break;
+                if (IsScrollBar(c)) continue;
+                contentRight = Math.Max(contentRight, c.Right + _scrollX);
+                contentBottom = Math.Max(contentBottom, c.Bottom + _scrollY);
+            }
+
+            bool needV = contentBottom > Height;
+            bool needH = contentRight > Width;
+            // Re-check: the other scrollbar may consume space and push content over threshold
+            if (needV && !needH) needH = contentRight > Width - sbSize;
+            if (needH && !needV) needV = contentBottom > Height - sbSize;
+
+            int visibleW = Width - (needV ? sbSize : 0);
+            int visibleH = Height - (needH ? sbSize : 0);
+
+            _vScrollBar.SetBounds(Width - sbSize, 0, sbSize, needH ? visibleH : Height);
+            _hScrollBar.SetBounds(0, Height - sbSize, needV ? visibleW : Width, sbSize);
+            _vScrollBar.Visible = needV;
+            _hScrollBar.Visible = needH;
+            bool showCorner = needV && needH;
+            _scrollCorner.Visible = showCorner;
+            if (showCorner)
+            {
+                _scrollCorner.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+                _scrollCorner.SetBounds(Width - sbSize, Height - sbSize, sbSize, sbSize);
+                _scrollCorner.BringToFront();
+            }
+
+            _vScrollBar.BringToFront();
+            _hScrollBar.BringToFront();
+
+            if (needV)
+            {
+                _vScrollBar.Minimum = 0;
+                _vScrollBar.Maximum = contentBottom;
+                _vScrollBar.ViewSize = visibleH;
+                int maxScroll = Math.Max(0, contentBottom - visibleH);
+                if (_scrollY > maxScroll) SetScrollY(maxScroll);
+                _vScrollBar.Value = _scrollY;
+            }
+            else
+            {
+                SetScrollY(0);
+            }
+
+            if (needH)
+            {
+                _hScrollBar.Minimum = 0;
+                _hScrollBar.Maximum = contentRight;
+                _hScrollBar.ViewSize = visibleW;
+                int maxScroll = Math.Max(0, contentRight - visibleW);
+                if (_scrollX > maxScroll) SetScrollX(maxScroll);
+                _hScrollBar.Value = _scrollX;
+            }
+            else
+            {
+                SetScrollX(0);
             }
         }
-
-        foreach (Control control in Controls)
+        finally
         {
-            if (control.Right > Width)
-            {
-                showHorizontalScrollbar = true;
-                break;
-            }
-        }
-
-        vscrollbar.Visible = showVerticalScrollbar;
-        hscrollbar.Visible = showHorizontalScrollbar;
-
-        if (showVerticalScrollbar)
-        {
-            int scrollRange = CalculateVerticalScrollRange();
-            vscrollbar.Minimum = 0;
-            vscrollbar.Maximum = scrollRange;
-            vscrollbar.Value = VerticalScroll.Value;
-        }
-
-        if (showHorizontalScrollbar)
-        {
-            int scrollRange = CalculateHorizontalScrollRange();
-            hscrollbar.Minimum = 0;
-            hscrollbar.Maximum = scrollRange;
-            hscrollbar.Value = HorizontalScroll.Value;
+            _updatingScrollBars = false;
         }
     }
 
-    private int CalculateVerticalScrollRange()
+    private void SetScrollY(int newY)
     {
-        int maxBottom = 0;
-
-        foreach (Control control in Controls)
-        {
-            maxBottom = Math.Max(maxBottom, control.Bottom);
-        }
-
-        return Math.Max(0, maxBottom - Height);
+        if (_scrollY == newY) return;
+        int delta = _scrollY - newY;
+        _scrollY = newY;
+        MoveChildren(0, delta);
     }
 
-    private int CalculateHorizontalScrollRange()
+    private void SetScrollX(int newX)
     {
-        int maxRight = 0;
-
-        foreach (Control control in Controls)
-        {
-            maxRight = Math.Max(maxRight, control.Right);
-        }
-
-        return Math.Max(0, maxRight - Width);
-    }
-
-    private void Vscrollbar_ValueChanged(object sender, ScrollValueEventArgs e)
-    {
-        VerticalScroll.Value = e.Value;
-        //Refresh();
-    }
-
-    private void Hscrollbar_ValueChanged(object sender, ScrollValueEventArgs e)
-    {
-        HorizontalScroll.Value = e.Value;
-        //Refresh();
+        if (_scrollX == newX) return;
+        int delta = _scrollX - newX;
+        _scrollX = newX;
+        MoveChildren(delta, 0);
     }
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        e.Graphics.TranslateTransform(-HorizontalScroll.Value, -VerticalScroll.Value);
+        using var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor);
+        e.Graphics.FillRectangle(b, ClientRectangle);
         base.OnPaint(e);
-
-        vscrollbar.BringToFront();
-        hscrollbar.BringToFront();
-
     }
 
+    protected override void OnMouseWheel(MouseEventArgs e)
+    {
+        base.OnMouseWheel(e);
+        if (_vScrollBar.Visible)
+            _vScrollBar.ScrollByPhysical(e.Delta > 0 ? 10 : -10);
+        else if (_hScrollBar.Visible)
+            _hScrollBar.ScrollByPhysical(e.Delta > 0 ? 10 : -10);
+    }
 
-    /// <summary>
-    /// Raises the Scroll event.
-    /// </summary>
-    protected virtual void OnScroll(ScrollEventArgs e) => Scroll?.Invoke(this, e);
-
-    /// <summary>
-    /// Raised when the ScrollableControl is scrolled.
-    /// </summary>
-    public event EventHandler<ScrollEventArgs>? Scroll;
+    protected override void OnScroll(ScrollEventArgs e)
+    {
+        base.OnScroll(e);
+    }
 }
