@@ -1,4 +1,5 @@
-﻿using Lucid.Docking;
+﻿using Lucid.Controls.DataClasses.BadgeProgressbar;
+using Lucid.Docking;
 using Lucid.Theming;
 
 namespace Lucid.Sample.Pages;
@@ -6,6 +7,10 @@ namespace Lucid.Sample.Pages;
 public partial class MainPage : LucidDocument
 {
     Random r = new Random();
+
+    private Controls.LucidTreeNode? _progressNode1;
+    private Controls.LucidTreeNode? _progressNode2;
+    private Controls.LucidTreeNode? _progressNode3;
 
     List<Color> _colors = new List<Color>()
     {
@@ -66,6 +71,25 @@ public partial class MainPage : LucidDocument
         lucidTreeView1.Nodes.Add(nodeAssets);
         lucidTreeView1.Nodes.Add(nodeControls);
         lucidTreeView1.Nodes.Add(nodeTheming);
+
+        _progressNode1 = new Controls.LucidTreeNode("Download");
+        _progressNode1.ShowProgressBar = true;
+        _progressNode1.ProgressbarSize = eProgressbarSize.Small;
+        _progressNode1.ProgressBarPercentage = 30;
+
+        _progressNode2 = new Controls.LucidTreeNode("Upload");
+        _progressNode2.ShowProgressBar = true;
+        _progressNode2.ProgressbarSize = eProgressbarSize.Medium;
+        _progressNode2.ProgressBarPercentage = 30;
+
+        _progressNode3 = new Controls.LucidTreeNode("Processing");
+        _progressNode3.ShowProgressBar = true;
+        _progressNode3.ProgressbarSize = eProgressbarSize.Large;
+        _progressNode3.ProgressBarPercentage = 30;
+
+        lucidTreeView1.Nodes.Add(_progressNode1);
+        lucidTreeView1.Nodes.Add(_progressNode2);
+        lucidTreeView1.Nodes.Add(_progressNode3);
     }
 
     private void SetUpChipControl()
@@ -115,5 +139,25 @@ public partial class MainPage : LucidDocument
         Random rnd = new Random();
 
         lucidProgressBar.Value -= rnd.Next(6, 20);
+    }
+
+    private void btnTreeViewProgressAdd_Click(object sender, EventArgs e)
+    {
+        if (_progressNode1 is null || _progressNode2 is null || _progressNode3 is null) return;
+        var delta = r.Next(6, 20);
+        _progressNode1.ProgressBarPercentage = Math.Min(100, _progressNode1.ProgressBarPercentage + delta);
+        _progressNode2.ProgressBarPercentage = Math.Min(100, _progressNode2.ProgressBarPercentage + delta);
+        _progressNode3.ProgressBarPercentage = Math.Min(100, _progressNode3.ProgressBarPercentage + delta);
+        lucidTreeView1.Refresh();
+    }
+
+    private void btnTreeViewProgressRemove_Click(object sender, EventArgs e)
+    {
+        if (_progressNode1 is null || _progressNode2 is null || _progressNode3 is null) return;
+        var delta = r.Next(6, 20);
+        _progressNode1.ProgressBarPercentage = Math.Max(0, _progressNode1.ProgressBarPercentage - delta);
+        _progressNode2.ProgressBarPercentage = Math.Max(0, _progressNode2.ProgressBarPercentage - delta);
+        _progressNode3.ProgressBarPercentage = Math.Max(0, _progressNode3.ProgressBarPercentage - delta);
+        lucidTreeView1.Refresh();
     }
 }

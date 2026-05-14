@@ -56,6 +56,8 @@ partial class MainPage
         lucidButton2 = new Controls.LucidButton();
         lucidButton1 = new Controls.LucidButton();
         lbScrollableControl = new Controls.LucidLabel();
+        btnTreeViewProgressAdd = new Controls.LucidButton();
+        btnTreeViewProgressRemove = new Controls.LucidButton();
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).BeginInit();
         lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
@@ -358,11 +360,39 @@ partial class MainPage
         lbScrollableControl.Size = new Size(98, 15);
         lbScrollableControl.TabIndex = 30;
         lbScrollableControl.Text = "ScrollableControl";
-        // 
+        //
+        // btnTreeViewProgressAdd
+        //
+        btnTreeViewProgressAdd.BackColor = Color.Transparent;
+        btnTreeViewProgressAdd.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnTreeViewProgressAdd.Location = new Point(420, 344);
+        btnTreeViewProgressAdd.Name = "btnTreeViewProgressAdd";
+        btnTreeViewProgressAdd.Padding = new Padding(5);
+        btnTreeViewProgressAdd.RoundedCornerRadius = 16;
+        btnTreeViewProgressAdd.Size = new Size(32, 23);
+        btnTreeViewProgressAdd.TabIndex = 31;
+        btnTreeViewProgressAdd.Text = "+";
+        btnTreeViewProgressAdd.Click += btnTreeViewProgressAdd_Click;
+        //
+        // btnTreeViewProgressRemove
+        //
+        btnTreeViewProgressRemove.BackColor = Color.Transparent;
+        btnTreeViewProgressRemove.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnTreeViewProgressRemove.Location = new Point(458, 344);
+        btnTreeViewProgressRemove.Name = "btnTreeViewProgressRemove";
+        btnTreeViewProgressRemove.Padding = new Padding(5);
+        btnTreeViewProgressRemove.RoundedCornerRadius = 16;
+        btnTreeViewProgressRemove.Size = new Size(32, 23);
+        btnTreeViewProgressRemove.TabIndex = 32;
+        btnTreeViewProgressRemove.Text = "-";
+        btnTreeViewProgressRemove.Click += btnTreeViewProgressRemove_Click;
+        //
         // MainPage
-        // 
+        //
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(btnTreeViewProgressRemove);
+        Controls.Add(btnTreeViewProgressAdd);
         Controls.Add(lbScrollableControl);
         Controls.Add(lucidScrollableControl1);
         Controls.Add(lucidTreeView1);
@@ -415,6 +445,8 @@ partial class MainPage
         Controls.SetChildIndex(lbTreeView, 0);
         Controls.SetChildIndex(lucidTreeView1, 0);
         Controls.SetChildIndex(lucidScrollableControl1, 0);
+        Controls.SetChildIndex(btnTreeViewProgressAdd, 0);
+        Controls.SetChildIndex(btnTreeViewProgressRemove, 0);
         Controls.SetChildIndex(lbScrollableControl, 0);
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).EndInit();
         lucidScrollableControl1.ResumeLayout(false);
@@ -451,4 +483,6 @@ partial class MainPage
     private Controls.LucidButton lucidButton3;
     private Controls.LucidButton lucidButton2;
     private Controls.LucidLabel lbScrollableControl;
+    private Controls.LucidButton btnTreeViewProgressAdd;
+    private Controls.LucidButton btnTreeViewProgressRemove;
 }
