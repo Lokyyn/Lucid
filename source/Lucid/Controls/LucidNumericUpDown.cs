@@ -23,8 +23,8 @@ public class LucidNumericUpDown : NumericUpDown
                ControlStyles.ResizeRedraw |
                ControlStyles.UserPaint, true);
 
-        base.ForeColor = ThemeProvider.Theme.Colors.LightText;
-        base.BackColor = ThemeProvider.Theme.Colors.LightBackground;
+        base.ForeColor = ThemeProvider.Theme.Colors.TextPrimary;
+        base.BackColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
         
         Controls[0].Paint += LucidNumericUpDown_Paint;
 
@@ -51,8 +51,8 @@ public class LucidNumericUpDown : NumericUpDown
 
     private void ThemeProvider_OnThemeChanged()
     {
-        base.ForeColor = ThemeProvider.Theme.Colors.LightText;
-        base.BackColor = ThemeProvider.Theme.Colors.LightBackground;
+        base.ForeColor = ThemeProvider.Theme.Colors.TextPrimary;
+        base.BackColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
     }
 
     protected override void Dispose(bool disposing)
@@ -114,7 +114,7 @@ public class LucidNumericUpDown : NumericUpDown
         var g = e.Graphics;
         var rect = e.ClipRectangle;
 
-        var fillColor = ThemeProvider.Theme.Colors.HeaderBackground;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(fillColor))
         {
@@ -150,10 +150,10 @@ public class LucidNumericUpDown : NumericUpDown
         var g = e.Graphics;
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
-        var borderColor = ThemeProvider.Theme.Colors.GreySelection;
+        var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (Focused && TabStop)
-            borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+            borderColor = ThemeProvider.Theme.Colors.Accent;
 
         using (var p = new Pen(borderColor, 1))
         {

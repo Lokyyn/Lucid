@@ -1,4 +1,4 @@
-using Lucid.Theming;
+﻿using Lucid.Theming;
 using System.ComponentModel;
 
 namespace Lucid.Controls;
@@ -145,7 +145,7 @@ public partial class LucidScrollableControl : Panel
             _scrollCorner.Visible = showCorner;
             if (showCorner)
             {
-                _scrollCorner.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+                _scrollCorner.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
                 _scrollCorner.SetBounds(Width - sbSize, Height - sbSize, sbSize, sbSize);
                 _scrollCorner.BringToFront();
             }
@@ -205,7 +205,7 @@ public partial class LucidScrollableControl : Panel
 
     protected override void OnPaint(PaintEventArgs e)
     {
-        using var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor);
+        using var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary);
         e.Graphics.FillRectangle(b, ClientRectangle);
         base.OnPaint(e);
     }

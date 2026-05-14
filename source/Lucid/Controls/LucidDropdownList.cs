@@ -289,12 +289,12 @@ public class LucidDropdownList : Control
         {
             if ((LucidDropdownItem)item.Tag == SelectedItem)
             {
-                item.BackColor = ThemeProvider.Theme.Colors.DarkBlueBackground;
+                item.BackColor = ThemeProvider.Theme.Colors.AccentSecondary;
                 item.Font = new Font(Font, FontStyle.Bold);
             }
             else
             {
-                item.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+                item.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
                 item.Font = new Font(Font, FontStyle.Regular);
             }
         }
@@ -403,7 +403,7 @@ public class LucidDropdownList : Control
         var g = e.Graphics;
 
         // Draw background
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
@@ -413,7 +413,7 @@ public class LucidDropdownList : Control
         {
             if (ShowBorder)
             {
-                using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder, 1))
+                using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault, 1))
                 {
                     var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
                     g.DrawRectangle(p, modRect);
@@ -424,18 +424,18 @@ public class LucidDropdownList : Control
         // Draw hover state
         if (ControlState == LucidControlState.Hover)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.FillRectangle(b, ClientRectangle);
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DarkBackground))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
             {
                 var arrowRect = new Rectangle(ClientRectangle.Right - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Top, DropdownIcons.small_arrow.Width + 8, ClientRectangle.Height);
                 g.FillRectangle(b, arrowRect);
             }
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.MainAccent, 1))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.Accent, 1))
             {
                 var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1 - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Height - 1);
                 g.DrawRectangle(p, modRect);
@@ -445,12 +445,12 @@ public class LucidDropdownList : Control
         // Draw pressed state
         if (ControlState == LucidControlState.Pressed)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.FillRectangle(b, ClientRectangle);
             }
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainAccent))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
             {
                 var arrowRect = new Rectangle(ClientRectangle.Right - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Top, DropdownIcons.small_arrow.Width + 8, ClientRectangle.Height);
                 g.FillRectangle(b, arrowRect);
@@ -487,8 +487,8 @@ public class LucidDropdownList : Control
             }
 
             // Draw Text
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
-            using (var bDisabled = new SolidBrush(ThemeProvider.Theme.Colors.DisabledText))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
+            using (var bDisabled = new SolidBrush(ThemeProvider.Theme.Colors.TextDisabled))
             {
                 var stringFormat = new StringFormat
                 {

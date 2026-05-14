@@ -163,7 +163,7 @@ public class LucidToolWindow : LucidDockContent
         var g = e.Graphics;
 
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DockBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundTertiary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
@@ -171,9 +171,9 @@ public class LucidToolWindow : LucidDockContent
         var isActive = IsActive();
 
         // Draw header
-        var bgColor = isActive ? ThemeProvider.Theme.Colors.DockActive : ThemeProvider.Theme.Colors.DockInactive;
-        var darkColor = isActive ? ThemeProvider.Theme.Colors.DarkBlueBorder : ThemeProvider.Theme.Colors.DarkBorder;
-        var lightColor = isActive ? ThemeProvider.Theme.Colors.LightBlueBorder : ThemeProvider.Theme.Colors.LightBorder;
+        var bgColor = isActive ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceDefault;
+        var darkColor = isActive ? ThemeProvider.Theme.Colors.BorderAccent : ThemeProvider.Theme.Colors.BorderDefault;
+        var lightColor = isActive ? ThemeProvider.Theme.Colors.BorderAccent : ThemeProvider.Theme.Colors.BorderDefault;
 
         using (var b = new SolidBrush(bgColor))
         {
@@ -202,7 +202,7 @@ public class LucidToolWindow : LucidDockContent
         }
 
         // Draw text
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             var textRect = new Rectangle(xOffset, 0, ClientRectangle.Width - 4 - xOffset, ThemeProvider.Theme.Sizes.ToolWindowHeaderSize);
 

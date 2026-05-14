@@ -38,7 +38,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         if (e.ToolStrip.GetType() == typeof(ToolStripOverflow))
         {
-            using (var p = new Pen(ThemeProvider.Theme.Colors.MainBackgroundColor))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BackgroundSecondary))
             {
                 var rect = new Rectangle(e.AffectedBounds.Left, e.AffectedBounds.Top, e.AffectedBounds.Width - 1, e.AffectedBounds.Height - 1);
                 g.DrawRectangle(p, rect);
@@ -60,7 +60,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         if (e.Item.Selected || e.Item.Pressed)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.SurfaceHighlight))
             {
                 g.FillRectangle(b, rect);
             }
@@ -72,7 +72,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
             if (castItem.Checked)
             {
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.SurfaceHighlight))
                 {
                     g.FillRectangle(b, rect);
                 }
@@ -81,7 +81,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
             if (castItem.Checked && castItem.Selected)
             {
                 var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
-                using (var p = new Pen(ThemeProvider.Theme.Colors.GreyHighlight))
+                using (var p = new Pen(ThemeProvider.Theme.Colors.SurfaceDefault))
                 {
                     g.DrawRectangle(p, modRect);
                 }
@@ -97,7 +97,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         if (e.Item.Selected || e.Item.Pressed)
         {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.GreySelection))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.SurfaceHighlight))
             {
                 g.FillRectangle(b, rect);
             }
@@ -111,7 +111,7 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         var g = e.Graphics;
 
-        using (var img = MenuIcons.grip.SetColor(ThemeProvider.Theme.Colors.LightBorder))
+        using (var img = MenuIcons.grip.SetColor(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawImageUnscaled(img, new Point(e.AffectedBounds.Left, e.AffectedBounds.Top));
         }
@@ -130,12 +130,12 @@ public class LucidToolStripRenderer : LucidMenuRenderer
 
         var rect = new Rectangle(3, 3, 2, e.Item.Height - 4);
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawLine(p, rect.Left, rect.Top, rect.Left, rect.Height);
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawLine(p, rect.Left + 1, rect.Top, rect.Left + 1, rect.Height);
         }

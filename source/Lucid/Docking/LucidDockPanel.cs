@@ -138,7 +138,7 @@ public class LucidDockPanel : UserControl
         _regions = new Dictionary<LucidDockArea, LucidDockRegion>();
         _contents = new List<LucidDockContent>();
 
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         CreateRegions();
     }
