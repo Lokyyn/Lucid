@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- Added `LucidSlider` component
+
+### Fixed
+- Fixed TreeView-Node Progressbar
+
 ## [1.3.0] - 2026-05-09
 
 ### Added
