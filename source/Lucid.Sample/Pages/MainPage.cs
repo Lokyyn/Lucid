@@ -104,7 +104,7 @@ public partial class MainPage : LucidDocument
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
     }
 
     private void btAddChip_Click(object sender, EventArgs e)

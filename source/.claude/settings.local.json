@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/maxim/Documents/GitHub/Lucid/**)",
+      "Bash(dotnet build *)",
+      "Bash(tee /tmp/build_out.txt)",
+      "Bash(grep -oP \"[^\\\\\\\\/]+\\\\.cs\")"
+    ]
+  }
+}

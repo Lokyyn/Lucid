@@ -512,10 +512,10 @@ public class LucidListView : LucidScrollView
 
             // Background
             var odd = i % 2 != 0;
-            var bgColor = !odd ? ThemeProvider.Theme.Colors.RowOdd : ThemeProvider.Theme.Colors.RowEven;
+            var bgColor = !odd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundTertiary;
 
             if (SelectedIndices.Count > 0 && SelectedIndices.Contains(i))
-                bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+                bgColor = Focused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
             using (var b = new SolidBrush(bgColor))
             {
@@ -523,7 +523,7 @@ public class LucidListView : LucidScrollView
             }
 
             // DEBUG: Border
-            /*using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+            /*using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.DrawLine(p, new Point(rect.Left, rect.Bottom - 1), new Point(rect.Right, rect.Bottom - 1));
             }*/
@@ -535,7 +535,7 @@ public class LucidListView : LucidScrollView
             }
 
             // Text
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
             {
                 var stringFormat = new StringFormat
                 {

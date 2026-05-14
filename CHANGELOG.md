@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- Introduced new semantic color tokens (`BackgroundPrimary`, `BackgroundSecondary`, `BackgroundTertiary`, `SurfaceDefault`, `SurfaceHighlight`, `BorderDefault`, `BorderAccent`, `Accent`, `AccentSecondary`, `TextPrimary`, `TextDisabled`) on the `Colors` class
+- All old color properties (e.g. `MainAccent`, `LightText`, `DarkBackground`, `GreySelection`) are now marked `[Obsolete]` and delegate to the new tokens — existing code continues to compile with a warning
+- Updated `BaseDarkTheme` and `BaseLightTheme` to set the new color tokens directly
+- All internal controls and renderers migrated to the new color tokens
+
+### Deprecated
+- `Colors.MainAccent` → use `Colors.Accent`
+- `Colors.DarkBackground` / `Colors.MediumBackground` → use `Colors.BackgroundPrimary`
+- `Colors.MainBackgroundColor` / `Colors.HeaderBackground` / `Colors.RowOdd` → use `Colors.BackgroundSecondary`
+- `Colors.LightBackground` / `Colors.DockBackground` / `Colors.RowEven` → use `Colors.BackgroundTertiary`
+- `Colors.LighterBackground` / `Colors.GreyHighlight` / `Colors.DockInactive` / `Colors.InactivScrollbar` → use `Colors.SurfaceDefault`
+- `Colors.LightestBackground` / `Colors.GreySelection` / `Colors.DarkGreySelection` / `Colors.HotScrollbar` / `Colors.ActiveControl` → use `Colors.SurfaceHighlight`
+- `Colors.LightBorder` / `Colors.DarkBorder` → use `Colors.BorderDefault`
+- `Colors.DarkBlueBorder` / `Colors.LightBlueBorder` → use `Colors.BorderAccent`
+- `Colors.BlueBackground` / `Colors.DockMovedHighlight` / `Colors.DockActive` / `Colors.ControlHighlight` / `Colors.LabelLinkAccent` → use `Colors.Accent`
+- `Colors.DarkBlueBackground` / `Colors.LabelLinkHoveredAccent` → use `Colors.AccentSecondary`
+- `Colors.LightText` → use `Colors.TextPrimary`
+- `Colors.DisabledText` → use `Colors.TextDisabled`
+
 ## [1.4.0] - 2026-05-14
 
 ### Added

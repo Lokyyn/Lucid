@@ -443,13 +443,13 @@ public class LucidSlider : Control
         var track = GetTrackRect();
 
         // Background
-        using (var b = new SolidBrush(colors.MainBackgroundColor))
+        using (var b = new SolidBrush(colors.BackgroundSecondary))
             g.FillRectangle(b, ClientRectangle);
 
         // Tick marks
         if (_showTickMarks && _tickFrequency > 0)
         {
-            using var tickPen = new Pen(colors.LightBorder, 1);
+            using var tickPen = new Pen(colors.BorderDefault, 1);
             double range = _maximum - _minimum;
             for (double t = _minimum; t <= _maximum + 1e-9; t += _tickFrequency)
             {
@@ -460,7 +460,7 @@ public class LucidSlider : Control
 
         // Track (background)
         using (var path = RoundedRect(track, TrackHeight / 2))
-        using (var b = new SolidBrush(colors.LightBorder))
+        using (var b = new SolidBrush(colors.BorderDefault))
             g.FillPath(b, path);
 
         // Track (filled / accent)
@@ -480,7 +480,7 @@ public class LucidSlider : Control
         if (filledRect.Width > 0)
         {
             using var path = RoundedRect(filledRect, TrackHeight / 2);
-            using var b = new SolidBrush(colors.MainAccent);
+            using var b = new SolidBrush(colors.Accent);
             g.FillPath(b, path);
         }
 
@@ -507,7 +507,7 @@ public class LucidSlider : Control
         // Focus ring
         if (Focused && TabStop)
         {
-            using var p = new Pen(colors.ControlHighlight, 1.5f) { DashStyle = DashStyle.Dot };
+            using var p = new Pen(colors.Accent, 1.5f) { DashStyle = DashStyle.Dot };
             g.DrawRectangle(p, new Rectangle(1, 1, ClientSize.Width - 3, ClientSize.Height - 3));
         }
     }
@@ -522,14 +522,14 @@ public class LucidSlider : Control
         if (active)
         {
             var glow = new Rectangle(rect.X - 3, rect.Y - 3, rect.Width + 6, rect.Height + 6);
-            using var glowBrush = new SolidBrush(Color.FromArgb(40, colors.MainAccent));
+            using var glowBrush = new SolidBrush(Color.FromArgb(40, colors.Accent));
             using var glowPath = RoundedRect(glow, glow.Height / 2);
             g.FillPath(glowBrush, glowPath);
         }
 
         // White circle with border
-        using var bgBrush = new SolidBrush(colors.LightestBackground);
-        using var borderPen = new Pen(active ? colors.MainAccent : colors.LightBorder, active ? 2f : 1.5f);
+        using var bgBrush = new SolidBrush(colors.SurfaceHighlight);
+        using var borderPen = new Pen(active ? colors.Accent : colors.BorderDefault, active ? 2f : 1.5f);
         using var path = RoundedRect(rect, rect.Height / 2);
 
         g.FillPath(bgBrush, path);
@@ -552,7 +552,7 @@ public class LucidSlider : Control
         // Keep label within control bounds
         labelX = Math.Max(0, Math.Min(labelX, ClientSize.Width - (int)size.Width));
 
-        using var b = new SolidBrush(colors.LightText);
+        using var b = new SolidBrush(colors.TextPrimary);
         g.DrawString(text, font, b, labelX, labelY);
     }
 

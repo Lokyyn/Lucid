@@ -90,15 +90,15 @@ public class LucidSectionPanel : Panel
         var roundPath = RoundedRectangleHelper.CreateRoundedRectanglePath(modRect, 16);
 
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, rect);
         }
 
         // Draw header
-        var bgColor = ContainsFocus ? ThemeProvider.Theme.Colors.BlueBackground : ThemeProvider.Theme.Colors.HeaderBackground;
-        var darkColor = ContainsFocus ? ThemeProvider.Theme.Colors.DarkBlueBorder : ThemeProvider.Theme.Colors.DarkBorder;
-        var lightColor = ContainsFocus ? ThemeProvider.Theme.Colors.LightBlueBorder : ThemeProvider.Theme.Colors.LightBorder;
+        var bgColor = ContainsFocus ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.BackgroundSecondary;
+        var darkColor = ContainsFocus ? ThemeProvider.Theme.Colors.BorderAccent : ThemeProvider.Theme.Colors.BorderDefault;
+        var lightColor = ContainsFocus ? ThemeProvider.Theme.Colors.BorderAccent : ThemeProvider.Theme.Colors.BorderDefault;
 
         using (var b = new SolidBrush(bgColor))
         {
@@ -119,7 +119,7 @@ public class LucidSectionPanel : Panel
 
         var xOffset = 3;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             var textRect = new Rectangle(xOffset, 0, rect.Width - 4 - xOffset, 25);
 
@@ -135,18 +135,18 @@ public class LucidSectionPanel : Panel
         }
 
         // Draw border
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder, 1))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault, 1))
         using (var state = new SaveableGraphicsState(e.Graphics))
         {
             completePath.AddPath(roundPath, true);
 
             // Draw the corners so the round effect is hown correctly
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
                 g.FillPath(b, completePath);
 
             // Draw a rectangle so the wrong pixels outside the path are painted with the back color
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            g.DrawRectangle(new Pen(ThemeProvider.Theme.Colors.MainBackgroundColor, 1), new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1));
+            g.DrawRectangle(new Pen(ThemeProvider.Theme.Colors.BackgroundSecondary, 1), new Rectangle(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1));
             g.DrawPath(p, roundPath);
         }
 

@@ -70,7 +70,7 @@ public class LucidScrollableDocument : LucidDockContent
 
     public LucidScrollableDocument()
     {
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         base.DefaultDockArea = LucidDockArea.Document;
     }
 

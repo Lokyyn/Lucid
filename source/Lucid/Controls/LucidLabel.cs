@@ -79,7 +79,7 @@ public class LucidLabel : Label
 
     public LucidLabel()
     {
-        ForeColor = ThemeProvider.Theme.Colors.LightText;
+        ForeColor = ThemeProvider.Theme.Colors.TextPrimary;
         BackColor = Color.Transparent;
     }
 
@@ -108,14 +108,14 @@ public class LucidLabel : Label
     protected override void OnPaint(PaintEventArgs e)
     {
         if (!_overrideForeColor)
-            ForeColor = ThemeProvider.Theme.Colors.LightText;
+            ForeColor = ThemeProvider.Theme.Colors.TextPrimary;
 
         base.OnPaint(e);
 
         if (_lineVisible && !base.AutoSize)
         {
             using (SaveableGraphicsState state = new SaveableGraphicsState(e.Graphics))
-            using (Pen p = new Pen(ThemeProvider.Theme.Colors.LightText, 0.5f))
+            using (Pen p = new Pen(ThemeProvider.Theme.Colors.TextPrimary, 0.5f))
             {
                 e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
 

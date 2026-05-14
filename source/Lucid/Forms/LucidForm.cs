@@ -32,7 +32,7 @@ public class LucidForm : Form
 
     public LucidForm()
     {
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
     }
 
     #endregion
@@ -48,7 +48,7 @@ public class LucidForm : Form
 
         var g = e.Graphics;
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             var modRect = new Rectangle(ClientRectangle.Location, new Size(ClientRectangle.Width - 1, ClientRectangle.Height - 1));
             g.DrawRectangle(p, modRect);

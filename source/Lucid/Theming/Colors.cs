@@ -1,113 +1,168 @@
-﻿namespace Lucid.Theming;
+namespace Lucid.Theming;
 
 public class Colors
 {
-    // New
+    // Backgrounds
 
     /// <summary>
-    /// Defines the background color for docks
+    /// The deepest background layer (e.g. outer shell, sidebar base, dark panels).
     /// </summary>
-    public Color DockBackground { get; set; }
+    public Color BackgroundPrimary { get; set; }
 
     /// <summary>
-    /// Defines the color for odd rows (e.g. Listview)
+    /// The standard background for most controls, forms and dock panels.
     /// </summary>
-    public Color RowOdd { get; set; }
+    public Color BackgroundSecondary { get; set; }
 
     /// <summary>
-    /// Defines the color for even rows (e.g. Listview)
+    /// A slightly elevated background for surfaces, cards and alternate rows.
     /// </summary>
-    public Color RowEven { get; set; }
+    public Color BackgroundTertiary { get; set; }
+
+    // Surface / Interaction States
 
     /// <summary>
-    /// Defines the color for the highlight area if a dock is moved
+    /// Default surface color for hovered or mildly highlighted areas
+    /// (e.g. menu hover, scrollbar track, inactive dock header).
     /// </summary>
-    public Color DockMovedHighlight { get; set; }
+    public Color SurfaceDefault { get; set; }
 
     /// <summary>
-    /// Defines the header color when a dock is inactive
+    /// Stronger highlight for selected or active surface areas
+    /// (e.g. selected list item, pressed button bg, scrollbar thumb hover).
     /// </summary>
-    public Color DockInactive { get; set; }
+    public Color SurfaceHighlight { get; set; }
+
+    // Borders
 
     /// <summary>
-    /// Defines the header color when a dock is active
+    /// Neutral border for separators, panel edges and control outlines.
     /// </summary>
-    public Color DockActive { get; set; }
-
-    // New
+    public Color BorderDefault { get; set; }
 
     /// <summary>
-    /// Defines the standard Control background color (Forms, Dockpanels, ...)
+    /// Accent-tinted border used around focused or active controls.
     /// </summary>
-    /// <remarks>Old name: GreyBackground</remarks>
-    public Color MainBackgroundColor { get; set; }
+    public Color BorderAccent { get; set; }
 
-    public Color HeaderBackground { get; set; }
-
-    public Color BlueBackground { get; set; }
-
-    public Color DarkBlueBackground { get; set; }
-
-    public Color DarkBackground { get; set; }
-
-    public Color MediumBackground { get; set; }
-
-    public Color LightBackground { get; set; }
-
-    public Color LighterBackground { get; set; }
-
-    public Color LightestBackground { get; set; }
-
-    public Color LightBorder { get; set; }
-
-    public Color DarkBorder { get; set; }
-
-    public Color LightText { get; set; }
-
-    public Color DisabledText { get; set; }
+    // Accent / Brand
 
     /// <summary>
-    /// Defines the highlight color for activ controls
+    /// Primary accent / brand color used for active selections, highlights,
+    /// focused controls, dock move indicator and link labels.
     /// </summary>
-    public Color ControlHighlight { get; set; }
+    public Color Accent { get; set; }
 
     /// <summary>
-    /// Defines the main accent color
+    /// Softer / secondary accent for hover states on accent elements
+    /// (e.g. hovered link labels, secondary badge).
     /// </summary>
-    public Color MainAccent { get; set; }
+    public Color AccentSecondary { get; set; }
+
+    // Text
 
     /// <summary>
-    /// Defines the color that can be used for LinkLabels as an highlight color
+    /// Main foreground / text color for all readable content.
     /// </summary>
-    public Color LabelLinkAccent { get; set; }
+    public Color TextPrimary { get; set; }
 
     /// <summary>
-    /// Defines the color that can be used for LinkLabels as an hovered highlight color
+    /// Muted text color for disabled labels, placeholders and hints.
     /// </summary>
-    public Color LabelLinkHoveredAccent { get; set; }
+    public Color TextDisabled { get; set; }
 
-    public Color GreyHighlight { get; set; }
+    // Obsolete — delegate to new properties
 
-    public Color GreySelection { get; set; }
+    [Obsolete("Use BackgroundPrimary instead. This property will be removed in a future release.")]
+    public Color DarkBackground { get => BackgroundPrimary; set => BackgroundPrimary = value; }
 
-    public Color DarkGreySelection { get; set; }
+    [Obsolete("Use BackgroundPrimary instead. This property will be removed in a future release.")]
+    public Color MediumBackground { get => BackgroundPrimary; set => BackgroundPrimary = value; }
 
-    public Color DarkBlueBorder { get; set; }
+    [Obsolete("Use BackgroundSecondary instead. This property will be removed in a future release.")]
+    public Color MainBackgroundColor { get => BackgroundSecondary; set => BackgroundSecondary = value; }
 
-    public Color LightBlueBorder { get; set; }
+    [Obsolete("Use BackgroundSecondary instead. This property will be removed in a future release.")]
+    public Color HeaderBackground { get => BackgroundSecondary; set => BackgroundSecondary = value; }
 
-    /// <summary>
-    /// The active color of an scrollbar
-    /// </summary>
-    public Color ActiveControl { get; set; }
+    [Obsolete("Use BackgroundSecondary instead. This property will be removed in a future release.")]
+    public Color RowOdd { get => BackgroundSecondary; set => BackgroundSecondary = value; }
 
-    /// <summary>
-    /// The inactiv color for an scroll bar
-    /// </summary>
-    public Color InactivScrollbar { get; set; }
+    [Obsolete("Use BackgroundTertiary instead. This property will be removed in a future release.")]
+    public Color DockBackground { get => BackgroundTertiary; set => BackgroundTertiary = value; }
 
-    /// <summary>
-    /// The hit color for an scroll bar
-    /// </summary>
-    public Color HotScrollbar { get; set; }
+    [Obsolete("Use BackgroundTertiary instead. This property will be removed in a future release.")]
+    public Color LightBackground { get => BackgroundTertiary; set => BackgroundTertiary = value; }
+
+    [Obsolete("Use BackgroundTertiary instead. This property will be removed in a future release.")]
+    public Color RowEven { get => BackgroundTertiary; set => BackgroundTertiary = value; }
+
+    [Obsolete("Use SurfaceDefault instead. This property will be removed in a future release.")]
+    public Color LighterBackground { get => SurfaceDefault; set => SurfaceDefault = value; }
+
+    [Obsolete("Use SurfaceDefault instead. This property will be removed in a future release.")]
+    public Color GreyHighlight { get => SurfaceDefault; set => SurfaceDefault = value; }
+
+    [Obsolete("Use SurfaceDefault instead. This property will be removed in a future release.")]
+    public Color DockInactive { get => SurfaceDefault; set => SurfaceDefault = value; }
+
+    [Obsolete("Use SurfaceDefault instead. This property will be removed in a future release.")]
+    public Color InactivScrollbar { get => SurfaceDefault; set => SurfaceDefault = value; }
+
+    [Obsolete("Use SurfaceHighlight instead. This property will be removed in a future release.")]
+    public Color LightestBackground { get => SurfaceHighlight; set => SurfaceHighlight = value; }
+
+    [Obsolete("Use SurfaceHighlight instead. This property will be removed in a future release.")]
+    public Color GreySelection { get => SurfaceHighlight; set => SurfaceHighlight = value; }
+
+    [Obsolete("Use SurfaceHighlight instead. This property will be removed in a future release.")]
+    public Color DarkGreySelection { get => SurfaceHighlight; set => SurfaceHighlight = value; }
+
+    [Obsolete("Use SurfaceHighlight instead. This property will be removed in a future release.")]
+    public Color HotScrollbar { get => SurfaceHighlight; set => SurfaceHighlight = value; }
+
+    [Obsolete("Use SurfaceHighlight instead. This property will be removed in a future release.")]
+    public Color ActiveControl { get => SurfaceHighlight; set => SurfaceHighlight = value; }
+
+    [Obsolete("Use BorderDefault instead. This property will be removed in a future release.")]
+    public Color LightBorder { get => BorderDefault; set => BorderDefault = value; }
+
+    [Obsolete("Use BorderDefault instead. This property will be removed in a future release.")]
+    public Color DarkBorder { get => BorderDefault; set => BorderDefault = value; }
+
+    [Obsolete("Use BorderAccent instead. This property will be removed in a future release.")]
+    public Color DarkBlueBorder { get => BorderAccent; set => BorderAccent = value; }
+
+    [Obsolete("Use BorderAccent instead. This property will be removed in a future release.")]
+    public Color LightBlueBorder { get => BorderAccent; set => BorderAccent = value; }
+
+    [Obsolete("Use Accent instead. This property will be removed in a future release.")]
+    public Color MainAccent { get => Accent; set => Accent = value; }
+
+    [Obsolete("Use Accent instead. This property will be removed in a future release.")]
+    public Color BlueBackground { get => Accent; set => Accent = value; }
+
+    [Obsolete("Use Accent instead. This property will be removed in a future release.")]
+    public Color DockMovedHighlight { get => Accent; set => Accent = value; }
+
+    [Obsolete("Use Accent instead. This property will be removed in a future release.")]
+    public Color DockActive { get => Accent; set => Accent = value; }
+
+    [Obsolete("Use Accent instead. This property will be removed in a future release.")]
+    public Color ControlHighlight { get => Accent; set => Accent = value; }
+
+    [Obsolete("Use Accent instead. This property will be removed in a future release.")]
+    public Color LabelLinkAccent { get => Accent; set => Accent = value; }
+
+    [Obsolete("Use AccentSecondary instead. This property will be removed in a future release.")]
+    public Color DarkBlueBackground { get => AccentSecondary; set => AccentSecondary = value; }
+
+    [Obsolete("Use AccentSecondary instead. This property will be removed in a future release.")]
+    public Color LabelLinkHoveredAccent { get => AccentSecondary; set => AccentSecondary = value; }
+
+    [Obsolete("Use TextPrimary instead. This property will be removed in a future release.")]
+    public Color LightText { get => TextPrimary; set => TextPrimary = value; }
+
+    [Obsolete("Use TextDisabled instead. This property will be removed in a future release.")]
+    public Color DisabledText { get => TextDisabled; set => TextDisabled = value; }
 }

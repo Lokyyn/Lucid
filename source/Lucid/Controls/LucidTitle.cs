@@ -18,19 +18,19 @@ public class LucidTitle : Label
         var g = e.Graphics;
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, rect);
         }
 
         var textSize = g.MeasureString(Text, Font);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             g.DrawString(Text, Font, b, new PointF(-2, 0));
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.GreyHighlight))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.SurfaceDefault))
         {
             var p1 = new PointF(textSize.Width + 5, textSize.Height / 2);
             var p2 = new PointF(rect.Width, textSize.Height / 2);

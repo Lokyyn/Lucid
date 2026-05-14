@@ -30,7 +30,7 @@ public class DockContentDragFilter : IMessageFilter
     {
         _dockPanel = dockPanel;
 
-        _highlightForm = new LucidTranslucentForm(ThemeProvider.Theme.Colors.DockMovedHighlight);
+        _highlightForm = new LucidTranslucentForm(ThemeProvider.Theme.Colors.Accent);
     }
 
     #endregion

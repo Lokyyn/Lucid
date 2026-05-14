@@ -226,7 +226,7 @@ public class LucidDocument : LucidDockContent
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
-        BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
     }
 
     #endregion
