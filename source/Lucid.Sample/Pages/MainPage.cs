@@ -160,4 +160,12 @@ public partial class MainPage : LucidDocument
         _progressNode3.ProgressBarPercentage = Math.Max(0, _progressNode3.ProgressBarPercentage - delta);
         lucidTreeView1.Refresh();
     }
+
+    private void btnToggleSliderMode_Click(object sender, EventArgs e)
+    {
+        if (lucidSlider1.Mode == Lucid.Controls.LucidSliderMode.SingleValue)
+            lucidSlider1.Mode = Lucid.Controls.LucidSliderMode.Range;
+        else
+            lucidSlider1.Mode = Lucid.Controls.LucidSliderMode.SingleValue;
+    }
 }
