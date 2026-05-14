@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2026-05-09
+
+### Added
+- XML documentation for `LucidChipControl`, `LucidFileDrop`, `LucidProgressBar`, `LucidTreeNode`, `LucidTreeView`, `LucidDockContent`, `LucidDockPanel`, `LucidDocument`, `LucidToolWindow`, and `ThemeProvider`
+- Extended sample gallery with additional controls on the main page
+
+### Fixed
+- Various fixes to `LucidScrollableControl` (layout, sizing, scroll behaviour)
+
+### Changed
+- Refactored and expanded README with more detailed documentation
+
 ## [1.2.0] - 2026-04-30
 
 ### Added
