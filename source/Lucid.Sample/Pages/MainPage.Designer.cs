@@ -29,35 +29,38 @@ partial class MainPage
     private void InitializeComponent()
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
-        lucidChipControl1 = new Controls.LucidChipControl();
-        btAddChip = new Controls.LucidButton();
-        btRemoveChip = new Controls.LucidButton();
-        lucidProgressBar = new Controls.LucidProgressBar();
-        btnProgressBarAdd = new Controls.LucidButton();
-        btnProgressBarRemove = new Controls.LucidButton();
-        lucidFileDrop1 = new Controls.LucidFileDrop();
-        lbProgressBar = new Controls.LucidLabel();
-        lucidProgressBar1 = new Controls.LucidProgressBar();
-        lbFileDrop = new Controls.LucidLabel();
-        lbChipControl = new Controls.LucidLabel();
-        lbInputs = new Controls.LucidLabel();
-        lucidTextBox1 = new Controls.LucidTextBox();
-        lucidComboBox1 = new Controls.LucidComboBox();
-        lucidCheckBox1 = new Controls.LucidCheckBox();
-        lucidCheckBox2 = new Controls.LucidCheckBox();
-        lucidRadioButton1 = new Controls.LucidRadioButton();
-        lucidRadioButton2 = new Controls.LucidRadioButton();
-        lucidNumericUpDown1 = new Controls.LucidNumericUpDown();
-        lucidButtonNormal = new Controls.LucidButton();
-        lbTreeView = new Controls.LucidLabel();
-        lucidTreeView1 = new Controls.LucidTreeView();
-        lucidScrollableControl1 = new Controls.LucidScrollableControl();
-        lucidButton3 = new Controls.LucidButton();
-        lucidButton2 = new Controls.LucidButton();
-        lucidButton1 = new Controls.LucidButton();
-        lbScrollableControl = new Controls.LucidLabel();
-        btnTreeViewProgressAdd = new Controls.LucidButton();
-        btnTreeViewProgressRemove = new Controls.LucidButton();
+        lucidChipControl1 = new Lucid.Controls.LucidChipControl();
+        btAddChip = new Lucid.Controls.LucidButton();
+        btRemoveChip = new Lucid.Controls.LucidButton();
+        lucidProgressBar = new Lucid.Controls.LucidProgressBar();
+        btnProgressBarAdd = new Lucid.Controls.LucidButton();
+        btnProgressBarRemove = new Lucid.Controls.LucidButton();
+        lucidFileDrop1 = new Lucid.Controls.LucidFileDrop();
+        lbProgressBar = new Lucid.Controls.LucidLabel();
+        lucidProgressBar1 = new Lucid.Controls.LucidProgressBar();
+        lbFileDrop = new Lucid.Controls.LucidLabel();
+        lbChipControl = new Lucid.Controls.LucidLabel();
+        lbInputs = new Lucid.Controls.LucidLabel();
+        lucidTextBox1 = new Lucid.Controls.LucidTextBox();
+        lucidComboBox1 = new Lucid.Controls.LucidComboBox();
+        lucidCheckBox1 = new Lucid.Controls.LucidCheckBox();
+        lucidCheckBox2 = new Lucid.Controls.LucidCheckBox();
+        lucidRadioButton1 = new Lucid.Controls.LucidRadioButton();
+        lucidRadioButton2 = new Lucid.Controls.LucidRadioButton();
+        lucidNumericUpDown1 = new Lucid.Controls.LucidNumericUpDown();
+        lucidButtonNormal = new Lucid.Controls.LucidButton();
+        lbTreeView = new Lucid.Controls.LucidLabel();
+        lucidTreeView1 = new Lucid.Controls.LucidTreeView();
+        lucidScrollableControl1 = new Lucid.Controls.LucidScrollableControl();
+        lucidButton3 = new Lucid.Controls.LucidButton();
+        lucidButton2 = new Lucid.Controls.LucidButton();
+        lucidButton1 = new Lucid.Controls.LucidButton();
+        lbScrollableControl = new Lucid.Controls.LucidLabel();
+        btnTreeViewProgressAdd = new Lucid.Controls.LucidButton();
+        btnTreeViewProgressRemove = new Lucid.Controls.LucidButton();
+        lbSlider = new Lucid.Controls.LucidLabel();
+        lucidSlider1 = new Lucid.Controls.LucidSlider();
+        btnToggleSliderMode = new Lucid.Controls.LucidButton();
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).BeginInit();
         lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
@@ -360,9 +363,9 @@ partial class MainPage
         lbScrollableControl.Size = new Size(98, 15);
         lbScrollableControl.TabIndex = 30;
         lbScrollableControl.Text = "ScrollableControl";
-        //
+        // 
         // btnTreeViewProgressAdd
-        //
+        // 
         btnTreeViewProgressAdd.BackColor = Color.Transparent;
         btnTreeViewProgressAdd.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
         btnTreeViewProgressAdd.Location = new Point(420, 344);
@@ -373,9 +376,9 @@ partial class MainPage
         btnTreeViewProgressAdd.TabIndex = 31;
         btnTreeViewProgressAdd.Text = "+";
         btnTreeViewProgressAdd.Click += btnTreeViewProgressAdd_Click;
-        //
+        // 
         // btnTreeViewProgressRemove
-        //
+        // 
         btnTreeViewProgressRemove.BackColor = Color.Transparent;
         btnTreeViewProgressRemove.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
         btnTreeViewProgressRemove.Location = new Point(458, 344);
@@ -386,14 +389,51 @@ partial class MainPage
         btnTreeViewProgressRemove.TabIndex = 32;
         btnTreeViewProgressRemove.Text = "-";
         btnTreeViewProgressRemove.Click += btnTreeViewProgressRemove_Click;
-        //
+        // 
+        // lbSlider
+        // 
+        lbSlider.AutoSize = true;
+        lbSlider.BackColor = Color.Transparent;
+        lbSlider.ForeColor = Color.FromArgb(220, 220, 220);
+        lbSlider.Location = new Point(690, 348);
+        lbSlider.Name = "lbSlider";
+        lbSlider.Size = new Size(36, 15);
+        lbSlider.TabIndex = 33;
+        lbSlider.Text = "Slider";
+        // 
+        // lucidSlider1
+        // 
+        lucidSlider1.CustomValueLabel = "$";
+        lucidSlider1.Location = new Point(690, 368);
+        lucidSlider1.MinimumSize = new Size(60, 28);
+        lucidSlider1.Name = "lucidSlider1";
+        lucidSlider1.Size = new Size(276, 59);
+        lucidSlider1.TabIndex = 34;
+        lucidSlider1.Text = "lucidSlider1";
+        // 
+        // btnToggleSliderMode
+        // 
+        btnToggleSliderMode.BackColor = Color.Transparent;
+        btnToggleSliderMode.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
+        btnToggleSliderMode.Location = new Point(760, 348);
+        btnToggleSliderMode.Name = "btnToggleSliderMode";
+        btnToggleSliderMode.Padding = new Padding(5);
+        btnToggleSliderMode.RoundedCornerRadius = 16;
+        btnToggleSliderMode.Size = new Size(159, 19);
+        btnToggleSliderMode.TabIndex = 35;
+        btnToggleSliderMode.Text = "Toggle Slider Mode";
+        btnToggleSliderMode.Click += btnToggleSliderMode_Click;
+        // 
         // MainPage
-        //
+        // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(btnToggleSliderMode);
+        Controls.Add(lucidSlider1);
+        Controls.Add(lbSlider);
+        Controls.Add(lbScrollableControl);
         Controls.Add(btnTreeViewProgressRemove);
         Controls.Add(btnTreeViewProgressAdd);
-        Controls.Add(lbScrollableControl);
         Controls.Add(lucidScrollableControl1);
         Controls.Add(lucidTreeView1);
         Controls.Add(lbTreeView);
@@ -488,4 +528,7 @@ partial class MainPage
     private Controls.LucidLabel lbScrollableControl;
     private Controls.LucidButton btnTreeViewProgressAdd;
     private Controls.LucidButton btnTreeViewProgressRemove;
+    private Controls.LucidLabel lbSlider;
+    private Controls.LucidSlider lucidSlider1;
+    private Controls.LucidButton btnToggleSliderMode;
 }
