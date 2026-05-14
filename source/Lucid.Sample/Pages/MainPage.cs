@@ -38,6 +38,34 @@ public partial class MainPage : LucidDocument
         InitializeComponent();
 
         SetUpChipControl();
+        SetUpComboBox();
+        SetUpTreeView();
+    }
+
+    private void SetUpComboBox()
+    {
+        lucidComboBox1.Items.AddRange(new object[] { "Dark Theme", "Light Theme", "Custom Theme" });
+        lucidComboBox1.SelectedIndex = 0;
+    }
+
+    private void SetUpTreeView()
+    {
+        var nodeAssets = new Controls.LucidTreeNode("Assets");
+        nodeAssets.Nodes.Add(new Controls.LucidTreeNode("Icons"));
+        nodeAssets.Nodes.Add(new Controls.LucidTreeNode("Fonts"));
+
+        var nodeControls = new Controls.LucidTreeNode("Controls");
+        nodeControls.Nodes.Add(new Controls.LucidTreeNode("LucidButton"));
+        nodeControls.Nodes.Add(new Controls.LucidTreeNode("LucidCheckBox"));
+        nodeControls.Nodes.Add(new Controls.LucidTreeNode("LucidTreeView"));
+
+        var nodeTheming = new Controls.LucidTreeNode("Theming");
+        nodeTheming.Nodes.Add(new Controls.LucidTreeNode("ThemeProvider"));
+        nodeTheming.Nodes.Add(new Controls.LucidTreeNode("LucidTheme"));
+
+        lucidTreeView1.Nodes.Add(nodeAssets);
+        lucidTreeView1.Nodes.Add(nodeControls);
+        lucidTreeView1.Nodes.Add(nodeTheming);
     }
 
     private void SetUpChipControl()
