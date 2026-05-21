@@ -247,12 +247,12 @@ public partial class LucidProgressBar : Control
         int r = track.Height / 4;
 
         // Background
-        using (var b = new SolidBrush(colors.MainBackgroundColor))
+        using (var b = new SolidBrush(colors.BackgroundSecondary))
             g.FillRectangle(b, ClientRectangle);
 
         // Track
         using (var path = RoundedRect(track, r))
-        using (var b = new SolidBrush(colors.LightBorder))
+        using (var b = new SolidBrush(colors.BorderDefault))
             g.FillPath(b, path);
 
         // Fill
@@ -271,7 +271,7 @@ public partial class LucidProgressBar : Control
                 g.SetClip(trackClip);
 
                 using var fillPath = RoundedRect(fillRect, r);
-                using var fillBrush = new SolidBrush(colors.MainAccent);
+                using var fillBrush = new SolidBrush(colors.Accent);
                 g.FillPath(fillBrush, fillPath);
 
                 if (fillRect.Height > 2)
@@ -318,8 +318,8 @@ public partial class LucidProgressBar : Control
             Colors = new[]
             {
                 Color.Transparent,
-                colors.MainAccent,
-                colors.MainAccent,
+                colors.Accent,
+                colors.Accent,
                 Color.Transparent
             },
             Positions = new[] { 0f, 0.3f, 0.7f, 1f }
@@ -342,7 +342,7 @@ public partial class LucidProgressBar : Control
 
         if (string.IsNullOrEmpty(text)) return;
 
-        using var b = new SolidBrush(colors.LightText);
+        using var b = new SolidBrush(colors.TextPrimary);
         var flags = StringFormat.GenericDefault;
         var sf = new StringFormat
         {

@@ -146,21 +146,21 @@ public class LucidDataGridViewButtonCell : DataGridViewButtonCell
 
         // Choose button colors
         Color textColor = cellStyle.ForeColor;
-        Color borderColor = ThemeProvider.Theme.Colors.GreySelection;
-        Color fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        Color borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
+        Color fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         if (DataGridView.Focused && DataGridView.CurrentCellAddress == new Point(ColumnIndex, rowIndex))
-            borderColor = ThemeProvider.Theme.Colors.MainAccent; //Selection
+            borderColor = ThemeProvider.Theme.Colors.Accent; //Selection
 
         if (ButtonState.HasFlag(ButtonState.Inactive) || !Enabled)
         {
-            fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
-            textColor = ThemeProvider.Theme.Colors.DisabledText;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
+            textColor = ThemeProvider.Theme.Colors.TextDisabled;
         }
         else if (ButtonState.HasFlag(ButtonState.Checked) || ButtonState.HasFlag(ButtonState.Pushed))
-            fillColor = ThemeProvider.Theme.Colors.DarkBackground;
+            fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         else if (_mouseCurserCell == rowIndex) // Hover
-            fillColor = ThemeProvider.Theme.Colors.LighterBackground;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceDefault;
 
         // Paint button
         Rectangle contentBounds = new Rectangle(cellBounds.X + _padding.Left, cellBounds.Y + _padding.Top,

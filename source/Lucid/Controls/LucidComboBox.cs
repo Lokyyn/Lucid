@@ -106,12 +106,12 @@ public class LucidComboBox : ComboBox
         {
             var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
-            var textColor = ThemeProvider.Theme.Colors.LightText;
-            var borderColor = ThemeProvider.Theme.Colors.GreySelection;
-            var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+            var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+            var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
+            var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
             if (Focused && TabStop)
-                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                borderColor = ThemeProvider.Theme.Colors.Accent;
 
             using (var b = new SolidBrush(fillColor))
             {
@@ -167,13 +167,13 @@ public class LucidComboBox : ComboBox
         var g = e.Graphics;
         var rect = e.Bounds;
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = ThemeProvider.Theme.Colors.LightBackground;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if ((e.State & DrawItemState.Selected) == DrawItemState.Selected ||
             (e.State & DrawItemState.Focus) == DrawItemState.Focus ||
             (e.State & DrawItemState.NoFocusRect) != DrawItemState.NoFocusRect)
-            fillColor = ThemeProvider.Theme.Colors.MainAccent;
+            fillColor = ThemeProvider.Theme.Colors.Accent;
 
         using (var b = new SolidBrush(fillColor))
         {

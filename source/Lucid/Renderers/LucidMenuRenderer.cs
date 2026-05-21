@@ -12,7 +12,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         base.Initialize(toolStrip);
 
-        toolStrip.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        toolStrip.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         toolStrip.ForeColor = Helper.ColorExtender.GetContrastColor(toolStrip.BackColor);
     }
 
@@ -20,7 +20,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         base.InitializeItem(item);
 
-        item.BackColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        item.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         item.ForeColor = Helper.ColorExtender.GetContrastColor(item.BackColor);
 
         if (item.GetType() == typeof(ToolStripSeparator))
@@ -36,7 +36,7 @@ public class LucidMenuRenderer : ToolStripRenderer
     protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
     {
         var g = e.Graphics;
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, e.AffectedBounds);
         }
@@ -48,7 +48,7 @@ public class LucidMenuRenderer : ToolStripRenderer
 
         var rect = new Rectangle(0, 0, e.ToolStrip.Width - 1, e.ToolStrip.Height - 1);
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.LightBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.DrawRectangle(p, rect);
         }
@@ -61,12 +61,12 @@ public class LucidMenuRenderer : ToolStripRenderer
         var rect = new Rectangle(e.ImageRectangle.Left - 2, e.ImageRectangle.Top - 2,
                                      e.ImageRectangle.Width + 4, e.ImageRectangle.Height + 4);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBorder))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.FillRectangle(b, rect);
         }
 
-        using (var p = new Pen(ThemeProvider.Theme.Colors.ControlHighlight))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.Accent))
         {
             var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
             g.DrawRectangle(p, modRect);
@@ -84,7 +84,7 @@ public class LucidMenuRenderer : ToolStripRenderer
 
         var rect = new Rectangle(1, 3, e.Item.Width, 1);
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightBorder))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.FillRectangle(b, rect);
         }
@@ -92,7 +92,7 @@ public class LucidMenuRenderer : ToolStripRenderer
 
     protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
     {
-        e.ArrowColor = ThemeProvider.Theme.Colors.LightText;
+        e.ArrowColor = ThemeProvider.Theme.Colors.TextPrimary;
         e.ArrowRectangle = new Rectangle(new Point(e.ArrowRectangle.Left, e.ArrowRectangle.Top - 1), e.ArrowRectangle.Size);
 
         base.OnRenderArrow(e);
@@ -102,13 +102,13 @@ public class LucidMenuRenderer : ToolStripRenderer
     {
         var g = e.Graphics;
 
-        e.Item.ForeColor = e.Item.Enabled ? ThemeProvider.Theme.Colors.LightText : ThemeProvider.Theme.Colors.DisabledText;
+        e.Item.ForeColor = e.Item.Enabled ? ThemeProvider.Theme.Colors.TextPrimary : ThemeProvider.Theme.Colors.TextDisabled;
 
         if (e.Item.Enabled)
         {
 
-            //var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.GreyHighlight : e.Item.BackColor;
-            var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.MainBackgroundColor;
+            //var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.SurfaceDefault : e.Item.BackColor;
+            var bgColor = e.Item.Selected ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
             // Normal item
             var rect = new Rectangle(2, 0, e.Item.Width - 3, e.Item.Height - 2);
@@ -128,7 +128,7 @@ public class LucidMenuRenderer : ToolStripRenderer
             {
                 if (((ToolStripMenuItem)e.Item).DropDown.Visible && e.Item.IsOnDropDown == false)
                 {
-                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainAccent))
+                    using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
                     using (var sgs = new SaveableGraphicsState(g))
                     {
                         var path = Helper.RoundedRectangleHelper.CreateRoundedRectanglePath(rect, 6);
@@ -136,7 +136,7 @@ public class LucidMenuRenderer : ToolStripRenderer
                         g.FillPath(b, path);
 
                         // Handle this as it has the main accent so when this item does not have focus shows the correct fore color
-                        e.Item.ForeColor = Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.MainAccent);
+                        e.Item.ForeColor = Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent);
                     }
                 }
             }

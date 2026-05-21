@@ -351,24 +351,24 @@ public class LucidButton : Button
         var g = e.Graphics;
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
-        var borderColor = ThemeProvider.Theme.Colors.GreySelection;
-        var fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBlueBackground : ThemeProvider.Theme.Colors.LightBackground;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
+        var fillColor = _isDefault ? ThemeProvider.Theme.Colors.AccentSecondary : ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if (Enabled)
         {
             if (ButtonStyle == LucidButtonStyle.Normal || ButtonStyle == LucidButtonStyle.Rounded)
             {
                 if (Focused && TabStop)
-                    borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
+                    borderColor = ThemeProvider.Theme.Colors.Accent;
 
                 switch (ButtonState)
                 {
                     case LucidControlState.Hover:
-                        fillColor = _isDefault ? ThemeProvider.Theme.Colors.BlueBackground : ThemeProvider.Theme.Colors.LighterBackground;
+                        fillColor = _isDefault ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceDefault;
                         break;
                     case LucidControlState.Pressed:
-                        fillColor = _isDefault ? ThemeProvider.Theme.Colors.DarkBackground : ThemeProvider.Theme.Colors.DarkBackground;
+                        fillColor = _isDefault ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary;
                         break;
                 }
             }
@@ -377,21 +377,21 @@ public class LucidButton : Button
                 switch (ButtonState)
                 {
                     case LucidControlState.Normal:
-                        fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+                        fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
                         break;
                     case LucidControlState.Hover:
-                        fillColor = ThemeProvider.Theme.Colors.MediumBackground;
+                        fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
                         break;
                     case LucidControlState.Pressed:
-                        fillColor = ThemeProvider.Theme.Colors.DarkBackground;
+                        fillColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
                         break;
                 }
             }
         }
         else
         {
-            textColor = ThemeProvider.Theme.Colors.DisabledText;
-            fillColor = ThemeProvider.Theme.Colors.DarkGreySelection;
+            textColor = ThemeProvider.Theme.Colors.TextDisabled;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         }
 
 

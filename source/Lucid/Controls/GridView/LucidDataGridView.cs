@@ -35,12 +35,12 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         return new DataGridViewCellStyle
         {
             // Darker colors:
-            // BackColor = isOdd ? ThemeProvider.Theme.Colors.MediumBackground : ThemeProvider.Theme.Colors.DarkBackground,
-            BackColor = isHeader ? ThemeProvider.Theme.Colors.MediumBackground :
-                    (isOdd ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.HeaderBackground),
-            ForeColor = ThemeProvider.Theme.Colors.LightText,
-            SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection,
-            SelectionForeColor = ThemeProvider.Theme.Colors.LightText
+            // BackColor = isOdd ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary,
+            BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary :
+                    (isOdd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundSecondary),
+            ForeColor = ThemeProvider.Theme.Colors.TextPrimary,
+            SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight,
+            SelectionForeColor = ThemeProvider.Theme.Colors.TextPrimary
         };
     }
 
@@ -54,7 +54,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
     public LucidDataGridView()
     {
         Name = "LucidDataGridView";
-        OutlineColor = ThemeProvider.Theme.Colors.LightBorder;
+        OutlineColor = ThemeProvider.Theme.Colors.BorderDefault;
 
         // Configure inner data grid view
         _base.Name = "baseView";
@@ -70,9 +70,9 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.AllowDrop = true;
         _dataGridViewDoubleBuffered.SetValue(_base, true, null);
 
-        _base.BackgroundColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
-        _base.GridColor = ThemeProvider.Theme.Colors.DarkBorder;
+        _base.GridColor = ThemeProvider.Theme.Colors.BorderDefault;
         _base.DefaultCellStyle = _cellStyleUnfocusedEven;
         _base.AlternatingRowsDefaultCellStyle = _cellStyleUnfocusedOdd;
         _base.ColumnHeadersDefaultCellStyle = _cellStyleHeader;
@@ -110,12 +110,12 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.Scroll += BaseScrolled;
 
         // Configure scroll bars
-        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _vScrollBar.Minimum = 0;
         _vScrollBar.Maximum = 0;
         _vScrollBar.ValueChanged += _vScrollBar_ValueChanged;
 
-        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
         _hScrollBar.Minimum = 0;
         _hScrollBar.Maximum = 0;
         _hScrollBar.ValueChanged += _hScrollBar_ValueChanged;
@@ -177,18 +177,18 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     private void ThemeProvider_OnThemeChanged()
     {
-        _base.BackgroundColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
-        _base.GridColor = ThemeProvider.Theme.Colors.DarkBorder;
+        _base.GridColor = ThemeProvider.Theme.Colors.BorderDefault;
         _base.DefaultCellStyle = GetCellStyle(false, false, false);
         _base.AlternatingRowsDefaultCellStyle = GetCellStyle(false, true, false);
         _base.ColumnHeadersDefaultCellStyle = GetCellStyle(true, true, true);
         _base.RowHeadersDefaultCellStyle = GetCellStyle(true, true, true);
 
-        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
-        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.MediumBackground;
+        _vScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
+        _hScrollBar.BackColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
-        OutlineColor = ThemeProvider.Theme.Colors.LightBorder;
+        OutlineColor = ThemeProvider.Theme.Colors.BorderDefault;
 
         this.Invalidate();
     }

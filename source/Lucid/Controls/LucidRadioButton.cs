@@ -253,38 +253,38 @@ public class LucidRadioButton : RadioButton
 
         var size = ThemeProvider.Theme.Sizes.RadioButtonSize;
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
-        var borderColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = ThemeProvider.Theme.Colors.LightText;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var borderColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var fillColor = ThemeProvider.Theme.Colors.TextPrimary;
 
         if (Enabled)
         {
             if (Focused)
             {
-                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
-                fillColor = ThemeProvider.Theme.Colors.MainAccent;
+                borderColor = ThemeProvider.Theme.Colors.Accent;
+                fillColor = ThemeProvider.Theme.Colors.Accent;
             }
 
             if (_controlState == LucidControlState.Hover)
             {
-                borderColor = ThemeProvider.Theme.Colors.ControlHighlight;
-                fillColor = ThemeProvider.Theme.Colors.MainAccent;
+                borderColor = ThemeProvider.Theme.Colors.Accent;
+                fillColor = ThemeProvider.Theme.Colors.Accent;
             }
             else if (_controlState == LucidControlState.Pressed)
             {
-                borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
-                fillColor = ThemeProvider.Theme.Colors.GreySelection;
+                borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
+                fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
             }
         }
         else
         {
-            textColor = ThemeProvider.Theme.Colors.DisabledText;
-            borderColor = ThemeProvider.Theme.Colors.GreyHighlight;
-            fillColor = ThemeProvider.Theme.Colors.GreySelection;
+            textColor = ThemeProvider.Theme.Colors.TextDisabled;
+            borderColor = ThemeProvider.Theme.Colors.SurfaceDefault;
+            fillColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
         }
 
-        //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
-        var backColor = _AllowCustomBackColor ? BackColor : ThemeProvider.Theme.Colors.MainBackgroundColor;
+        //using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
+        var backColor = _AllowCustomBackColor ? BackColor : ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(backColor))
         {

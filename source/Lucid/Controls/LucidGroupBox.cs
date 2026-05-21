@@ -5,7 +5,7 @@ namespace Lucid.Controls;
 
 public class LucidGroupBox : GroupBox
 {
-    private Color _borderColor = ThemeProvider.Theme.Colors.DarkBorder;
+    private Color _borderColor = ThemeProvider.Theme.Colors.BorderDefault;
 
     [Category("Appearance")]
     [Description("Determines the color of the border.")]
@@ -35,8 +35,8 @@ public class LucidGroupBox : GroupBox
         var rect = new Rectangle(0, 0, ClientSize.Width, ClientSize.Height);
         var stringSize = g.MeasureString(Text, Font);
 
-        var textColor = ThemeProvider.Theme.Colors.LightText;
-        var fillColor = ThemeProvider.Theme.Colors.MainBackgroundColor;
+        var textColor = ThemeProvider.Theme.Colors.TextPrimary;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
 
         using (var b = new SolidBrush(fillColor))
         {

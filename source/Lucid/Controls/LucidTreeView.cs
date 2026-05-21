@@ -815,12 +815,12 @@ public class LucidTreeView : LucidScrollView
     {
         DisposeIcons();
 
-        _nodeClosed = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.LightText);
-        _nodeClosedHover = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.ControlHighlight);
-        _nodeClosedHoverSelected = TreeViewIcons.node_closed_full.SetColor(ThemeProvider.Theme.Colors.LightText);
-        _nodeOpen = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.LightText);
-        _nodeOpenHover = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.ControlHighlight);
-        _nodeOpenHoverSelected = TreeViewIcons.node_open_empty.SetColor(ThemeProvider.Theme.Colors.LightText);
+        _nodeClosed = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
+        _nodeClosedHover = TreeViewIcons.node_closed_empty.SetColor(ThemeProvider.Theme.Colors.Accent);
+        _nodeClosedHoverSelected = TreeViewIcons.node_closed_full.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
+        _nodeOpen = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
+        _nodeOpenHover = TreeViewIcons.node_open.SetColor(ThemeProvider.Theme.Colors.Accent);
+        _nodeOpenHoverSelected = TreeViewIcons.node_open_empty.SetColor(ThemeProvider.Theme.Colors.TextPrimary);
     }
 
     private void DisposeIcons()
@@ -1378,7 +1378,7 @@ public class LucidTreeView : LucidScrollView
     protected override void PaintContent(Graphics g)
     {
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.DockBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundTertiary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
@@ -1394,14 +1394,14 @@ public class LucidTreeView : LucidScrollView
         var rect = GetNodeFullRowArea(node);
 
         // 1. Draw background
-        //var bgColor = node.Odd ? ThemeProvider.Theme.Colors.DockBackground : ThemeProvider.Theme.Colors.DockBackground;
-        var bgColor = ThemeProvider.Theme.Colors.DockBackground;
+        //var bgColor = node.Odd ? ThemeProvider.Theme.Colors.BackgroundTertiary : ThemeProvider.Theme.Colors.BackgroundTertiary;
+        var bgColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
 
         if (SelectedNodes.Count > 0 && SelectedNodes.Contains(node))
-            bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+            bgColor = Focused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         if (IsDragging && _dropNode == node)
-            bgColor = Focused ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+            bgColor = Focused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight;
 
         using (var b = new SolidBrush(bgColor))
         {
@@ -1445,8 +1445,8 @@ public class LucidTreeView : LucidScrollView
         }
 
         // 4. Draw text
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.LightText))
-        using (var bContrast = new SolidBrush(Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.MainAccent)))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
+        using (var bContrast = new SolidBrush(Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent)))
         {
             var stringFormat = new StringFormat
             {
@@ -1502,7 +1502,7 @@ public class LucidTreeView : LucidScrollView
             var badgeBackColor2 = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.BackColor2 ?? ColorTranslator.FromHtml("#5c6bc0");
             var badgeForeColor = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.ForeColor ?? ColorTranslator.FromHtml("#ffffff");
 
-            using (var p = new Pen(ThemeProvider.Theme.Colors.LightText))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
             using (var pr = new Pen(Color.Red))
             using (var b = new SolidBrush(badgeBackColor))
             using (var bF = new SolidBrush(badgeForeColor))

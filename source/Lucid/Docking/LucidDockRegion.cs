@@ -370,13 +370,13 @@ public class LucidDockRegion : Panel
             return;
 
         // Fill body
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
 
         // Draw border
-        using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+        using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             // Top border
             if (DockArea == LucidDockArea.Document)

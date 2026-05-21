@@ -697,7 +697,7 @@ public class LucidDockGroup : Panel
     {
         var g = e.Graphics;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MainBackgroundColor))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
         {
             g.FillRectangle(b, ClientRectangle);
         }
@@ -705,7 +705,7 @@ public class LucidDockGroup : Panel
         if (!_tabArea.Visible)
             return;
 
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
         {
             g.FillRectangle(b, _tabArea.ClientRectangle);
         }
@@ -722,7 +722,7 @@ public class LucidDockGroup : Panel
         {
             // Color divider
             var isActiveGroup = DockPanel.ActiveGroup == this;
-            var divColor = isActiveGroup ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.GreySelection;
+            var divColor = isActiveGroup ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight;
             using (var b = new SolidBrush(divColor))
             {
                 var divRect = new Rectangle(_tabArea.ClientRectangle.Left, _tabArea.ClientRectangle.Bottom - 2, _tabArea.ClientRectangle.Width, 2);
@@ -732,7 +732,7 @@ public class LucidDockGroup : Panel
             // Content dropdown list
             var dropdownRect = new Rectangle(_tabArea.DropdownRectangle.Left, _tabArea.DropdownRectangle.Top, _tabArea.DropdownRectangle.Width, _tabArea.DropdownRectangle.Height - 2);
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
             {
                 g.FillRectangle(b, dropdownRect);
             }
@@ -747,7 +747,7 @@ public class LucidDockGroup : Panel
                 // Dock settings icon
                 var dockSettingsRect = new Rectangle(_tabArea.DockSettingsRectangle.Left, _tabArea.DockSettingsRectangle.Top, _tabArea.DockSettingsRectangle.Width, _tabArea.DockSettingsRectangle.Height - 2);
 
-                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.MediumBackground))
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
                 {
                     g.FillRectangle(b, dockSettingsRect);
                 }
@@ -767,13 +767,13 @@ public class LucidDockGroup : Panel
         var isVisibleTab = VisibleContent == tab.DockContent;
         var isActiveGroup = DockPanel.ActiveGroup == this;
 
-        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainAccent : ThemeProvider.Theme.Colors.DarkBackground;
+        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (!isActiveGroup)
-            bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.GreySelection : ThemeProvider.Theme.Colors.DarkBackground;
+            bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.SurfaceHighlight : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
-            bgColor = ThemeProvider.Theme.Colors.MediumBackground;
+            bgColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         using (var b = new SolidBrush(bgColor))
         {
@@ -783,7 +783,7 @@ public class LucidDockGroup : Panel
         // Draw separators
         if (tab.ShowSeparator)
         {
-            using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
             }
@@ -807,7 +807,7 @@ public class LucidDockGroup : Panel
         };
 
         // Draw text
-        var textColor = isVisibleTab ? Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.MainAccent) : ThemeProvider.Theme.Colors.DisabledText;
+        var textColor = isVisibleTab ? Helper.ColorExtender.GetContrastColor(ThemeProvider.Theme.Colors.Accent) : ThemeProvider.Theme.Colors.TextDisabled;
 
         using (var b = new SolidBrush(textColor))
         {
@@ -840,10 +840,10 @@ public class LucidDockGroup : Panel
 
         var isVisibleTab = VisibleContent == tab.DockContent;
 
-        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.MainBackgroundColor : ThemeProvider.Theme.Colors.DarkBackground;
+        var bgColor = isVisibleTab ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         if (tab.Hot && !isVisibleTab)
-            bgColor = ThemeProvider.Theme.Colors.MediumBackground;
+            bgColor = ThemeProvider.Theme.Colors.BackgroundPrimary;
 
         using (var b = new SolidBrush(bgColor))
         {
@@ -853,7 +853,7 @@ public class LucidDockGroup : Panel
         // Draw separators
         if (tab.ShowSeparator)
         {
-            using (var p = new Pen(ThemeProvider.Theme.Colors.DarkBorder))
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
             {
                 g.DrawLine(p, tabRect.Right - 1, tabRect.Top, tabRect.Right - 1, tabRect.Bottom);
             }
@@ -867,7 +867,7 @@ public class LucidDockGroup : Panel
             Trimming = StringTrimming.EllipsisCharacter
         };
 
-        var textColor = isVisibleTab ? ThemeProvider.Theme.Colors.ControlHighlight : ThemeProvider.Theme.Colors.DisabledText;
+        var textColor = isVisibleTab ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.TextDisabled;
         using (var b = new SolidBrush(textColor))
         {
             var textRect = new Rectangle(tabRect.Left + 5, tabRect.Top, tabRect.Width - 5, tabRect.Height);
