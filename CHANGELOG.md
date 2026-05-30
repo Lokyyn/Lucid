@@ -4,11 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Added three new built-in themes: `Dark Green`, `Dark Purple`, and `Light Teal`
+
 ### Changed
 - Introduced new semantic color tokens (`BackgroundPrimary`, `BackgroundSecondary`, `BackgroundTertiary`, `SurfaceDefault`, `SurfaceHighlight`, `BorderDefault`, `BorderAccent`, `Accent`, `AccentSecondary`, `TextPrimary`, `TextDisabled`) on the `Colors` class
 - All old color properties (e.g. `MainAccent`, `LightText`, `DarkBackground`, `GreySelection`) are now marked `[Obsolete]` and delegate to the new tokens — existing code continues to compile with a warning
 - Updated `BaseDarkTheme` and `BaseLightTheme` to set the new color tokens directly
 - All internal controls and renderers migrated to the new color tokens
+- Revised `Dark` and `Light` theme color values for improved contrast and accessibility (WCAG AA compliance for text)
+- Inactive document and tool window tabs now use `TextPrimary` instead of `TextDisabled` for better readability
+
+
+## [1.5.0] - 2026-05-21
 
 ### Deprecated
 - `Colors.MainAccent` → use `Colors.Accent`
