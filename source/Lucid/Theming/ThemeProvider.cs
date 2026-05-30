@@ -82,14 +82,13 @@ public class ThemeProvider
     {
         if (ManagerOS.IsWindows10OrWindows11)
         {
+            var accent = System.Windows.Forms.ControlPaint.Dark(ManagerOS.GetAccentColor(), 0.1f);
+
             var accentDark = new CustomAccentDarkTheme() { Enabled = true };
+            accentDark.Colors = accentDark.Colors with { Accent = accent, BorderAccent = accent };
+
             var accentLight = new CustomAccentLightTheme() { Enabled = true };
-
-            accentDark.Colors.Accent = ManagerOS.GetAccentColor();
-            accentDark.Colors.Accent = System.Windows.Forms.ControlPaint.Dark(ManagerOS.GetAccentColor(), 0.1f);
-
-            accentLight.Colors.Accent = ManagerOS.GetAccentColor();
-            accentLight.Colors.Accent = System.Windows.Forms.ControlPaint.Dark(ManagerOS.GetAccentColor(), 0.1f);
+            accentLight.Colors = accentLight.Colors with { Accent = accent, BorderAccent = accent };
 
             _allThemes.Add(accentDark);
             _allThemes.Add(accentLight);

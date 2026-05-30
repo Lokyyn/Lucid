@@ -14,10 +14,13 @@ public class DarkGreenTheme : BaseThemes.BaseDarkTheme
         ThemeName = "Dark Green";
         OrderNo = 3;
 
-        Colors.Accent              = ColorTranslator.FromHtml("#56a764");
-        Colors.AccentSecondary     = ColorTranslator.FromHtml("#1e4a28");
-        Colors.BorderAccent        = ColorTranslator.FromHtml("#56a764");
-        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#1e3d28");
+        Colors = Colors with
+        {
+            Accent           = ColorTranslator.FromHtml("#56a764"),
+            AccentSecondary  = ColorTranslator.FromHtml("#1e4a28"),
+            BorderAccent     = ColorTranslator.FromHtml("#56a764"),
+            SurfaceHighlight = ColorTranslator.FromHtml("#1e3d28"),
+        };
     }
 }
 
@@ -35,10 +38,13 @@ public class DarkPurpleTheme : BaseThemes.BaseDarkTheme
         ThemeName = "Dark Purple";
         OrderNo = 4;
 
-        Colors.Accent              = ColorTranslator.FromHtml("#9070c8");
-        Colors.AccentSecondary     = ColorTranslator.FromHtml("#3c2068");
-        Colors.BorderAccent        = ColorTranslator.FromHtml("#9070c8");
-        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#2a1850");
+        Colors = Colors with
+        {
+            Accent           = ColorTranslator.FromHtml("#9070c8"),
+            AccentSecondary  = ColorTranslator.FromHtml("#3c2068"),
+            BorderAccent     = ColorTranslator.FromHtml("#9070c8"),
+            SurfaceHighlight = ColorTranslator.FromHtml("#2a1850"),
+        };
     }
 }
 
@@ -56,9 +62,12 @@ public class LightTealTheme : BaseThemes.BaseLightTheme
         ThemeName = "Light Teal";
         OrderNo = 5;
 
-        Colors.Accent              = ColorTranslator.FromHtml("#007b8a");
-        Colors.AccentSecondary     = ColorTranslator.FromHtml("#005562");
-        Colors.BorderAccent        = ColorTranslator.FromHtml("#007b8a");
-        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#b3e5ed");
+        Colors = Colors with
+        {
+            Accent           = ColorTranslator.FromHtml("#007b8a"),
+            AccentSecondary  = ColorTranslator.FromHtml("#005562"),
+            BorderAccent     = ColorTranslator.FromHtml("#007b8a"),
+            SurfaceHighlight = ColorTranslator.FromHtml("#b3e5ed"),
+        };
     }
 }
