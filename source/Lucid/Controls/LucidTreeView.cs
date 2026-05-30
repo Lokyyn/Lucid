@@ -16,8 +16,11 @@ public class LucidTreeView : LucidScrollView
 {
     #region Event Region
 
+    /// <summary>Raised when the collection of selected nodes changes.</summary>
     public event EventHandler SelectedNodesChanged;
+    /// <summary>Raised after a node is expanded by the user or programmatically.</summary>
     public event EventHandler AfterNodeExpand;
+    /// <summary>Raised after a node is collapsed by the user or programmatically.</summary>
     public event EventHandler AfterNodeCollapse;
 
     #endregion
@@ -85,6 +88,7 @@ public class LucidTreeView : LucidScrollView
         }
     }
 
+    /// <summary>Font used to render badge labels on tree nodes.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Font BadgeFont
@@ -93,6 +97,7 @@ public class LucidTreeView : LucidScrollView
         set => _badgeFont = value;
     }
 
+    /// <summary>The root-level node collection. Add or remove <see cref="LucidTreeNode"/> instances here to populate the tree.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public ObservableList<LucidTreeNode> Nodes
@@ -121,6 +126,7 @@ public class LucidTreeView : LucidScrollView
         }
     }
 
+    /// <summary>Read-only collection of all currently selected nodes.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public ObservableCollection<LucidTreeNode> SelectedNodes
@@ -180,10 +186,15 @@ public class LucidTreeView : LucidScrollView
     [DefaultValue(false)]
     public bool ShowSelectedNodeRoundedRectangle { get; set; }
 
+    /// <summary>Number of nodes that are currently visible (expanded and in the viewport).</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int VisibleNodeCount { get; private set; }
 
+    /// <summary>
+    /// Custom comparer applied whenever nodes are added or a node's text changes.
+    /// Set to <see langword="null"/> to disable automatic sorting.
+    /// </summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public IComparer<LucidTreeNode> TreeViewNodeSorter { get; set; }
@@ -782,15 +793,17 @@ public class LucidTreeView : LucidScrollView
         foreach (var badge in node.BadgeCollection.Badges)
         {
             var textLength = TextRenderer.MeasureText(badge.Value, this.BadgeFont).Width;
-
-            badgeWidth += textLength;
+            badgeWidth += textLength + 12; // 12 = badge frame (8) + inter-badge gap (4)
         }
+        if (badgeWidth > 0)
+            badgeWidth -= 4; // no trailing gap after the last badge
 
         var progressBarWidth = (int)node.ProgressbarSize;
 
         node.ProgressBarArea = new Rectangle(node.TextArea.Right + 7, yOffset + 3, node.ShowProgressBar ? progressBarWidth + 18 : 0, 12);
 
-        node.BadgeArea = new Rectangle(node.ProgressBarArea.Right + 7, yOffset + 3, badgeWidth, 12);
+        var badgeX = node.ShowProgressBar ? node.ProgressBarArea.Right + 7 : node.ProgressBarArea.Right;
+        node.BadgeArea = new Rectangle(badgeX, yOffset + 3, badgeWidth, 12);
 
         node.FullArea = new Rectangle(indent, yOffset, (node.BadgeArea.Right - indent), ItemHeight);
 
@@ -1451,7 +1464,6 @@ public class LucidTreeView : LucidScrollView
         if (node.ShowProgressBar)
         {
             var progressBarBackColor = ColorTranslator.FromHtml("#939dd5");
-            var progressBarForeColor = ColorTranslator.FromHtml("#ffffff");
             var progressBarFillColor = ColorTranslator.FromHtml("#5c6bc0");
 
             var width = (int)node.ProgressbarSize;
@@ -1460,26 +1472,23 @@ public class LucidTreeView : LucidScrollView
             using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
             using (var gState = new SaveableGraphicsState(g))
             using (var brushBack = new SolidBrush(progressBarBackColor))
-            using (var brushFore = new SolidBrush(progressBarForeColor))
             using (var brushFill = new SolidBrush(progressBarFillColor))
             {
-                var path = BadgePath(new SizeF(width, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y);
-
-                var progressBarWidth = path.GetBounds().Width;
-                var realPercentage = progressBarWidth * (percentage / 100);
-
-
-                var pathFilled = BadgePath(new SizeF((float)realPercentage, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y);
-
-
                 g.CompositingQuality = CompositingQuality.HighQuality;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.SmoothingMode = SmoothingMode.HighQuality;
 
-                g.FillPath(brushBack, path);
-                g.FillPath(brushFill, pathFilled);
+                var backgroundPath = BadgePath(new SizeF(width, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y);
+                float totalWidth = 18f + width;
 
-                //g.DrawPath(p, BadgeCornerPath(new SizeF(width, 0), node.ProgressBarArea.X, node.ProgressBarArea.Y));
+                g.FillPath(brushBack, backgroundPath);
+
+                if (percentage > 0)
+                {
+                    float fillWidth = totalWidth * ((float)percentage / 100f);
+                    g.SetClip(new Region(backgroundPath), CombineMode.Intersect);
+                    g.FillRectangle(brushFill, node.ProgressBarArea.X, node.ProgressBarArea.Y, fillWidth, 12f);
+                }
             }
         }
 
@@ -1488,7 +1497,7 @@ public class LucidTreeView : LucidScrollView
         foreach (var badge in node.BadgeCollection.Badges)
         {
             if (!badge.Visible || string.IsNullOrEmpty(badge.Value))
-                return;
+                continue;
 
             var badgeBackColor = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.BackColor ?? ColorTranslator.FromHtml("#5c6bc0");
             var badgeBackColor2 = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.BackColor2 ?? ColorTranslator.FromHtml("#5c6bc0");
@@ -1527,18 +1536,6 @@ public class LucidTreeView : LucidScrollView
 
                 g.DrawPath(p, path);
 
-                // Corner lower left
-                g.DrawArc(p, xCord, yCord + 5, 7, 7, 90, 90);
-
-                // Corner upper left
-                g.DrawArc(p, xCord, yCord, 7, 7, 180, 90);
-
-                // Corner upper right
-                g.DrawArc(p, xCord + 11 + measuredSize.Width, yCord, 7, 7, 270, 90);
-
-                // Corner lower right
-                g.DrawArc(p, xCord + 11 + measuredSize.Width, yCord + 5, 7, 7, 360, 90);
-
                 g.DrawString(badge.Value, _badgeFont, bF, xCord + 4, yCord);
 
                 // Shows the BadgeArea-Bounds (Debug only)
@@ -1557,75 +1554,19 @@ public class LucidTreeView : LucidScrollView
 
     private GraphicsPath BadgePath(SizeF badgeSize, int xCoordinate, int yCoordinate)
     {
-        GraphicsPath path = new GraphicsPath();
+        const float h = 12f;
+        const float r = 3f;
+        float w = 18f + badgeSize.Width;
 
-        // Top
-        path.AddLine(xCoordinate + 3, yCoordinate, xCoordinate + 15 + badgeSize.Width, yCoordinate);
-
-        // Right
-        path.AddLine(xCoordinate + 18 + badgeSize.Width, yCoordinate + 3, xCoordinate + 18 + badgeSize.Width, yCoordinate + 9);
-
-        // Bottom
-        path.AddLine(xCoordinate + 15 + badgeSize.Width, yCoordinate + 12, xCoordinate + 3, yCoordinate + 12);
-
-        // Left
-        path.AddLine(xCoordinate, yCoordinate + 9, xCoordinate, yCoordinate + 3);
-
+        var path = new GraphicsPath();
+        path.AddArc(xCoordinate,           yCoordinate,           r * 2, r * 2, 180, 90);
+        path.AddArc(xCoordinate + w - r*2, yCoordinate,           r * 2, r * 2, 270, 90);
+        path.AddArc(xCoordinate + w - r*2, yCoordinate + h - r*2, r * 2, r * 2,   0, 90);
+        path.AddArc(xCoordinate,           yCoordinate + h - r*2, r * 2, r * 2,  90, 90);
         path.CloseFigure();
         return path;
     }
 
-    //private GraphicsPath BadgePathFilled(SizeF badgeSize, int xCoordinate, int yCoordinate)
-    //{
-    //    GraphicsPath path = new GraphicsPath();
-
-    //    // Top
-    //    path.AddLine(xCoordinate + 3, yCoordinate, xCoordinate + 15 + badgeSize.Width, yCoordinate);
-
-    //    // Right
-    //    path.AddLine(xCoordinate + 18 + badgeSize.Width, yCoordinate + 3, xCoordinate  badgeSize.Width, yCoordinate + 9);
-
-    //    // Bottom
-    //    path.AddLine(xCoordinate + 15 + badgeSize.Width, yCoordinate + 12, xCoordinate + 3, yCoordinate + 12);
-
-    //    // Left
-    //    path.AddLine(xCoordinate, yCoordinate + 9, xCoordinate, yCoordinate + 3);
-
-    //    path.CloseFigure();
-    //    return path;
-    //}
-
-
-    private GraphicsPath BadgeCornerPath(SizeF badgeSize, int xCoordinate, int yCoordinate)
-    {
-        GraphicsPath path = new GraphicsPath();
-
-        // Corner lower left
-        path.AddArc(xCoordinate, yCoordinate + 5, 7, 7, 90, 90);
-
-        // Corner upper left
-        path.AddArc(xCoordinate, yCoordinate, 7, 7, 180, 90);
-
-        // Corner upper right
-        path.AddArc(xCoordinate + 11 + badgeSize.Width, yCoordinate, 7, 7, 270, 90);
-
-        // Corner lower right
-        path.AddArc(xCoordinate + 11 + badgeSize.Width, yCoordinate + 5, 7, 7, 360, 90);
-
-        path.CloseFigure();
-
-        return path;
-    }
-
-    private GraphicsPath ProgessBarPercentagePath(double percentage, int xCoordinate, int yCoordinate)
-    {
-        GraphicsPath path = new GraphicsPath();
-
-        // Top
-        //path.AddLine(xCoordinate + 3, yCoordinate, xCoordinate + 15 + (int)percentage, yCoordinate);
-
-        return path;
-    }
 
     /// <summary>
     /// Recursively paints only the nodes and child nodes within the viewport.

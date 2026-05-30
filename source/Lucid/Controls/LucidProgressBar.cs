@@ -5,14 +5,18 @@ using System.Drawing.Drawing2D;
 namespace Lucid.Controls;
 
 /// <summary>
-/// Display style for the progress label.
+/// Controls what text, if any, is rendered inside the progress bar track.
 /// </summary>
 public enum LucidProgressLabelStyle
 {
+    /// <summary>No label is drawn.</summary>
     None,
+    /// <summary>Draws the current fill percentage, e.g. <c>42%</c>.</summary>
     Percentage,
+    /// <summary>Draws the current value over the maximum, e.g. <c>42 / 100</c>.</summary>
     ValueOverMax,
-    Custom          // uses LucidProgressBar.CustomLabel
+    /// <summary>Draws the string set in <see cref="LucidProgressBar.CustomLabel"/>.</summary>
+    Custom
 }
 
 /// <summary>
@@ -55,6 +59,7 @@ public partial class LucidProgressBar : Control
 
     #region Events
 
+    /// <summary>Raised whenever <see cref="Value"/> changes.</summary>
     [Category("Behavior")]
     public event EventHandler? ValueChanged;
 
@@ -62,6 +67,7 @@ public partial class LucidProgressBar : Control
 
     #region Properties
 
+    /// <summary>The minimum value of the range. Defaults to <c>0</c>.</summary>
     [Category("Behavior"), DefaultValue(0.0)]
     public double Minimum
     {
@@ -69,6 +75,7 @@ public partial class LucidProgressBar : Control
         set { _minimum = value; ClampValue(); Invalidate(); }
     }
 
+    /// <summary>The maximum value of the range. Defaults to <c>100</c>.</summary>
     [Category("Behavior"), DefaultValue(100.0)]
     public double Maximum
     {
@@ -76,6 +83,10 @@ public partial class LucidProgressBar : Control
         set { _maximum = value; ClampValue(); Invalidate(); }
     }
 
+    /// <summary>
+    /// The current value, clamped to [<see cref="Minimum"/>, <see cref="Maximum"/>].
+    /// Setting this value triggers an animated fill transition and raises <see cref="ValueChanged"/>.
+    /// </summary>
     [Category("Behavior"), DefaultValue(0.0)]
     public double Value
     {
@@ -115,6 +126,7 @@ public partial class LucidProgressBar : Control
         }
     }
 
+    /// <summary>Determines what text is rendered inside the bar track. Defaults to <see cref="LucidProgressLabelStyle.Percentage"/>.</summary>
     [Category("Appearance"), DefaultValue(LucidProgressLabelStyle.Percentage)]
     public LucidProgressLabelStyle LabelStyle
     {
@@ -122,6 +134,9 @@ public partial class LucidProgressBar : Control
         set { _labelStyle = value; Invalidate(); }
     }
 
+    /// <summary>
+    /// The string drawn inside the bar when <see cref="LabelStyle"/> is <see cref="LucidProgressLabelStyle.Custom"/>.
+    /// </summary>
     [Category("Appearance"), DefaultValue("")]
     [Description("Used when LabelStyle is set to Custom.")]
     public string CustomLabel
@@ -130,6 +145,11 @@ public partial class LucidProgressBar : Control
         set { _customLabel = value; Invalidate(); }
     }
 
+    /// <summary>
+    /// Controls where the label text is anchored relative to the bar.
+    /// <see cref="ContentAlignment.MiddleCenter"/> renders the text overlaid on the track itself.
+    /// Any other alignment renders it outside the track (above or below), which requires the control height to be taller than the track.
+    /// </summary>
     [Category("Appearance"), DefaultValue(ContentAlignment.MiddleCenter)]
     public ContentAlignment LabelAlignment
     {

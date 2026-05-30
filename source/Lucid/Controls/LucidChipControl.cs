@@ -45,7 +45,7 @@ public partial class LucidChipControl : UserControl
     public bool HighlightChipUnderCursor { get; set; } = true;
 
     /// <summary>
-    /// Defines if the chips in general are enabled. If <see cref="false"/> the chips selection and highlight color are not active.
+    /// Enables or disables chip interaction. When <see langword="false"/>, selection and hover highlighting are inactive.
     /// </summary>
     public bool ChipsEnabled { get; set; } = true;
 
@@ -237,24 +237,30 @@ public partial class LucidChipControl : UserControl
     #region Custom events
 
     /// <summary>
-    /// This event fires when an chip is selected
+    /// Raised when a chip transitions from unselected to selected.
     /// </summary>
     public event OnChipSelectedHandler OnChipSelected;
 
+    /// <param name="newSelectedChip">The chip whose selection state changed.</param>
+    /// <param name="allSelectedChips">All chips that are currently selected.</param>
     public delegate void OnChipSelectedHandler(Chip newSelectedChip, List<Chip> allSelectedChips);
 
     /// <summary>
-    /// This event fires when an chip selection is changed
+    /// Raised whenever the selection state of any chip changes (select or deselect).
     /// </summary>
     public event OnChipSelectionChangedHandler OnChipSelectionChanged;
 
+    /// <param name="newSelectedChip">The chip whose selection state changed.</param>
+    /// <param name="allSelectedChips">All chips that are currently selected after the change.</param>
     public delegate void OnChipSelectionChangedHandler(Chip newSelectedChip, List<Chip> allSelectedChips);
 
     /// <summary>
-    /// This event fires when an chip is deleted by clicking on it
+    /// Raised after a chip is removed from <see cref="Chips"/> via the delete icon.
+    /// Only fires when <see cref="AllowChipDeletion"/> is <see langword="true"/>.
     /// </summary>
     public event OnChipDeletedHandler OnChipDeleted;
 
+    /// <param name="deletedChip">The chip that was removed.</param>
     public delegate void OnChipDeletedHandler(Chip deletedChip);
 
     #endregion
@@ -389,8 +395,12 @@ public partial class LucidChipControl : UserControl
     }
 }
 
+/// <summary>
+/// Represents a single chip rendered inside a <see cref="LucidChipControl"/>.
+/// </summary>
 public class Chip
 {
+    /// <summary>Whether this chip is currently selected by the user.</summary>
     public bool IsSelected { get; internal set; } = false;
 
     internal bool IsHot { get; set; } = false;
@@ -399,21 +409,36 @@ public class Chip
 
     internal Rectangle DeleteRectangle { get; set; } = Rectangle.Empty;
 
+    /// <summary>The label text rendered inside the chip.</summary>
     public string Text { get; set; }
 
+    /// <summary>Primary background color of the chip. Use <see cref="Color.Empty"/> for the default light grey.</summary>
     public Color BackColor { get; set; }
 
+    /// <summary>
+    /// Secondary background color used for the gradient surround when <see cref="ShowGradientIfAvailable"/> is <see langword="true"/>.
+    /// Ignored when <see cref="Color.Empty"/>.
+    /// </summary>
     public Color BackColor2 { get; set; }
 
+    /// <summary>When <see langword="false"/> the chip is skipped during rendering.</summary>
     public bool Visible { get; set; } = true;
 
+    /// <summary>
+    /// When <see langword="true"/> and <see cref="BackColor2"/> is set, the chip is painted with a radial gradient
+    /// instead of a flat fill.
+    /// </summary>
     public bool ShowGradientIfAvailable { get; set; } = false;
 
+    /// <summary>Arbitrary user data attached to this chip.</summary>
     public object Tag { get; set; }
 }
 
+/// <summary>Controls how many chips can be selected simultaneously in a <see cref="LucidChipControl"/>.</summary>
 public enum SelectionMode
 {
+    /// <summary>At most one chip can be selected at a time.</summary>
     Single,
+    /// <summary>Any number of chips can be selected simultaneously.</summary>
     Multiple
 }

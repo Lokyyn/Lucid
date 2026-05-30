@@ -4,12 +4,20 @@ using System.ComponentModel;
 
 namespace Lucid.Docking;
 
+/// <summary>
+/// Root container for the docking system. Hosts <see cref="LucidDocument"/> instances in the centre
+/// tab area and <see cref="LucidToolWindow"/> instances in the left, right, and bottom regions.
+/// Drop this control onto a form and call <see cref="AddContent"/> to populate it.
+/// </summary>
 public class LucidDockPanel : UserControl
 {
     #region Event Region
 
+    /// <summary>Raised when the focused/active content changes.</summary>
     public event EventHandler<DockContentEventArgs> ActiveContentChanged;
+    /// <summary>Raised after any content is successfully added to the panel.</summary>
     public event EventHandler<DockContentEventArgs> ContentAdded;
+    /// <summary>Raised after any content is removed from the panel.</summary>
     public event EventHandler<DockContentEventArgs> ContentRemoved;
 
     #endregion
@@ -26,6 +34,10 @@ public class LucidDockPanel : UserControl
 
     #region Property Region
 
+    /// <summary>
+    /// Gets or sets the content that currently has focus.
+    /// Setting this property brings the content's tab to the front and raises <see cref="ActiveContentChanged"/>.
+    /// </summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public LucidDockContent ActiveContent
@@ -54,14 +66,17 @@ public class LucidDockPanel : UserControl
         }
     }
 
+    /// <summary>The dock region that contains <see cref="ActiveContent"/>.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public LucidDockRegion ActiveRegion { get; internal set; }
 
+    /// <summary>The dock group that contains <see cref="ActiveContent"/>.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public LucidDockGroup ActiveGroup { get; internal set; }
 
+    /// <summary>The currently visible <see cref="LucidDocument"/> in the centre document area.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public LucidDockContent ActiveDocument
@@ -72,18 +87,22 @@ public class LucidDockPanel : UserControl
         }
     }
 
+    /// <summary>Message filter that handles drag-and-drop repositioning of dock content.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public DockContentDragFilter DockContentDragFilter { get; private set; }
 
+    /// <summary>Message filter that handles splitter resize interactions.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public DockResizeFilter DockResizeFilter { get; private set; }
 
+    /// <summary>All splitter controls that separate dock regions from each other.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public List<LucidDockSplitter> Splitters { get; private set; }
 
+    /// <summary>Current mouse button state, used internally during drag operations.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public MouseButtons MouseButtonState
@@ -95,6 +114,7 @@ public class LucidDockPanel : UserControl
         }
     }
 
+    /// <summary>Map of all four <see cref="LucidDockArea"/> values to their corresponding dock regions.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Dictionary<LucidDockArea, LucidDockRegion> Regions
@@ -127,11 +147,21 @@ public class LucidDockPanel : UserControl
 
     #region Method Region
 
+    /// <summary>
+    /// Adds <paramref name="dockContent"/> to the panel using its <see cref="LucidDockContent.DefaultDockArea"/>.
+    /// </summary>
+    /// <param name="dockContent">The content to add.</param>
     public void AddContent(LucidDockContent dockContent)
     {
         AddContent(dockContent, null);
     }
 
+    /// <summary>
+    /// Adds <paramref name="dockContent"/> to the panel, optionally placing it into an existing <paramref name="dockGroup"/>.
+    /// If content with the same <see cref="LucidDockContent.UniqueDockId"/> already exists it is replaced.
+    /// </summary>
+    /// <param name="dockContent">The content to add.</param>
+    /// <param name="dockGroup">Target group to add the content into, or <see langword="null"/> to use the default area.</param>
     public void AddContent(LucidDockContent dockContent, LucidDockGroup dockGroup)
     {
         if (_contents.Contains(dockContent))
@@ -170,6 +200,13 @@ public class LucidDockPanel : UserControl
         dockContent.Select();
     }
 
+    /// <summary>
+    /// Inserts <paramref name="dockContent"/> relative to an existing <paramref name="dockGroup"/>
+    /// according to <paramref name="insertType"/> (e.g. before or after).
+    /// </summary>
+    /// <param name="dockContent">The content to insert.</param>
+    /// <param name="dockGroup">The reference group that determines the insertion position.</param>
+    /// <param name="insertType">Whether to place the content before or after <paramref name="dockGroup"/>.</param>
     public void InsertContent(LucidDockContent dockContent, LucidDockGroup dockGroup, DockInsertType insertType)
     {
         if (_contents.Contains(dockContent))
@@ -189,6 +226,10 @@ public class LucidDockPanel : UserControl
         dockContent.Select();
     }
 
+    /// <summary>
+    /// Removes <paramref name="dockContent"/> from the panel. Has no effect if the content is not currently hosted here.
+    /// </summary>
+    /// <param name="dockContent">The content to remove.</param>
     public void RemoveContent(LucidDockContent dockContent)
     {
         if (!_contents.Contains(dockContent))
@@ -204,11 +245,14 @@ public class LucidDockPanel : UserControl
             ContentRemoved(this, new DockContentEventArgs(dockContent));
     }
 
+    /// <summary>Returns <see langword="true"/> when <paramref name="dockContent"/> is currently hosted in this panel.</summary>
+    /// <param name="dockContent">The content to look up.</param>
     public bool ContainsContent(LucidDockContent dockContent)
     {
         return _contents.Contains(dockContent);
     }
 
+    /// <summary>Returns all <see cref="LucidDocument"/> instances currently in the document area.</summary>
     public List<LucidDockContent> GetDocuments()
     {
         return _regions[LucidDockArea.Document].GetContents();
@@ -242,6 +286,8 @@ public class LucidDockPanel : UserControl
         leftRegion.TabIndex = 3;
     }
 
+    /// <summary>Initiates a drag operation for <paramref name="content"/>, allowing the user to reposition it.</summary>
+    /// <param name="content">The content to start dragging.</param>
     public void DragContent(LucidDockContent content)
     {
         DockContentDragFilter.StartDrag(content);
@@ -251,6 +297,10 @@ public class LucidDockPanel : UserControl
 
     #region Serialization Region
 
+    /// <summary>
+    /// Captures the current layout (regions, groups, visible tabs, and region sizes) as a
+    /// serializable <see cref="DockPanelState"/> snapshot that can be persisted and later restored.
+    /// </summary>
     public DockPanelState GetDockPanelState()
     {
         var state = new DockPanelState();
@@ -292,6 +342,15 @@ public class LucidDockPanel : UserControl
         return state;
     }
 
+    /// <summary>
+    /// Restores a previously captured layout snapshot, re-adding all content in the correct regions,
+    /// groups, and tab order.
+    /// </summary>
+    /// <param name="state">The snapshot produced by <see cref="GetDockPanelState"/>.</param>
+    /// <param name="getContentBySerializationKey">
+    /// A factory callback that maps a <see cref="LucidDockContent.SerializationKey"/> back to the
+    /// corresponding content instance. Return <see langword="null"/> to skip a key.
+    /// </param>
     public void RestoreDockPanelState(DockPanelState state, Func<string, LucidDockContent> getContentBySerializationKey)
     {
         foreach (var region in state.Regions)

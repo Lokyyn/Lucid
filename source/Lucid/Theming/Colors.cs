@@ -31,6 +31,8 @@ public class Colors
     /// <remarks>Replaces: LighterBackground, GreyHighlight, DockInactive, InactivScrollbar</remarks>
     public Color SurfaceDefault { get; set; }
 
+    // Borders
+
     /// <summary>
     /// Stronger highlight for selected or active surface areas
     /// (e.g. selected list item, pressed button bg, scrollbar thumb hover).
@@ -39,6 +41,8 @@ public class Colors
     public Color SurfaceHighlight { get; set; }
 
     // Borders
+
+    // Accent / Brand
 
     /// <summary>
     /// Neutral border for separators, panel edges and control outlines.

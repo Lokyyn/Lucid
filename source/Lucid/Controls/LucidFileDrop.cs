@@ -8,19 +8,32 @@ public partial class LucidFileDrop : UserControl
 {
     private bool _IsDataDraggedOver = false;
 
+    /// <summary>
+    /// Text displayed in the centre of the control while no drag operation is active.
+    /// </summary>
     public string DisplayText { get; set; } = "Sample Text";
 
+    /// <summary>
+    /// Text displayed in the centre of the control while the user drags files over it.
+    /// </summary>
     public string DisplayTextDragOver { get; set; } = "Sample Drag Over Text";
 
+    /// <summary>
+    /// File extensions (e.g. <c>".png"</c>, <c>".txt"</c>) that are accepted on drop.
+    /// Files whose extension is not in this list are silently ignored.
+    /// An empty list means all extensions are accepted.
+    /// </summary>
     public List<string> AllowedFileExtensions { get; set; } = new List<string>();
 
     #region Events
 
     /// <summary>
-    /// This event fires when files are dropped over the control. Only files with extensions that are contained in <see cref="AllowedFileExtensions"/> are considered.
+    /// Raised after files are dropped onto the control.
+    /// Only paths whose extension matches an entry in <see cref="AllowedFileExtensions"/> are included.
     /// </summary>
     public event FilesDroppedHandler FilesDropped;
 
+    /// <param name="droppedFiles">Full paths of the accepted dropped files.</param>
     public delegate void FilesDroppedHandler(List<string> droppedFiles);
 
     #endregion

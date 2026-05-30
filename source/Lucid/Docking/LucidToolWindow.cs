@@ -3,6 +3,11 @@ using System.ComponentModel;
 
 namespace Lucid.Docking;
 
+/// <summary>
+/// A panel that docks to the left, right, or bottom edge of a <see cref="LucidDockPanel"/>.
+/// Renders a themed title bar with a close button and supports drag-to-reposition.
+/// Inherit from this class to create custom tool windows (e.g. Properties, Output, Explorer).
+/// </summary>
 [ToolboxItem(false)]
 public class LucidToolWindow : LucidDockContent
 {

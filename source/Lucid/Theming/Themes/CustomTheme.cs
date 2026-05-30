@@ -1,4 +1,4 @@
-﻿namespace Lucid.Theming.Themes;
+namespace Lucid.Theming.Themes;
 
 internal class CustomTheme : ITheme
 {
@@ -20,6 +20,7 @@ internal class CustomTheme : ITheme
 
     public CustomTheme()
     {
+        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41");
 
        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41");        // Standard Background Color for Controls
 
@@ -68,6 +69,5 @@ internal class CustomTheme : ITheme
         Sizes.ToolWindowHeaderSize = 25;
         Sizes.DocumentTabAreaSize = 24;
         Sizes.ToolWindowTabAreaSize = 21;
-
     }
 }
