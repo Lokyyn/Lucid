@@ -86,7 +86,10 @@ public class ThemeProvider
             var accentLight = new CustomAccentLightTheme() { Enabled = true };
 
             accentDark.Colors.Accent = ManagerOS.GetAccentColor();
+            accentDark.Colors.Accent = System.Windows.Forms.ControlPaint.Dark(ManagerOS.GetAccentColor(), 0.1f);
+
             accentLight.Colors.Accent = ManagerOS.GetAccentColor();
+            accentLight.Colors.Accent = System.Windows.Forms.ControlPaint.Dark(ManagerOS.GetAccentColor(), 0.1f);
 
             _allThemes.Add(accentDark);
             _allThemes.Add(accentLight);

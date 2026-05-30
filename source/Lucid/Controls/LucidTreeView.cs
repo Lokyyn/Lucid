@@ -1469,6 +1469,7 @@ public class LucidTreeView : LucidScrollView
             var width = (int)node.ProgressbarSize;
             var percentage = node.ProgressBarPercentage;
 
+            using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
             using (var gState = new SaveableGraphicsState(g))
             using (var brushBack = new SolidBrush(progressBarBackColor))
             using (var brushFill = new SolidBrush(progressBarFillColor))

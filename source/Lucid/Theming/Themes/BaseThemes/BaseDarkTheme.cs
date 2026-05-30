@@ -1,7 +1,7 @@
 namespace Lucid.Theming.Themes.BaseThemes;
 
 /// <summary>
-/// Functions as the base for all themes that are based on dark colors
+/// Functions as the base for all themes that are based on dark colors.
 /// </summary>
 public abstract class BaseDarkTheme : ITheme
 {
@@ -26,30 +26,36 @@ public abstract class BaseDarkTheme : ITheme
         Colors = new Colors();
         Sizes = new Sizes();
 
-        Colors.BackgroundPrimary   = ColorTranslator.FromHtml("#2b2b2b");
-        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41");
-        Colors.BackgroundTertiary  = ColorTranslator.FromHtml("#464646");
+        // Backgrounds
+        Colors.BackgroundPrimary   = ColorTranslator.FromHtml("#1e1f22"); // deepest shell / sidebar
+        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#2b2d30"); // standard form / panel bg
+        Colors.BackgroundTertiary  = ColorTranslator.FromHtml("#393b40"); // elevated surface / alt rows
 
-        Colors.SurfaceDefault      = ColorTranslator.FromHtml("#4e5457");
-        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#5c5c5c");
+        // Surface / Interaction States
+        Colors.SurfaceDefault      = ColorTranslator.FromHtml("#43454a"); // hover, inactive dock, scrollbar track
+        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#2d4f7c"); // selection, active thumb, pressed
 
-        Colors.BorderDefault       = ColorTranslator.FromHtml("#515151");
-        Colors.BorderAccent        = ColorTranslator.FromHtml("#566172");
+        // Borders
+        Colors.BorderDefault       = ColorTranslator.FromHtml("#4a4d52"); // panel edges, separators
+        Colors.BorderAccent        = ColorTranslator.FromHtml("#4d8fd9"); // focused / active control outline
 
-        Colors.Accent              = ColorTranslator.FromHtml("#4b6eaf");
-        Colors.AccentSecondary     = ColorTranslator.FromHtml("#343942");
+        // Accent
+        Colors.Accent              = ColorTranslator.FromHtml("#5b9bd5"); // selections, links, dock highlight
+        Colors.AccentSecondary     = ColorTranslator.FromHtml("#1c3c6e"); // hovered links, secondary badge
 
-        Colors.TextPrimary         = ColorTranslator.FromHtml("#dcdcdc");
-        Colors.TextDisabled        = ColorTranslator.FromHtml("#999999");
+        // Text
+        Colors.TextPrimary         = ColorTranslator.FromHtml("#dde1e7"); // all readable content
+        Colors.TextDisabled        = ColorTranslator.FromHtml("#9da3b4"); // disabled / hint text
 
-        Sizes.Padding = 10;
-        Sizes.ScrollBarSize = 15;
-        Sizes.ArrowButtonSize = 15;
-        Sizes.MinimumThumbSize = 11;
-        Sizes.CheckBoxSize = 12;
-        Sizes.RadioButtonSize = 12;
+        // Sizes (unchanged)
+        Sizes.Padding              = 10;
+        Sizes.ScrollBarSize        = 15;
+        Sizes.ArrowButtonSize      = 15;
+        Sizes.MinimumThumbSize     = 11;
+        Sizes.CheckBoxSize         = 12;
+        Sizes.RadioButtonSize      = 12;
         Sizes.ToolWindowHeaderSize = 25;
-        Sizes.DocumentTabAreaSize = 24;
+        Sizes.DocumentTabAreaSize  = 24;
         Sizes.ToolWindowTabAreaSize = 21;
     }
 }

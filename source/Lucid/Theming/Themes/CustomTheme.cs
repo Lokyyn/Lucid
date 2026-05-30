@@ -22,18 +22,43 @@ internal class CustomTheme : ITheme
     {
         Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41");
 
-        Colors.SurfaceDefault   = ColorTranslator.FromHtml("#02f47f");
-        Colors.Accent           = ColorTranslator.FromHtml("#0277f4");
+       Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41");        // Standard Background Color for Controls
 
-        Colors.BackgroundTertiary  = Color.FromArgb(102, 106, 108);
-        Colors.AccentSecondary     = Color.FromArgb(186, 104, 173);
+        Colors.SurfaceDefault = ColorTranslator.FromHtml("#02f47f");
+        Colors.Accent = ColorTranslator.FromHtml("#0277f4");
 
-        Colors.BackgroundPrimary   = Color.FromArgb(43, 43, 43);
-        Colors.BorderDefault       = Color.FromArgb(81, 81, 81);
-        Colors.TextPrimary         = Color.FromArgb(220, 220, 220);
-        Colors.TextDisabled        = Color.FromArgb(153, 153, 153);
-        Colors.SurfaceHighlight    = Color.FromArgb(92, 92, 92);
-        Colors.BorderAccent        = Color.FromArgb(86, 97, 114);
+        // Dock
+        Colors.BackgroundTertiary = Color.FromArgb(102, 106, 108);      // Color for Dock-Background
+        Colors.BackgroundSecondary = Color.FromArgb(186, 104, 173);    // Color for Dock-Header (inactiv)
+        Colors.Accent = Color.FromArgb(186, 104, 104);      // Color for Dock-Header
+        Colors.Accent = ColorTranslator.FromHtml("#611cce");
+        // Dock
+
+
+        // List
+        Colors.BackgroundTertiary = ColorTranslator.FromHtml("#e2330f"); // red
+        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#1a13dd"); // blue
+
+        // List
+
+        Colors.AccentSecondary = Color.FromArgb(52, 57, 66);
+        Colors.BackgroundPrimary = Color.FromArgb(43, 43, 43);
+        Colors.BackgroundPrimary = Color.FromArgb(49, 51, 53);
+        Colors.BackgroundTertiary = Color.FromArgb(69, 73, 74);
+        Colors.SurfaceDefault = Color.FromArgb(95, 101, 102);
+        Colors.SurfaceHighlight = Color.FromArgb(178, 178, 178);
+        Colors.BorderDefault = Color.FromArgb(81, 81, 81);
+        Colors.BorderDefault = Color.FromArgb(51, 51, 51);
+        Colors.TextPrimary = Color.FromArgb(220, 220, 220);
+        Colors.TextDisabled = Color.FromArgb(153, 153, 153);
+        Colors.Accent = Color.FromArgb(104, 151, 187);
+        Colors.Accent = Color.FromArgb(186, 104, 104);        // Dock Move Highlight Color
+        Colors.SurfaceDefault = Color.FromArgb(122, 128, 132);
+        Colors.SurfaceHighlight = Color.FromArgb(92, 92, 92);
+        Colors.SurfaceHighlight = Color.FromArgb(82, 82, 82);
+        Colors.BorderAccent = Color.FromArgb(51, 61, 78);
+        Colors.BorderAccent = Color.FromArgb(86, 97, 114);
+        Colors.SurfaceHighlight = Color.FromArgb(159, 178, 196);   
 
         Sizes.Padding = 10;
         Sizes.ScrollBarSize = 15;

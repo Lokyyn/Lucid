@@ -15,6 +15,10 @@ public partial class LucidSampleForm : Form
         Application.AddMessageFilter(lucidDockPanel.DockContentDragFilter);
         Application.AddMessageFilter(lucidDockPanel.DockResizeFilter);
 
+        //Theming.ThemeProvider.Theme = new Theming.Themes.DarkGreenTheme();
+        //Theming.ThemeProvider.Theme = new Theming.Themes.DarkPurpleTheme();
+        //Theming.ThemeProvider.Theme = new Theming.Themes.LightTealTheme();
+
         AddToolWindows();
         AddPages();
     }
