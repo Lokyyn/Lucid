@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-05-30
+
 ### Added
 - Added three new built-in themes: `Dark Green`, `Dark Purple`, and `Light Teal`
 
 ### Changed
+- Upgraded target framework from .NET 8 to .NET 10
 - Introduced new semantic color tokens (`BackgroundPrimary`, `BackgroundSecondary`, `BackgroundTertiary`, `SurfaceDefault`, `SurfaceHighlight`, `BorderDefault`, `BorderAccent`, `Accent`, `AccentSecondary`, `TextPrimary`, `TextDisabled`) on the `Colors` class
 - All old color properties (e.g. `MainAccent`, `LightText`, `DarkBackground`, `GreySelection`) are now marked `[Obsolete]` and delegate to the new tokens — existing code continues to compile with a warning
 - Updated `BaseDarkTheme` and `BaseLightTheme` to set the new color tokens directly
