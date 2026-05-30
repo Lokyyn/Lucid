@@ -27,25 +27,25 @@ public abstract class BaseDarkTheme : ITheme
         Sizes = new Sizes();
 
         // Backgrounds
-        Colors.BackgroundPrimary   = ColorTranslator.FromHtml("#2b2b2b"); // deepest shell / sidebar
-        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#3c3f41"); // standard form / panel bg
-        Colors.BackgroundTertiary  = ColorTranslator.FromHtml("#464646"); // elevated surface / alt rows
+        Colors.BackgroundPrimary   = ColorTranslator.FromHtml("#1e1f22"); // deepest shell / sidebar
+        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#2b2d30"); // standard form / panel bg
+        Colors.BackgroundTertiary  = ColorTranslator.FromHtml("#393b40"); // elevated surface / alt rows
 
         // Surface / Interaction States
-        Colors.SurfaceDefault      = ColorTranslator.FromHtml("#4e5457"); // hover, inactive dock, scrollbar track
-        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#5c5c5c"); // selection, active thumb, pressed
+        Colors.SurfaceDefault      = ColorTranslator.FromHtml("#43454a"); // hover, inactive dock, scrollbar track
+        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#2d4f7c"); // selection, active thumb, pressed
 
         // Borders
-        Colors.BorderDefault       = ColorTranslator.FromHtml("#515151"); // panel edges, separators
-        Colors.BorderAccent        = ColorTranslator.FromHtml("#566172"); // focused / active control outline
+        Colors.BorderDefault       = ColorTranslator.FromHtml("#4a4d52"); // panel edges, separators
+        Colors.BorderAccent        = ColorTranslator.FromHtml("#4d8fd9"); // focused / active control outline
 
         // Accent
-        Colors.Accent              = ColorTranslator.FromHtml("#4b6eaf"); // selections, links, dock highlight
-        Colors.AccentSecondary     = ColorTranslator.FromHtml("#343942"); // hovered links, secondary badge
+        Colors.Accent              = ColorTranslator.FromHtml("#5b9bd5"); // selections, links, dock highlight
+        Colors.AccentSecondary     = ColorTranslator.FromHtml("#1c3c6e"); // hovered links, secondary badge
 
         // Text
-        Colors.TextPrimary         = ColorTranslator.FromHtml("#dcdcdc"); // all readable content
-        Colors.TextDisabled        = ColorTranslator.FromHtml("#999999"); // disabled / hint text
+        Colors.TextPrimary         = ColorTranslator.FromHtml("#dde1e7"); // all readable content
+        Colors.TextDisabled        = ColorTranslator.FromHtml("#9da3b4"); // disabled / hint text
 
         // Sizes (unchanged)
         Sizes.Padding              = 10;

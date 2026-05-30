@@ -27,25 +27,25 @@ public abstract class BaseLightTheme : ITheme
         Sizes = new Sizes();
 
         // ── Backgrounds ───────────────────────────────────────────────────────
-        Colors.BackgroundPrimary   = ColorTranslator.FromHtml("#a0a0a0"); // deepest shell / sidebar
-        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#b4b7b9"); // standard form / panel bg
-        Colors.BackgroundTertiary  = ColorTranslator.FromHtml("#c7cbcd"); // elevated surface / alt rows
+        Colors.BackgroundPrimary   = ColorTranslator.FromHtml("#e8e8e8"); // deepest shell / sidebar
+        Colors.BackgroundSecondary = ColorTranslator.FromHtml("#f5f5f5"); // standard form / panel bg
+        Colors.BackgroundTertiary  = ColorTranslator.FromHtml("#ffffff"); // elevated surface / alt rows
 
         // ── Surface / Interaction States ──────────────────────────────────────
-        Colors.SurfaceDefault      = ColorTranslator.FromHtml("#919596"); // hover, inactive dock, scrollbar track
-        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#a8aeb0"); // selection, active thumb, pressed
+        Colors.SurfaceDefault      = ColorTranslator.FromHtml("#d8d8d8"); // hover, inactive dock, scrollbar track
+        Colors.SurfaceHighlight    = ColorTranslator.FromHtml("#77b2e8"); // selection, active thumb, pressed
 
         // ── Borders ───────────────────────────────────────────────────────────
-        Colors.BorderDefault       = ColorTranslator.FromHtml("#c9c9c9"); // panel edges, separators
-        Colors.BorderAccent        = ColorTranslator.FromHtml("#5098dd"); // focused / active control outline
+        Colors.BorderDefault       = ColorTranslator.FromHtml("#d0d0d0"); // panel edges, separators
+        Colors.BorderAccent        = ColorTranslator.FromHtml("#0078d4"); // focused / active control outline
 
         // ── Accent ────────────────────────────────────────────────────────────
-        Colors.Accent              = ColorTranslator.FromHtml("#0082d6"); // selections, links, dock highlight
-        Colors.AccentSecondary     = ColorTranslator.FromHtml("#5d7bdb"); // hovered links, secondary badge
+        Colors.Accent              = ColorTranslator.FromHtml("#0078d4"); // selections, links, dock highlight
+        Colors.AccentSecondary     = ColorTranslator.FromHtml("#005ba1"); // hovered links, secondary badge
 
         // ── Text ──────────────────────────────────────────────────────────────
-        Colors.TextPrimary         = ColorTranslator.FromHtml("#141414"); // all readable content
-        Colors.TextDisabled        = ColorTranslator.FromHtml("#676767"); // disabled / hint text
+        Colors.TextPrimary         = ColorTranslator.FromHtml("#1e1e1e"); // all readable content
+        Colors.TextDisabled        = ColorTranslator.FromHtml("#696969"); // disabled / hint text (WCAG AA on white)
 
         // ── Sizes (unchanged) ─────────────────────────────────────────────────
         Sizes.Padding              = 10;
