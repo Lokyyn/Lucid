@@ -18,6 +18,11 @@ All notable changes to this project will be documented in this file.
 - Revised `Dark` and `Light` theme color values for improved contrast and accessibility (WCAG AA compliance for text)
 - Inactive document and tool window tabs now use `TextPrimary` instead of `TextDisabled` for better readability
 
+### Breaking Changes
+- `Colors` is now a `record class` — individual color properties are `init`-only and can no longer be mutated after construction; use `Colors = Colors with { Accent = ... }` to derive a modified copy
+- All deprecated `Colors` properties (`MainAccent`, `DarkBackground`, `LightText`, etc.) have been removed
+- `Consts2` class (`Theming/Consts.cs`) has been removed — use `ThemeProvider.Theme.Sizes` instead
+
 
 ## [1.5.0] - 2026-05-21
 
