@@ -11,16 +11,11 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Upgraded target framework from .NET 8 to .NET 10
-- Introduced new semantic color tokens (`BackgroundPrimary`, `BackgroundSecondary`, `BackgroundTertiary`, `SurfaceDefault`, `SurfaceHighlight`, `BorderDefault`, `BorderAccent`, `Accent`, `AccentSecondary`, `TextPrimary`, `TextDisabled`) on the `Colors` class
-- All old color properties (e.g. `MainAccent`, `LightText`, `DarkBackground`, `GreySelection`) are now marked `[Obsolete]` and delegate to the new tokens — existing code continues to compile with a warning
-- Updated `BaseDarkTheme` and `BaseLightTheme` to set the new color tokens directly
-- All internal controls and renderers migrated to the new color tokens
 - Revised `Dark` and `Light` theme color values for improved contrast and accessibility (WCAG AA compliance for text)
 - Inactive document and tool window tabs now use `TextPrimary` instead of `TextDisabled` for better readability
 
 ### Breaking Changes
-- `Colors` is now a `record class` — individual color properties are `init`-only and can no longer be mutated after construction; use `Colors = Colors with { Accent = ... }` to derive a modified copy
-- All deprecated `Colors` properties (`MainAccent`, `DarkBackground`, `LightText`, etc.) have been removed
+- All deprecated `Colors` properties (`MainAccent`, `DarkBackground`, `LightText`, etc.) have been fully removed — the semantic tokens introduced in v1.5.0 (`Accent`, `BackgroundPrimary`, `TextPrimary`, …) are now the only supported API
 - `Consts2` class (`Theming/Consts.cs`) has been removed — use `ThemeProvider.Theme.Sizes` instead
 
 
