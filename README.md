@@ -41,6 +41,7 @@ Install-Package LucidUI
 | `LucidComboBox` | |
 | `LucidNumericUpDown` | |
 | `LucidDropdownList` | Fully custom-drawn dropdown backed by `LucidDropdownItem` objects, independent of the native ComboBox. |
+| `LucidSlider` | Themed slider with `SingleValue` and `Range` mode (two handles). Supports configurable min/max/step, optional value label, and tick marks. |
 
 ### Display & Layout
 
