@@ -39,8 +39,8 @@ public abstract class BaseLightTheme : ITheme
             BorderAccent        = ColorTranslator.FromHtml("#0078d4"), // focused / active control outline
 
             // Accent
-            Accent              = ColorTranslator.FromHtml("#0078d4"), // selections, links, dock highlight
-            AccentSecondary     = ColorTranslator.FromHtml("#005ba1"), // hovered links, secondary badge
+            Accent              = ColorTranslator.FromHtml("#0082d6"), // selections, links, dock highlight
+            AccentSecondary     = ColorTranslator.FromHtml("#5d7bdb"), // hovered links, secondary badge
 
             // Text
             TextPrimary         = ColorTranslator.FromHtml("#1e1e1e"), // all readable content
