@@ -1463,8 +1463,8 @@ public class LucidTreeView : LucidScrollView
         // 5. Draw Badge Progressbar
         if (node.ShowProgressBar)
         {
-            var progressBarBackColor = ColorTranslator.FromHtml("#939dd5");
-            var progressBarFillColor = ColorTranslator.FromHtml("#5c6bc0");
+            var progressBarBackColor = ThemeProvider.Theme.Colors.SurfaceDefault;
+            var progressBarFillColor = ThemeProvider.Theme.Colors.Accent;
 
             var width = (int)node.ProgressbarSize;
             var percentage = node.ProgressBarPercentage;
@@ -1504,7 +1504,6 @@ public class LucidTreeView : LucidScrollView
             var badgeForeColor = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.ForeColor ?? ColorTranslator.FromHtml("#ffffff");
 
             using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
-            using (var pr = new Pen(Color.Red))
             using (var b = new SolidBrush(badgeBackColor))
             using (var bF = new SolidBrush(badgeForeColor))
             using (var gState = new SaveableGraphicsState(g))

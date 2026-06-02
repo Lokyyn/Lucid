@@ -38,6 +38,10 @@ public partial class MainPage : LucidDocument
         "Same-Day Delivery"
     };
 
+    private Controls.LucidPerformanceToolTip? _ttRevenue;
+    private Controls.LucidPerformanceToolTip? _ttVisits;
+    private Controls.LucidPerformanceToolTip? _ttChurn;
+
     public MainPage()
     {
         InitializeComponent();
@@ -45,11 +49,34 @@ public partial class MainPage : LucidDocument
         SetUpChipControl();
         SetUpComboBox();
         SetUpTreeView();
+        SetUpTextBoxes();
+        SetUpPerformanceToolTips();
+    }
+
+    private void SetUpPerformanceToolTips()
+    {
+        _ttRevenue = new Controls.LucidPerformanceToolTip { Difference = 15.3 };
+        _ttRevenue.Set(lbTTDemo1, "Revenue");
+
+        _ttVisits = new Controls.LucidPerformanceToolTip { Difference = 0 };
+        _ttVisits.Set(lbTTDemo2, "Visits");
+
+        _ttChurn = new Controls.LucidPerformanceToolTip { Difference = -8.7 };
+        _ttChurn.Set(lbTTDemo3, "Churn");
+
+        // plain themed tooltip — no Difference set
+        var plainTooltip = new Controls.LucidPerformanceToolTip();
+        plainTooltip.SetToolTip(lucidButtonNormal, "Themed tooltip without performance indicator");
+    }
+
+    private void SetUpTextBoxes()
+    {
+        lucidTextBox2.Text = "Clear me";
     }
 
     private void SetUpComboBox()
     {
-        lucidComboBox1.Items.AddRange(new object[] { "Dark Theme", "Light Theme", "Custom Theme" });
+        lucidComboBox1.Items.AddRange(new object[] { "Dark Theme", "Light Theme", "Custom Theme", "Some other", "item", "in this", "control.", "This", "list", "has", "many", "entries" });
         lucidComboBox1.SelectedIndex = 0;
     }
 

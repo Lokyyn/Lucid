@@ -415,7 +415,6 @@ public class LucidButton : Button
         else if (ButtonStyle == LucidButtonStyle.Rounded)
         {
             using (var p = new Pen(borderColor, 1))
-            using (var pr = new Pen(Color.Red, 1))
             using (var b = new SolidBrush(fillColor))
             {
                 g.SmoothingMode = SmoothingMode.HighQuality;
@@ -501,15 +500,4 @@ public class LucidButton : Button
 
     #endregion
 
-    #region For Transparency
-    protected override CreateParams CreateParams
-    {
-        get
-        {
-            CreateParams cp = base.CreateParams;
-            cp.ExStyle |= 0x20; // WS_EX_TRANSPARENT
-            return cp;
-        }
-    }
-    #endregion
 }

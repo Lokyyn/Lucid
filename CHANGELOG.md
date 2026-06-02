@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-06-02
+
+### Added
+- `LucidTextBox`: `PlaceholderText` property — native cue banner that disappears on focus
+- `LucidTextBox`: `ShowClearButton` property — shows a clickable × button when the field contains text
+- `LucidTextBox`: `Icon` property — renders an image on the left side of the input
+
+### Fixed
+- Restored Accent colors for light and dark theme
+- Fix rounded LucidButton invisible until hover due to WS_EX_TRANSPARENT
+- Replace LucidComboBox with custom control, remove native scroll arrows
+
+### Changed
+- `LucidTextBox`: border now reflects focus (`Accent`), hover (`BorderAccent`), and idle (`BorderDefault`) states consistently
+- `LucidTextBox`: fixed DC leak — `ReleaseDC` is now always called after non-client area painting
+- `LucidTextBox`: border is only redrawn on `WM_NCPAINT` instead of every Windows message
+- `LucidTreeView`: node progress bar now uses theme colors (`SurfaceDefault` for track, `Accent` for fill) instead of hardcoded values
+- `LucidPerformanceToolTip`: reworked as a general-purpose themed tooltip — `Difference` is now nullable (`double?`); when not set, renders as a compact themed tooltip without the performance indicator; `SetToolTip(control, text)` works for plain use, `Set(control, text)` for performance mode
+- `LucidPerformanceToolTip`: background and text now use `BackgroundSecondary` and `TextPrimary` instead of hardcoded white/black
+- `LucidProgressBar`: center-aligned label text now uses `TextPrimary` instead of hardcoded white
+- `LucidButton`, `LucidTreeView`: removed unused debug `Color.Red` pens
+
 ## [2.0.0] - 2026-05-30
 
 ### Added
