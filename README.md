@@ -37,7 +37,7 @@ Install-Package LucidUI
 | `LucidButton` | Three styles available: `Normal`, `Flat`, and `Rounded` with configurable corner radius. |
 | `LucidCheckBox` | |
 | `LucidRadioButton` | |
-| `LucidTextBox` | |
+| `LucidTextBox` | Themed border reacts to focus (`Accent`), hover (`BorderAccent`), and idle states. Supports `PlaceholderText` (native cue banner), `ShowClearButton` (inline × to clear input), and `Icon` (left-side image). |
 | `LucidComboBox` | |
 | `LucidNumericUpDown` | |
 | `LucidDropdownList` | Fully custom-drawn dropdown backed by `LucidDropdownItem` objects, independent of the native ComboBox. |
