@@ -49,7 +49,7 @@ public partial class MainPage : LucidDocument
 
     private void SetUpComboBox()
     {
-        lucidComboBox1.Items.AddRange(new object[] { "Dark Theme", "Light Theme", "Custom Theme" });
+        lucidComboBox1.Items.AddRange(new object[] { "Dark Theme", "Light Theme", "Custom Theme", "Some other", "item", "in this", "control.", "This", "list", "has", "many", "entries" });
         lucidComboBox1.SelectedIndex = 0;
     }
 
