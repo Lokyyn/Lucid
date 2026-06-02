@@ -376,8 +376,8 @@ public partial class LucidProgressBar : Control
 
         if (_labelAlignment is ContentAlignment.MiddleCenter or ContentAlignment.MiddleLeft or ContentAlignment.MiddleRight)
         {
-            using var whiteBrush = new SolidBrush(Color.White);
-            g.DrawString(text, Font, whiteBrush, labelRect, sf);
+            using var textBrush = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary);
+            g.DrawString(text, Font, textBrush, labelRect, sf);
         }
         else
         {

@@ -1,4 +1,5 @@
-﻿using System.Drawing.Drawing2D;
+﻿using Lucid.Theming;
+using System.Drawing.Drawing2D;
 
 namespace Lucid.Controls;
 
@@ -53,8 +54,8 @@ public partial class LucidPerformanceToolTip : ToolTip
         Graphics g = e.Graphics;
 
 
-        using (SolidBrush backBrush = new SolidBrush(Color.White))
-        using (SolidBrush foreBrush = new SolidBrush(Color.Black))
+        using (SolidBrush backBrush = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
+        using (SolidBrush foreBrush = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
         {
             g.FillRectangle(backBrush, e.Bounds);
             g.DrawString(Text, _ToolTipFont, foreBrush, new Point(10, 5));

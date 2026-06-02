@@ -38,6 +38,10 @@ public partial class MainPage : LucidDocument
         "Same-Day Delivery"
     };
 
+    private Controls.LucidPerformanceToolTip? _ttRevenue;
+    private Controls.LucidPerformanceToolTip? _ttVisits;
+    private Controls.LucidPerformanceToolTip? _ttChurn;
+
     public MainPage()
     {
         InitializeComponent();
@@ -46,6 +50,19 @@ public partial class MainPage : LucidDocument
         SetUpComboBox();
         SetUpTreeView();
         SetUpTextBoxes();
+        SetUpPerformanceToolTips();
+    }
+
+    private void SetUpPerformanceToolTips()
+    {
+        _ttRevenue = new Controls.LucidPerformanceToolTip { Text = "Revenue", Difference = 15.3 };
+        _ttRevenue.Set(lbTTDemo1);
+
+        _ttVisits = new Controls.LucidPerformanceToolTip { Text = "Visits", Difference = 0 };
+        _ttVisits.Set(lbTTDemo2);
+
+        _ttChurn = new Controls.LucidPerformanceToolTip { Text = "Churn", Difference = -8.7 };
+        _ttChurn.Set(lbTTDemo3);
     }
 
     private void SetUpTextBoxes()

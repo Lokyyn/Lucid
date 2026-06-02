@@ -63,6 +63,10 @@ partial class MainPage
         lbSlider = new Lucid.Controls.LucidLabel();
         lucidSlider1 = new Lucid.Controls.LucidSlider();
         btnToggleSliderMode = new Lucid.Controls.LucidButton();
+        lbPerformanceTT = new Lucid.Controls.LucidLabel();
+        lbTTDemo1 = new Lucid.Controls.LucidLabel();
+        lbTTDemo2 = new Lucid.Controls.LucidLabel();
+        lbTTDemo3 = new Lucid.Controls.LucidLabel();
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).BeginInit();
         lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
@@ -445,11 +449,55 @@ partial class MainPage
         btnToggleSliderMode.TabIndex = 35;
         btnToggleSliderMode.Text = "Toggle Slider Mode";
         btnToggleSliderMode.Click += btnToggleSliderMode_Click;
-        // 
+        //
+        // lbPerformanceTT
+        //
+        lbPerformanceTT.AutoSize = true;
+        lbPerformanceTT.BackColor = Color.Transparent;
+        lbPerformanceTT.ForeColor = Color.FromArgb(220, 220, 220);
+        lbPerformanceTT.Location = new Point(690, 445);
+        lbPerformanceTT.Name = "lbPerformanceTT";
+        lbPerformanceTT.TabIndex = 38;
+        lbPerformanceTT.Text = "PerformanceToolTip";
+        //
+        // lbTTDemo1
+        //
+        lbTTDemo1.AutoSize = true;
+        lbTTDemo1.BackColor = Color.Transparent;
+        lbTTDemo1.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTTDemo1.Location = new Point(690, 465);
+        lbTTDemo1.Name = "lbTTDemo1";
+        lbTTDemo1.TabIndex = 39;
+        lbTTDemo1.Text = "Revenue: $142K  (hover)";
+        //
+        // lbTTDemo2
+        //
+        lbTTDemo2.AutoSize = true;
+        lbTTDemo2.BackColor = Color.Transparent;
+        lbTTDemo2.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTTDemo2.Location = new Point(690, 490);
+        lbTTDemo2.Name = "lbTTDemo2";
+        lbTTDemo2.TabIndex = 40;
+        lbTTDemo2.Text = "Visits: 8,430  (hover)";
+        //
+        // lbTTDemo3
+        //
+        lbTTDemo3.AutoSize = true;
+        lbTTDemo3.BackColor = Color.Transparent;
+        lbTTDemo3.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTTDemo3.Location = new Point(690, 515);
+        lbTTDemo3.Name = "lbTTDemo3";
+        lbTTDemo3.TabIndex = 41;
+        lbTTDemo3.Text = "Churn: 3.2%  (hover)";
+        //
         // MainPage
-        // 
+        //
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(lbTTDemo3);
+        Controls.Add(lbTTDemo2);
+        Controls.Add(lbTTDemo1);
+        Controls.Add(lbPerformanceTT);
         Controls.Add(btnToggleSliderMode);
         Controls.Add(lucidSlider1);
         Controls.Add(lbSlider);
@@ -517,6 +565,10 @@ partial class MainPage
         Controls.SetChildIndex(lbSlider, 0);
         Controls.SetChildIndex(lucidSlider1, 0);
         Controls.SetChildIndex(btnToggleSliderMode, 0);
+        Controls.SetChildIndex(lbPerformanceTT, 0);
+        Controls.SetChildIndex(lbTTDemo1, 0);
+        Controls.SetChildIndex(lbTTDemo2, 0);
+        Controls.SetChildIndex(lbTTDemo3, 0);
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).EndInit();
         lucidScrollableControl1.ResumeLayout(false);
         ResumeLayout(false);
@@ -559,4 +611,8 @@ partial class MainPage
     private Controls.LucidLabel lbSlider;
     private Controls.LucidSlider lucidSlider1;
     private Controls.LucidButton btnToggleSliderMode;
+    private Controls.LucidLabel lbPerformanceTT;
+    private Controls.LucidLabel lbTTDemo1;
+    private Controls.LucidLabel lbTTDemo2;
+    private Controls.LucidLabel lbTTDemo3;
 }

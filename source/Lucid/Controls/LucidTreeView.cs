@@ -1504,7 +1504,6 @@ public class LucidTreeView : LucidScrollView
             var badgeForeColor = node.BadgeColors.BadgeColors.FirstOrDefault(u => u.ColorId == badge.BadgeColorId)?.ForeColor ?? ColorTranslator.FromHtml("#ffffff");
 
             using (var p = new Pen(ThemeProvider.Theme.Colors.TextPrimary))
-            using (var pr = new Pen(Color.Red))
             using (var b = new SolidBrush(badgeBackColor))
             using (var bF = new SolidBrush(badgeForeColor))
             using (var gState = new SaveableGraphicsState(g))

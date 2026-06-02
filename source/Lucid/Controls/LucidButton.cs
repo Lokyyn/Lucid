@@ -415,7 +415,6 @@ public class LucidButton : Button
         else if (ButtonStyle == LucidButtonStyle.Rounded)
         {
             using (var p = new Pen(borderColor, 1))
-            using (var pr = new Pen(Color.Red, 1))
             using (var b = new SolidBrush(fillColor))
             {
                 g.SmoothingMode = SmoothingMode.HighQuality;
