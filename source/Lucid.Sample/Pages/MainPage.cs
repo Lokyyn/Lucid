@@ -55,14 +55,18 @@ public partial class MainPage : LucidDocument
 
     private void SetUpPerformanceToolTips()
     {
-        _ttRevenue = new Controls.LucidPerformanceToolTip { Text = "Revenue", Difference = 15.3 };
-        _ttRevenue.Set(lbTTDemo1);
+        _ttRevenue = new Controls.LucidPerformanceToolTip { Difference = 15.3 };
+        _ttRevenue.Set(lbTTDemo1, "Revenue");
 
-        _ttVisits = new Controls.LucidPerformanceToolTip { Text = "Visits", Difference = 0 };
-        _ttVisits.Set(lbTTDemo2);
+        _ttVisits = new Controls.LucidPerformanceToolTip { Difference = 0 };
+        _ttVisits.Set(lbTTDemo2, "Visits");
 
-        _ttChurn = new Controls.LucidPerformanceToolTip { Text = "Churn", Difference = -8.7 };
-        _ttChurn.Set(lbTTDemo3);
+        _ttChurn = new Controls.LucidPerformanceToolTip { Difference = -8.7 };
+        _ttChurn.Set(lbTTDemo3, "Churn");
+
+        // plain themed tooltip — no Difference set
+        var plainTooltip = new Controls.LucidPerformanceToolTip();
+        plainTooltip.SetToolTip(lucidButtonNormal, "Themed tooltip without performance indicator");
     }
 
     private void SetUpTextBoxes()

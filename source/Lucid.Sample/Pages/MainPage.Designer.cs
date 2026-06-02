@@ -75,7 +75,7 @@ partial class MainPage
         // 
         lucidChipControl1.AllowChipDeletion = true;
         lucidChipControl1.AllowChipSelection = true;
-        lucidChipControl1.BackColor = Color.FromArgb(60, 63, 65);
+        lucidChipControl1.BackColor = Color.FromArgb(43, 45, 48);
         lucidChipControl1.BorderStyle = BorderStyle.FixedSingle;
         lucidChipControl1.ChipsEnabled = true;
         lucidChipControl1.HighlightChipUnderCursor = true;
@@ -151,7 +151,7 @@ partial class MainPage
         // 
         lucidFileDrop1.AllowDrop = true;
         lucidFileDrop1.AllowedFileExtensions = (List<string>)resources.GetObject("lucidFileDrop1.AllowedFileExtensions");
-        lucidFileDrop1.BackColor = Color.FromArgb(60, 63, 65);
+        lucidFileDrop1.BackColor = Color.FromArgb(43, 45, 48);
         lucidFileDrop1.DisplayText = "Sample Text";
         lucidFileDrop1.DisplayTextDragOver = "Sample Drag Over Text";
         lucidFileDrop1.Location = new Point(340, 212);
@@ -163,7 +163,7 @@ partial class MainPage
         // 
         lbProgressBar.AutoSize = true;
         lbProgressBar.BackColor = Color.Transparent;
-        lbProgressBar.ForeColor = Color.FromArgb(220, 220, 220);
+        lbProgressBar.ForeColor = Color.FromArgb(221, 225, 231);
         lbProgressBar.Location = new Point(340, 82);
         lbProgressBar.Name = "lbProgressBar";
         lbProgressBar.Size = new Size(69, 15);
@@ -183,7 +183,7 @@ partial class MainPage
         // 
         lbFileDrop.AutoSize = true;
         lbFileDrop.BackColor = Color.Transparent;
-        lbFileDrop.ForeColor = Color.FromArgb(220, 220, 220);
+        lbFileDrop.ForeColor = Color.FromArgb(221, 225, 231);
         lbFileDrop.Location = new Point(340, 184);
         lbFileDrop.Name = "lbFileDrop";
         lbFileDrop.Size = new Size(51, 15);
@@ -194,7 +194,7 @@ partial class MainPage
         // 
         lbChipControl.AutoSize = true;
         lbChipControl.BackColor = Color.Transparent;
-        lbChipControl.ForeColor = Color.FromArgb(220, 220, 220);
+        lbChipControl.ForeColor = Color.FromArgb(221, 225, 231);
         lbChipControl.Location = new Point(27, 82);
         lbChipControl.Name = "lbChipControl";
         lbChipControl.Size = new Size(72, 15);
@@ -205,7 +205,7 @@ partial class MainPage
         // 
         lbInputs.AutoSize = true;
         lbInputs.BackColor = Color.Transparent;
-        lbInputs.ForeColor = Color.FromArgb(220, 220, 220);
+        lbInputs.ForeColor = Color.FromArgb(221, 225, 231);
         lbInputs.Location = new Point(27, 348);
         lbInputs.Name = "lbInputs";
         lbInputs.Size = new Size(40, 15);
@@ -213,16 +213,16 @@ partial class MainPage
         lbInputs.Text = "Inputs";
         // 
         // lucidTextBox1
-        //
+        // 
         lucidTextBox1.BorderStyle = BorderStyle.FixedSingle;
         lucidTextBox1.Location = new Point(27, 368);
         lucidTextBox1.Name = "lucidTextBox1";
         lucidTextBox1.PlaceholderText = "Enter text...";
         lucidTextBox1.Size = new Size(145, 23);
         lucidTextBox1.TabIndex = 19;
-        //
+        // 
         // lucidTextBox2
-        //
+        // 
         lucidTextBox2.BorderStyle = BorderStyle.FixedSingle;
         lucidTextBox2.Location = new Point(180, 368);
         lucidTextBox2.Name = "lucidTextBox2";
@@ -230,9 +230,9 @@ partial class MainPage
         lucidTextBox2.ShowClearButton = true;
         lucidTextBox2.Size = new Size(145, 23);
         lucidTextBox2.TabIndex = 36;
-        //
+        // 
         // lucidTextBox3
-        //
+        // 
         lucidTextBox3.BorderStyle = BorderStyle.FixedSingle;
         lucidTextBox3.Location = new Point(27, 397);
         lucidTextBox3.Name = "lucidTextBox3";
@@ -240,17 +240,17 @@ partial class MainPage
         lucidTextBox3.Size = new Size(145, 23);
         lucidTextBox3.TabIndex = 37;
         lucidTextBox3.UseSystemPasswordChar = true;
-        //
+        // 
         // lucidComboBox1
-        //
-        lucidComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
+        // 
         lucidComboBox1.Location = new Point(27, 426);
         lucidComboBox1.Name = "lucidComboBox1";
+        lucidComboBox1.SelectedIndex = -1;
         lucidComboBox1.Size = new Size(150, 24);
         lucidComboBox1.TabIndex = 20;
-        //
+        // 
         // lucidCheckBox1
-        //
+        // 
         lucidCheckBox1.BackColor = Color.Transparent;
         lucidCheckBox1.Location = new Point(27, 457);
         lucidCheckBox1.Name = "lucidCheckBox1";
@@ -258,9 +258,9 @@ partial class MainPage
         lucidCheckBox1.TabIndex = 21;
         lucidCheckBox1.Text = "CheckBox";
         lucidCheckBox1.UseBackColorProperty = false;
-        //
+        // 
         // lucidCheckBox2
-        //
+        // 
         lucidCheckBox2.BackColor = Color.Transparent;
         lucidCheckBox2.Checked = true;
         lucidCheckBox2.CheckState = CheckState.Checked;
@@ -270,9 +270,9 @@ partial class MainPage
         lucidCheckBox2.TabIndex = 22;
         lucidCheckBox2.Text = "Checked";
         lucidCheckBox2.UseBackColorProperty = false;
-        //
+        // 
         // lucidRadioButton1
-        //
+        // 
         lucidRadioButton1.AllowCustomBackColor = false;
         lucidRadioButton1.BackColor = Color.Transparent;
         lucidRadioButton1.Checked = true;
@@ -282,9 +282,9 @@ partial class MainPage
         lucidRadioButton1.TabIndex = 23;
         lucidRadioButton1.TabStop = true;
         lucidRadioButton1.Text = "Option A";
-        //
+        // 
         // lucidRadioButton2
-        //
+        // 
         lucidRadioButton2.AllowCustomBackColor = false;
         lucidRadioButton2.BackColor = Color.Transparent;
         lucidRadioButton2.Location = new Point(27, 526);
@@ -292,32 +292,32 @@ partial class MainPage
         lucidRadioButton2.Size = new Size(130, 20);
         lucidRadioButton2.TabIndex = 24;
         lucidRadioButton2.Text = "Option B";
-        //
+        // 
         // lucidNumericUpDown1
-        //
+        // 
         lucidNumericUpDown1.Location = new Point(27, 553);
         lucidNumericUpDown1.Name = "lucidNumericUpDown1";
         lucidNumericUpDown1.Size = new Size(100, 23);
         lucidNumericUpDown1.TabIndex = 25;
         lucidNumericUpDown1.Value = new decimal(new int[] { 42, 0, 0, 0 });
-        //
+        // 
         // lucidButtonNormal
-        //
+        // 
         lucidButtonNormal.BackColor = Color.Transparent;
         lucidButtonNormal.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
         lucidButtonNormal.Location = new Point(150, 550);
         lucidButtonNormal.Name = "lucidButtonNormal";
         lucidButtonNormal.Padding = new Padding(5);
         lucidButtonNormal.RoundedCornerRadius = 16;
-        lucidButtonNormal.Size = new Size(90, 28);
+        lucidButtonNormal.Size = new Size(123, 28);
         lucidButtonNormal.TabIndex = 26;
-        lucidButtonNormal.Text = "Normal";
+        lucidButtonNormal.Text = "Normal (hover)";
         // 
         // lbTreeView
         // 
         lbTreeView.AutoSize = true;
         lbTreeView.BackColor = Color.Transparent;
-        lbTreeView.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTreeView.ForeColor = Color.FromArgb(221, 225, 231);
         lbTreeView.Location = new Point(340, 348);
         lbTreeView.Name = "lbTreeView";
         lbTreeView.Size = new Size(54, 15);
@@ -383,7 +383,7 @@ partial class MainPage
         // 
         lbScrollableControl.AutoSize = true;
         lbScrollableControl.BackColor = Color.Transparent;
-        lbScrollableControl.ForeColor = Color.FromArgb(220, 220, 220);
+        lbScrollableControl.ForeColor = Color.FromArgb(221, 225, 231);
         lbScrollableControl.Location = new Point(690, 82);
         lbScrollableControl.Name = "lbScrollableControl";
         lbScrollableControl.Size = new Size(98, 15);
@@ -420,7 +420,7 @@ partial class MainPage
         // 
         lbSlider.AutoSize = true;
         lbSlider.BackColor = Color.Transparent;
-        lbSlider.ForeColor = Color.FromArgb(220, 220, 220);
+        lbSlider.ForeColor = Color.FromArgb(221, 225, 231);
         lbSlider.Location = new Point(690, 348);
         lbSlider.Name = "lbSlider";
         lbSlider.Size = new Size(36, 15);
@@ -449,49 +449,53 @@ partial class MainPage
         btnToggleSliderMode.TabIndex = 35;
         btnToggleSliderMode.Text = "Toggle Slider Mode";
         btnToggleSliderMode.Click += btnToggleSliderMode_Click;
-        //
+        // 
         // lbPerformanceTT
-        //
+        // 
         lbPerformanceTT.AutoSize = true;
         lbPerformanceTT.BackColor = Color.Transparent;
-        lbPerformanceTT.ForeColor = Color.FromArgb(220, 220, 220);
+        lbPerformanceTT.ForeColor = Color.FromArgb(221, 225, 231);
         lbPerformanceTT.Location = new Point(690, 445);
         lbPerformanceTT.Name = "lbPerformanceTT";
+        lbPerformanceTT.Size = new Size(115, 15);
         lbPerformanceTT.TabIndex = 38;
         lbPerformanceTT.Text = "PerformanceToolTip";
-        //
+        // 
         // lbTTDemo1
-        //
+        // 
         lbTTDemo1.AutoSize = true;
         lbTTDemo1.BackColor = Color.Transparent;
-        lbTTDemo1.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTTDemo1.ForeColor = Color.FromArgb(221, 225, 231);
         lbTTDemo1.Location = new Point(690, 465);
         lbTTDemo1.Name = "lbTTDemo1";
+        lbTTDemo1.Size = new Size(133, 15);
         lbTTDemo1.TabIndex = 39;
         lbTTDemo1.Text = "Revenue: $142K  (hover)";
-        //
+        // 
         // lbTTDemo2
-        //
+        // 
         lbTTDemo2.AutoSize = true;
         lbTTDemo2.BackColor = Color.Transparent;
-        lbTTDemo2.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTTDemo2.ForeColor = Color.FromArgb(221, 225, 231);
         lbTTDemo2.Location = new Point(690, 490);
         lbTTDemo2.Name = "lbTTDemo2";
+        lbTTDemo2.Size = new Size(111, 15);
         lbTTDemo2.TabIndex = 40;
         lbTTDemo2.Text = "Visits: 8,430  (hover)";
-        //
+        // 
         // lbTTDemo3
-        //
+        // 
         lbTTDemo3.AutoSize = true;
         lbTTDemo3.BackColor = Color.Transparent;
-        lbTTDemo3.ForeColor = Color.FromArgb(220, 220, 220);
+        lbTTDemo3.ForeColor = Color.FromArgb(221, 225, 231);
         lbTTDemo3.Location = new Point(690, 515);
         lbTTDemo3.Name = "lbTTDemo3";
+        lbTTDemo3.Size = new Size(115, 15);
         lbTTDemo3.TabIndex = 41;
         lbTTDemo3.Text = "Churn: 3.2%  (hover)";
-        //
+        // 
         // MainPage
-        //
+        // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         Controls.Add(lbTTDemo3);

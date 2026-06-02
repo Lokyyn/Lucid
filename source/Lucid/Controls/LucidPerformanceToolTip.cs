@@ -1,131 +1,145 @@
-﻿using Lucid.Theming;
+using Lucid.Theming;
 using System.Drawing.Drawing2D;
 
 namespace Lucid.Controls;
 
 public partial class LucidPerformanceToolTip : ToolTip
 {
+    private readonly Font _toolTipFont = new Font("Segoe UI", 10);
+    private readonly Font _diffFont = new Font("Segoe UI", 10, FontStyle.Bold);
+
+    private const int PlainPaddingH = 14;
+    private const int PlainPaddingV = 10;
+    private const int PerfHeight = 48;
+
     /// <summary>
-    /// This control can show an numeric difference with an leading triangle. If the difference is positiv the triangle is positive, if negative it will be red.
+    /// Optional numeric delta shown alongside a directional triangle.
+    /// When <see langword="null"/> (default) the tooltip renders as a plain themed tooltip.
     /// </summary>
+    public double? Difference { get; set; }
+
     public LucidPerformanceToolTip()
     {
         InitializeComponent();
         OwnerDraw = true;
-        Popup += new PopupEventHandler(this.OnPopup);
-        Draw += new DrawToolTipEventHandler(this.OnDraw);
-        
-
-        _ToolTipFont = new Font("Segoe UI", 10);
+        Popup += OnPopup;
+        Draw += OnDraw;
     }
 
     /// <summary>
-    /// This indicates the difference that is shown on the ToolTip. This value should be negative if the diffence should be printed negative.
+    /// Attaches this tooltip to <paramref name="control"/> using the tooltip text
+    /// that was previously set via <see cref="ToolTip.SetToolTip"/>, or — for
+    /// performance mode — the value of <see cref="ToolTip.GetToolTip"/>.
+    /// For performance tooltips where no <see cref="ToolTip.SetToolTip"/> text exists,
+    /// pass the label text explicitly via <paramref name="text"/>.
     /// </summary>
-    public double Difference { get; set; }
+    public void Set(Control control, string text = "")
+    {
+        var existing = GetToolTip(control);
+        if (string.IsNullOrEmpty(existing))
+            SetToolTip(control, text);
+    }
 
-    /// <summary>
-    /// This text is printed on the ToolTip
-    /// </summary>
-    public string Text { get; set; } = string.Empty;
-
-    private Font _ToolTipFont;
+    public void Show(Form parentForm, string text, Point position)
+    {
+        Show(text, parentForm, position.X + 15, position.Y + 15);
+    }
 
     private void OnPopup(object sender, PopupEventArgs e)
     {
-        e.ToolTipSize = new Size(TextRenderer.MeasureText(Text, _ToolTipFont).Width + 6, 48);
-    }
+        var text = GetToolTip(e.AssociatedControl);
+        var textSize = TextRenderer.MeasureText(text, _toolTipFont);
 
-    /// <summary>
-    /// This method is used to set the ToolTip to an Control
-    /// </summary>
-    public void Set(Control control)
-    {
-        SetToolTip(control, ".");
-    }
-
-    public void Show(Form parentForm, Point position)
-    {
-        Show(Text, parentForm, position.X + 15, position.Y + 15);   
+        if (Difference.HasValue)
+        {
+            var diffText = PrintDifference(Difference.Value);
+            var diffSize = TextRenderer.MeasureText(diffText, _diffFont);
+            var width = Math.Max(textSize.Width, 25 + diffSize.Width) + PlainPaddingH;
+            e.ToolTipSize = new Size(width, PerfHeight);
+        }
+        else
+        {
+            e.ToolTipSize = new Size(textSize.Width + PlainPaddingH, textSize.Height + PlainPaddingV);
+        }
     }
 
     private void OnDraw(object sender, DrawToolTipEventArgs e)
     {
-        Graphics g = e.Graphics;
+        var g = e.Graphics;
+        var text = e.ToolTipText;
 
-
-        using (SolidBrush backBrush = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
-        using (SolidBrush foreBrush = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
+        using (var backBrush = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
+        using (var foreBrush = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
+        using (var borderPen = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
         {
             g.FillRectangle(backBrush, e.Bounds);
-            g.DrawString(Text, _ToolTipFont, foreBrush, new Point(10, 5));
+            g.DrawRectangle(borderPen, new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1));
+
+            if (!Difference.HasValue)
+            {
+                g.DrawString(text, _toolTipFont, foreBrush, new PointF(PlainPaddingH / 2f, PlainPaddingV / 2f));
+                return;
+            }
+
+            g.DrawString(text, _toolTipFont, foreBrush, new Point(10, 5));
             g.SmoothingMode = SmoothingMode.HighQuality;
 
-            if (Difference > 0) // Positive
-            {
-                using (Pen greenPen = new Pen(ColorTranslator.FromHtml("#00e676")))
-                using (SolidBrush greenBrush = new SolidBrush(ColorTranslator.FromHtml("#00e676")))
-                {
-                    var triangle = DrawTriangle(true);
-                    g.FillPath(greenBrush, triangle);
-                    g.DrawPath(greenPen, triangle);
+            var diff = Difference.Value;
 
-                    g.DrawString(PrintDifference(Difference), new Font("Segoe UI", 10, FontStyle.Bold), greenBrush, new Point(17 + 8, 30 - 6)); // Static values are for testing
+            if (diff > 0)
+            {
+                using (var brush = new SolidBrush(ColorTranslator.FromHtml("#00e676")))
+                using (var pen = new Pen(ColorTranslator.FromHtml("#00e676")))
+                {
+                    g.FillPath(brush, DrawTriangle(true));
+                    g.DrawString(PrintDifference(diff), _diffFont, brush, new Point(25, 24));
                 }
             }
-            else if (Difference == 0) // Equal
+            else if (diff == 0)
             {
-                using (Pen yellowPen = new Pen(ColorTranslator.FromHtml("#fdd835")))
-                using (SolidBrush yellowBrush = new SolidBrush(ColorTranslator.FromHtml("#fdd835")))
+                using (var brush = new SolidBrush(ColorTranslator.FromHtml("#fdd835")))
                 {
-                    //g.DrawRectangle(yellowPen, new Rectangle(17, 30, 7, 7));
-                    g.FillRectangle(yellowBrush, new Rectangle(15, 29, 7, 7));
-                    g.DrawString(PrintDifference(Difference), new Font("Segoe UI", 10, FontStyle.Bold), yellowBrush, new Point(17 + 8, 30 - 6)); // Static values are for testing)
+                    g.FillRectangle(brush, new Rectangle(15, 29, 7, 7));
+                    g.DrawString(PrintDifference(diff), _diffFont, brush, new Point(25, 24));
                 }
             }
-            else // Negative
+            else
             {
-                using (Pen redPen = new Pen(ColorTranslator.FromHtml("#ff1744")))
-                using (SolidBrush redBrush = new SolidBrush(ColorTranslator.FromHtml("#ff1744")))
+                using (var brush = new SolidBrush(ColorTranslator.FromHtml("#ff1744")))
+                using (var pen = new Pen(ColorTranslator.FromHtml("#ff1744")))
                 {
-                    // This is for an gred triangle
-                    var triangle = DrawTriangle(false);
-                    g.FillPath(redBrush, triangle);
-                    g.DrawPath(redPen, triangle);
-
-                    // Draw the text right next to the triangle
-                    g.DrawString(PrintDifference(Difference), new Font("Segoe UI", 10, FontStyle.Bold), redBrush, new Point(17 + 8, 30 - 6)); // Static values are for testing
+                    g.FillPath(brush, DrawTriangle(false));
+                    g.DrawString(PrintDifference(diff), _diffFont, brush, new Point(25, 24));
                 }
             }
         }
     }
 
-    private string PrintDifference(double number)
+    private static string PrintDifference(double number)
     {
-        if (Math.Abs(number % 1) <= (double.Epsilon * 100))
-            return Math.Round(number, 0).ToString();
-        else
-            return number.ToString();
+        return Math.Abs(number % 1) <= double.Epsilon * 100
+            ? Math.Round(number, 0).ToString()
+            : number.ToString();
     }
 
-    private GraphicsPath DrawTriangle(bool isPositive)
+    private static GraphicsPath DrawTriangle(bool isPositive)
     {
-        var startPoint = new Point(17, 30);
-        GraphicsPath path = new GraphicsPath();
+        var path = new GraphicsPath();
+        var x = 17;
+        var y = 30;
 
         if (isPositive)
         {
-            path.AddLine(startPoint, new Point(startPoint.X + 5, startPoint.Y + 5));
-            path.AddLine(new Point(startPoint.X + 5, startPoint.Y + 5), new Point(startPoint.X - 5, startPoint.Y + 5));
-            path.CloseFigure();
+            path.AddLine(new Point(x, y), new Point(x + 5, y + 5));
+            path.AddLine(new Point(x + 5, y + 5), new Point(x - 5, y + 5));
         }
         else
         {
-            path.AddLine(new Point(startPoint.X - 5, startPoint.Y), new Point(startPoint.X + 5, startPoint.Y));
-            path.AddLine(new Point(startPoint.X + 5, startPoint.Y), new Point(startPoint.X, startPoint.Y + 5));
-            path.CloseFigure();
+            path.AddLine(new Point(x - 5, y), new Point(x + 5, y));
+            path.AddLine(new Point(x + 5, y), new Point(x, y + 5));
         }
 
+        path.CloseFigure();
         return path;
     }
 }
