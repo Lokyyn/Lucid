@@ -45,6 +45,12 @@ public partial class MainPage : LucidDocument
         SetUpChipControl();
         SetUpComboBox();
         SetUpTreeView();
+        SetUpTextBoxes();
+    }
+
+    private void SetUpTextBoxes()
+    {
+        lucidTextBox2.Text = "Clear me";
     }
 
     private void SetUpComboBox()

@@ -42,6 +42,8 @@ partial class MainPage
         lbChipControl = new Lucid.Controls.LucidLabel();
         lbInputs = new Lucid.Controls.LucidLabel();
         lucidTextBox1 = new Lucid.Controls.LucidTextBox();
+        lucidTextBox2 = new Lucid.Controls.LucidTextBox();
+        lucidTextBox3 = new Lucid.Controls.LucidTextBox();
         lucidComboBox1 = new Lucid.Controls.LucidComboBox();
         lucidCheckBox1 = new Lucid.Controls.LucidCheckBox();
         lucidCheckBox2 = new Lucid.Controls.LucidCheckBox();
@@ -207,79 +209,99 @@ partial class MainPage
         lbInputs.Text = "Inputs";
         // 
         // lucidTextBox1
-        // 
+        //
         lucidTextBox1.BorderStyle = BorderStyle.FixedSingle;
         lucidTextBox1.Location = new Point(27, 368);
         lucidTextBox1.Name = "lucidTextBox1";
         lucidTextBox1.PlaceholderText = "Enter text...";
-        lucidTextBox1.Size = new Size(200, 23);
+        lucidTextBox1.Size = new Size(145, 23);
         lucidTextBox1.TabIndex = 19;
-        // 
+        //
+        // lucidTextBox2
+        //
+        lucidTextBox2.BorderStyle = BorderStyle.FixedSingle;
+        lucidTextBox2.Location = new Point(180, 368);
+        lucidTextBox2.Name = "lucidTextBox2";
+        lucidTextBox2.PlaceholderText = "Type to clear...";
+        lucidTextBox2.ShowClearButton = true;
+        lucidTextBox2.Size = new Size(145, 23);
+        lucidTextBox2.TabIndex = 36;
+        //
+        // lucidTextBox3
+        //
+        lucidTextBox3.BorderStyle = BorderStyle.FixedSingle;
+        lucidTextBox3.Location = new Point(27, 397);
+        lucidTextBox3.Name = "lucidTextBox3";
+        lucidTextBox3.PlaceholderText = "Password";
+        lucidTextBox3.Size = new Size(145, 23);
+        lucidTextBox3.TabIndex = 37;
+        lucidTextBox3.UseSystemPasswordChar = true;
+        //
         // lucidComboBox1
-        // 
+        //
         lucidComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-        lucidComboBox1.Location = new Point(27, 397);
+        lucidComboBox1.Location = new Point(27, 426);
         lucidComboBox1.Name = "lucidComboBox1";
         lucidComboBox1.Size = new Size(150, 24);
         lucidComboBox1.TabIndex = 20;
-        // 
+        //
         // lucidCheckBox1
-        // 
+        //
         lucidCheckBox1.BackColor = Color.Transparent;
-        lucidCheckBox1.Location = new Point(27, 428);
+        lucidCheckBox1.Location = new Point(27, 457);
         lucidCheckBox1.Name = "lucidCheckBox1";
         lucidCheckBox1.Size = new Size(150, 20);
         lucidCheckBox1.TabIndex = 21;
         lucidCheckBox1.Text = "CheckBox";
         lucidCheckBox1.UseBackColorProperty = false;
-        // 
+        //
         // lucidCheckBox2
-        // 
+        //
         lucidCheckBox2.BackColor = Color.Transparent;
         lucidCheckBox2.Checked = true;
         lucidCheckBox2.CheckState = CheckState.Checked;
-        lucidCheckBox2.Location = new Point(27, 449);
+        lucidCheckBox2.Location = new Point(27, 478);
         lucidCheckBox2.Name = "lucidCheckBox2";
         lucidCheckBox2.Size = new Size(150, 20);
         lucidCheckBox2.TabIndex = 22;
         lucidCheckBox2.Text = "Checked";
         lucidCheckBox2.UseBackColorProperty = false;
-        // 
+        //
         // lucidRadioButton1
-        // 
+        //
         lucidRadioButton1.AllowCustomBackColor = false;
         lucidRadioButton1.BackColor = Color.Transparent;
         lucidRadioButton1.Checked = true;
-        lucidRadioButton1.Location = new Point(27, 476);
+        lucidRadioButton1.Location = new Point(27, 505);
         lucidRadioButton1.Name = "lucidRadioButton1";
         lucidRadioButton1.Size = new Size(130, 20);
         lucidRadioButton1.TabIndex = 23;
         lucidRadioButton1.TabStop = true;
         lucidRadioButton1.Text = "Option A";
-        // 
+        //
         // lucidRadioButton2
-        // 
+        //
         lucidRadioButton2.AllowCustomBackColor = false;
         lucidRadioButton2.BackColor = Color.Transparent;
-        lucidRadioButton2.Location = new Point(27, 497);
+        lucidRadioButton2.Location = new Point(27, 526);
         lucidRadioButton2.Name = "lucidRadioButton2";
         lucidRadioButton2.Size = new Size(130, 20);
         lucidRadioButton2.TabIndex = 24;
         lucidRadioButton2.Text = "Option B";
-        // 
+        //
         // lucidNumericUpDown1
-        // 
-        lucidNumericUpDown1.Location = new Point(27, 524);
+        //
+        lucidNumericUpDown1.Location = new Point(27, 553);
         lucidNumericUpDown1.Name = "lucidNumericUpDown1";
         lucidNumericUpDown1.Size = new Size(100, 23);
         lucidNumericUpDown1.TabIndex = 25;
         lucidNumericUpDown1.Value = new decimal(new int[] { 42, 0, 0, 0 });
-        // 
+        //
         // lucidButtonNormal
-        // 
+        //
         lucidButtonNormal.BackColor = Color.Transparent;
         lucidButtonNormal.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
-        lucidButtonNormal.Location = new Point(150, 521);
+        lucidButtonNormal.Location = new Point(150, 550);
         lucidButtonNormal.Name = "lucidButtonNormal";
         lucidButtonNormal.Padding = new Padding(5);
         lucidButtonNormal.RoundedCornerRadius = 16;
@@ -444,6 +466,8 @@ partial class MainPage
         Controls.Add(lucidCheckBox2);
         Controls.Add(lucidCheckBox1);
         Controls.Add(lucidComboBox1);
+        Controls.Add(lucidTextBox3);
+        Controls.Add(lucidTextBox2);
         Controls.Add(lucidTextBox1);
         Controls.Add(lbInputs);
         Controls.Add(lbChipControl);
@@ -475,6 +499,8 @@ partial class MainPage
         Controls.SetChildIndex(lbChipControl, 0);
         Controls.SetChildIndex(lbInputs, 0);
         Controls.SetChildIndex(lucidTextBox1, 0);
+        Controls.SetChildIndex(lucidTextBox2, 0);
+        Controls.SetChildIndex(lucidTextBox3, 0);
         Controls.SetChildIndex(lucidComboBox1, 0);
         Controls.SetChildIndex(lucidCheckBox1, 0);
         Controls.SetChildIndex(lucidCheckBox2, 0);
@@ -512,6 +538,8 @@ partial class MainPage
     private Controls.LucidLabel lbChipControl;
     private Controls.LucidLabel lbInputs;
     private Controls.LucidTextBox lucidTextBox1;
+    private Controls.LucidTextBox lucidTextBox2;
+    private Controls.LucidTextBox lucidTextBox3;
     private Controls.LucidComboBox lucidComboBox1;
     private Controls.LucidCheckBox lucidCheckBox1;
     private Controls.LucidCheckBox lucidCheckBox2;
