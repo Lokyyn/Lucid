@@ -50,6 +50,7 @@ partial class MainPage
         lucidRadioButton1 = new Lucid.Controls.LucidRadioButton();
         lucidRadioButton2 = new Lucid.Controls.LucidRadioButton();
         lucidNumericUpDown1 = new Lucid.Controls.LucidNumericUpDown();
+        lucidDropdownList1 = new Lucid.Controls.LucidDropdownList();
         lucidButtonNormal = new Lucid.Controls.LucidButton();
         lbTreeView = new Lucid.Controls.LucidLabel();
         lucidTreeView1 = new Lucid.Controls.LucidTreeView();
@@ -248,9 +249,16 @@ partial class MainPage
         lucidComboBox1.SelectedIndex = -1;
         lucidComboBox1.Size = new Size(150, 24);
         lucidComboBox1.TabIndex = 20;
-        // 
+        //
+        // lucidDropdownList1
+        //
+        lucidDropdownList1.Location = new Point(180, 426);
+        lucidDropdownList1.Name = "lucidDropdownList1";
+        lucidDropdownList1.Size = new Size(150, 26);
+        lucidDropdownList1.TabIndex = 42;
+        //
         // lucidCheckBox1
-        // 
+        //
         lucidCheckBox1.BackColor = Color.Transparent;
         lucidCheckBox1.Location = new Point(27, 457);
         lucidCheckBox1.Name = "lucidCheckBox1";
@@ -517,6 +525,7 @@ partial class MainPage
         Controls.Add(lucidRadioButton1);
         Controls.Add(lucidCheckBox2);
         Controls.Add(lucidCheckBox1);
+        Controls.Add(lucidDropdownList1);
         Controls.Add(lucidComboBox1);
         Controls.Add(lucidTextBox3);
         Controls.Add(lucidTextBox2);
@@ -553,6 +562,7 @@ partial class MainPage
         Controls.SetChildIndex(lucidTextBox1, 0);
         Controls.SetChildIndex(lucidTextBox2, 0);
         Controls.SetChildIndex(lucidTextBox3, 0);
+        Controls.SetChildIndex(lucidDropdownList1, 0);
         Controls.SetChildIndex(lucidComboBox1, 0);
         Controls.SetChildIndex(lucidCheckBox1, 0);
         Controls.SetChildIndex(lucidCheckBox2, 0);
@@ -597,6 +607,7 @@ partial class MainPage
     private Controls.LucidTextBox lucidTextBox2;
     private Controls.LucidTextBox lucidTextBox3;
     private Controls.LucidComboBox lucidComboBox1;
+    private Controls.LucidDropdownList lucidDropdownList1;
     private Controls.LucidCheckBox lucidCheckBox1;
     private Controls.LucidCheckBox lucidCheckBox2;
     private Controls.LucidRadioButton lucidRadioButton1;

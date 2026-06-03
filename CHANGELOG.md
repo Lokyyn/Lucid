@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- `LucidDropdownList`: visual style aligned with `LucidComboBox` — flat `BackgroundTertiary` fill, `SurfaceHighlight` border (accent on focus/pressed), shared `scrollbar_arrow_hot` icon
+- `LucidDropdownList`: dropdown now uses a custom `ToolStripDropDown` panel with a `LucidScrollBar` instead of `ContextMenuStrip`, enabling proper scrollbar-based scrolling when items exceed `MaxHeight`
+
+### Sample
+- Added `LucidDropdownList` to the inputs section in the sample gallery
+
 ## [2.1.0] - 2026-06-02
 
 ### Added
