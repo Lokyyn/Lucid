@@ -52,6 +52,7 @@ public partial class MainPage : LucidDocument
         SetUpTreeView();
         SetUpTextBoxes();
         SetUpPerformanceToolTips();
+        SetUpDataGridView();
     }
 
     private void SetUpPerformanceToolTips()
@@ -73,6 +74,76 @@ public partial class MainPage : LucidDocument
     private void SetUpTextBoxes()
     {
         lucidTextBox2.Text = "Clear me";
+    }
+
+    private void SetUpDataGridView()
+    {
+        lucidDataGridView1.BeginInit();
+
+        lucidDataGridView1.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { Name = "colControl", HeaderText = "Control", Width = 200 });
+        lucidDataGridView1.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { Name = "colType",    HeaderText = "Type",    Width = 130 });
+        lucidDataGridView1.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { Name = "colSince",   HeaderText = "Since",   Width = 70  });
+        lucidDataGridView1.Columns.Add(new System.Windows.Forms.DataGridViewTextBoxColumn { Name = "colNotes",   HeaderText = "Notes",   Width = 640 });
+
+        lucidDataGridView1.Rows.Add("LucidButton",            "Input",    "1.0", "Rounded and flat style variants");
+        lucidDataGridView1.Rows.Add("LucidCheckBox",          "Input",    "1.0", "Themed check state with custom painting");
+        lucidDataGridView1.Rows.Add("LucidComboBox",          "Input",    "1.0", "Full owner-draw dropdown, no native scroll arrows");
+        lucidDataGridView1.Rows.Add("LucidDropdownList",      "Input",    "2.2", "Custom items with icon/color support and LucidScrollBar");
+        lucidDataGridView1.Rows.Add("LucidTextBox",           "Input",    "2.1", "Placeholder, clear button, icon, themed border states");
+        lucidDataGridView1.Rows.Add("LucidNumericUpDown",     "Input",    "1.0", "Themed numeric spinner");
+        lucidDataGridView1.Rows.Add("LucidSlider",            "Input",    "1.4", "Single-value and range mode");
+        lucidDataGridView1.Rows.Add("LucidTreeView",          "Display",  "1.0", "Drag reorder, progress bar nodes");
+        lucidDataGridView1.Rows.Add("LucidProgressBar",       "Display",  "1.0", "Determinate and indeterminate, optional label");
+        lucidDataGridView1.Rows.Add("LucidChipControl",       "Display",  "1.0", "Selectable and deletable chips");
+        lucidDataGridView1.Rows.Add("LucidDataGridView",      "Display",  "2.2", "Alternating rows, hover highlight, context menu, drag-to-reorder");
+        lucidDataGridView1.Rows.Add("LucidScrollableControl", "Layout",   "1.0", "Scrollable panel with themed scrollbars");
+        lucidDataGridView1.Rows.Add("LucidDockPanel",         "Docking",  "1.0", "VS-style docking with floating windows and compass overlay");
+
+        lucidDataGridView1.EndInit();
+
+        var menu = new Lucid.Controls.LucidContextMenu();
+
+        var itemCopy = new System.Windows.Forms.ToolStripMenuItem("Copy control name");
+        itemCopy.Click += (s, e) =>
+        {
+            var row = lucidDataGridView1.CurrentRow;
+            if (row != null)
+                Clipboard.SetText(row.Cells["colControl"].Value?.ToString() ?? string.Empty);
+        };
+
+        var itemInfo = new System.Windows.Forms.ToolStripMenuItem("Show info");
+        itemInfo.Click += (s, e) =>
+        {
+            var row = lucidDataGridView1.CurrentRow;
+            if (row == null) return;
+            var name  = row.Cells["colControl"].Value;
+            var type  = row.Cells["colType"].Value;
+            var since = row.Cells["colSince"].Value;
+            var notes = row.Cells["colNotes"].Value;
+            Lucid.Forms.LucidMessageBox.ShowInformation(
+                $"{name} ({type})\nSince v{since}\n\n{notes}", "Control info");
+        };
+
+        var itemDelete = new System.Windows.Forms.ToolStripMenuItem("Delete row");
+        itemDelete.Click += (s, e) =>
+        {
+            var row = lucidDataGridView1.CurrentRow;
+            if (row != null)
+                lucidDataGridView1.Rows.Remove(row);
+        };
+
+        var sep = new System.Windows.Forms.ToolStripSeparator();
+
+        var itemSelectAll = new System.Windows.Forms.ToolStripMenuItem("Select all");
+        itemSelectAll.Click += (s, e) => lucidDataGridView1.SelectAll();
+
+        menu.Items.Add(itemCopy);
+        menu.Items.Add(itemInfo);
+        menu.Items.Add(itemDelete);
+        menu.Items.Add(sep);
+        menu.Items.Add(itemSelectAll);
+
+        lucidDataGridView1.ContextMenu = menu;
     }
 
     private void SetUpComboBox()

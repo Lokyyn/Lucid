@@ -23,21 +23,15 @@ public class LucidDataGridView : UserControl, ISupportInitialize
     private int _dragPosition = -1;
     private ContextMenuStrip _contextMenu;
 
-    private static readonly DataGridViewCellStyle _cellStyleUnfocusedEven = GetCellStyle(false, false, false);
-    private static readonly DataGridViewCellStyle _cellStyleUnfocusedOdd = GetCellStyle(false, true, false);
-    private static readonly DataGridViewCellStyle _cellStyleFocusedEven = GetCellStyle(true, false, false);
-    private static readonly DataGridViewCellStyle _cellStyleFocusedOdd = GetCellStyle(true, true, false);
-    private static readonly DataGridViewCellStyle _cellStyleHeader = GetCellStyle(true, true, true);
     private static readonly PropertyInfo _dataGridViewDoubleBuffered = typeof(DataGridView).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance);
 
     private static DataGridViewCellStyle GetCellStyle(bool isFocused, bool isOdd, bool isHeader)
     {
         return new DataGridViewCellStyle
         {
-            // Darker colors:
-            // BackColor = isOdd ? ThemeProvider.Theme.Colors.BackgroundPrimary : ThemeProvider.Theme.Colors.BackgroundPrimary,
-            BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary :
-                    (isOdd ? ThemeProvider.Theme.Colors.BackgroundSecondary : ThemeProvider.Theme.Colors.BackgroundSecondary),
+            BackColor = isHeader ? ThemeProvider.Theme.Colors.BackgroundPrimary
+                      : isOdd   ? ThemeProvider.Theme.Colors.BackgroundPrimary
+                                : ThemeProvider.Theme.Colors.BackgroundSecondary,
             ForeColor = ThemeProvider.Theme.Colors.TextPrimary,
             SelectionBackColor = isFocused ? ThemeProvider.Theme.Colors.Accent : ThemeProvider.Theme.Colors.SurfaceHighlight,
             SelectionForeColor = ThemeProvider.Theme.Colors.TextPrimary
@@ -46,8 +40,6 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     private const int DragDrawSideMargin = 3;
     private const int DragDrawHeight = 2;
-
-    private static readonly Brush _dragDrawBrush = new HatchBrush(HatchStyle.Percent50, Color.Transparent, Color.LightGray);
 
     private int _scrollSize => ThemeProvider.Theme.Sizes.ScrollBarSize;
 
@@ -73,10 +65,10 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.BackgroundColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
         _base.BackColor = _base.BackgroundColor;
         _base.GridColor = ThemeProvider.Theme.Colors.BorderDefault;
-        _base.DefaultCellStyle = _cellStyleUnfocusedEven;
-        _base.AlternatingRowsDefaultCellStyle = _cellStyleUnfocusedOdd;
-        _base.ColumnHeadersDefaultCellStyle = _cellStyleHeader;
-        _base.RowHeadersDefaultCellStyle = _cellStyleHeader;
+        _base.DefaultCellStyle = GetCellStyle(false, false, false);
+        _base.AlternatingRowsDefaultCellStyle = GetCellStyle(false, true, false);
+        _base.ColumnHeadersDefaultCellStyle = GetCellStyle(true, true, true);
+        _base.RowHeadersDefaultCellStyle = GetCellStyle(true, true, true);
 
         _base.CellFormatting += BaseCellFormatting;
         _base.CellValueChanged += BaseCellValueChanged;
@@ -91,6 +83,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         _base.GotFocus += BaseGotFocus;
         _base.LostFocus += BaseLostFocus;
         _base.MouseDown += new MouseEventHandler(BaseMouseDown);
+        _base.MouseLeave += BaseMouseLeave;
         _base.RowsAdded += delegate
         { UpdateScrollBarLayout(); };
         _base.RowsRemoved += delegate
@@ -137,8 +130,13 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     private void _base_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
     {
-        // Ensure best visibility for row selection color
         e.CellStyle.SelectionForeColor = Lucid.Helper.ColorExtender.GetContrastColor(e.CellStyle.SelectionBackColor);
+
+        if (e.RowIndex == _hoveredRowIndex && e.RowIndex >= 0 && !_base.Rows[e.RowIndex].Selected)
+        {
+            e.CellStyle.BackColor = ThemeProvider.Theme.Colors.SurfaceDefault;
+            e.FormattingApplied = true;
+        }
     }
 
     private void _base_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -146,9 +144,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
         var grid = (DataGridView)sender;
         if (e.RowIndex == -1 && e.ColumnIndex > -1)
         {
-            using (var b = new SolidBrush(BackColor))
             {
-                //Draw Background
                 e.PaintBackground(e.CellBounds, false);
 
                 var textColor = e.ColumnIndex == (grid.CurrentCell?.ColumnIndex ?? 0) ? Helper.ColorExtender.GetContrastColor(e.CellStyle.SelectionBackColor) : e.CellStyle.ForeColor;
@@ -327,6 +323,34 @@ public class LucidDataGridView : UserControl, ISupportInitialize
                     break;
             }
         }
+
+        UpdateHoveredRow(e.Location);
+    }
+
+    private void BaseMouseLeave(object sender, EventArgs e)
+    {
+        UpdateHoveredRow(null);
+    }
+
+    private void UpdateHoveredRow(Point? localPoint)
+    {
+        var newIndex = -1;
+        if (localPoint.HasValue)
+        {
+            var ht = _base.HitTest(localPoint.Value.X, localPoint.Value.Y);
+            if (ht.RowIndex >= 0 && ht.Type == DataGridViewHitTestType.Cell)
+                newIndex = ht.RowIndex;
+        }
+
+        if (newIndex == _hoveredRowIndex) return;
+
+        var old = _hoveredRowIndex;
+        _hoveredRowIndex = newIndex;
+
+        if (old >= 0 && old < _base.Rows.Count)
+            _base.InvalidateRow(old);
+        if (newIndex >= 0 && newIndex < _base.Rows.Count)
+            _base.InvalidateRow(newIndex);
     }
 
     private void BaseDragEnter(object sender, DragEventArgs e)
@@ -370,59 +394,74 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     private void BaseDragDrop(object sender, DragEventArgs e)
     {
-        // Get drag data
         var metaData = e.Data.GetData(typeof(DragDropMetaData)) as DragDropMetaData;
         if (metaData == null || DragPosition < 0)
             return;
 
-        IList rows = EditableRowCollection;
-
-        object[] previousRows = Rows.Cast<DataGridViewRow>()
-            .Where(row => row.Index < DragPosition)
-            .Except(SelectedRows.Cast<DataGridViewRow>())
-            .Select(row => rows[row.Index])
-            .ToArray();
-
-        object[] followingRows = Rows.Cast<DataGridViewRow>()
-            .Where(row => row.Index >= DragPosition)
-            .Except(SelectedRows.Cast<DataGridViewRow>())
-            .Select(row => rows[row.Index])
-            .ToArray();
-
-        // Remove unselected rows
-        foreach (var row in previousRows)
-            rows.Remove(row);
-        foreach (var row in followingRows)
-            rows.Remove(row);
-
-        // Insert rows
-        for (int i = 0; i < previousRows.GetLength(0); ++i)
-            rows.Insert(i, previousRows[i]);
-        for (int i = 0; i < followingRows.GetLength(0); ++i)
-            rows.Add(followingRows[i]);
-
-
-        /*var selectedRows = SelectedRows.Cast<DataGridViewRow>().ToList();
-         foreach (var row in selectedRows)
-             row.Selected = false;
-         foreach (var row in selectedRows)
-             row.Selected = true;*/
+        if (DataSource != null)
+            DragDropBound();
+        else
+            DragDropUnbound();
 
         DragPosition = -1;
+    }
+
+    private void DragDropBound()
+    {
+        IList list = (IList)DataSource;
+
+        var previousItems = Rows.Cast<DataGridViewRow>()
+            .Where(r => !r.IsNewRow && r.Index < DragPosition)
+            .Except(SelectedRows.Cast<DataGridViewRow>())
+            .Select(r => list[r.Index])
+            .ToArray();
+
+        var followingItems = Rows.Cast<DataGridViewRow>()
+            .Where(r => !r.IsNewRow && r.Index >= DragPosition)
+            .Except(SelectedRows.Cast<DataGridViewRow>())
+            .Select(r => list[r.Index])
+            .ToArray();
+
+        foreach (var item in previousItems) list.Remove(item);
+        foreach (var item in followingItems) list.Remove(item);
+
+        for (int i = 0; i < previousItems.Length; i++) list.Insert(i, previousItems[i]);
+        for (int i = 0; i < followingItems.Length; i++) list.Add(followingItems[i]);
+    }
+
+    private void DragDropUnbound()
+    {
+        var selectedIndices = new HashSet<int>(SelectedRows.Cast<DataGridViewRow>().Select(r => r.Index));
+
+        object[][] GetValues(IEnumerable<DataGridViewRow> source) =>
+            source.OrderBy(r => r.Index)
+                  .Select(r => r.Cells.Cast<DataGridViewCell>().Select(c => c.Value).ToArray())
+                  .ToArray();
+
+        var allRows = Rows.Cast<DataGridViewRow>().Where(r => !r.IsNewRow);
+
+        var previousValues = GetValues(allRows.Where(r => r.Index < DragPosition  && !selectedIndices.Contains(r.Index)));
+        var selectedValues = GetValues(allRows.Where(r => selectedIndices.Contains(r.Index)));
+        var followingValues = GetValues(allRows.Where(r => r.Index >= DragPosition && !selectedIndices.Contains(r.Index)));
+
+        _base.Rows.Clear();
+        foreach (var v in previousValues)  _base.Rows.Add(v);
+        foreach (var v in selectedValues)  _base.Rows.Add(v);
+        foreach (var v in followingValues) _base.Rows.Add(v);
     }
 
     private void BasePaint(object sender, PaintEventArgs e)
     {
         OnPaint(e);
 
-        // Draw drag
         if (DragPosition < 0 || DragPosition > Rows.Count)
             return;
 
         int positionY = GetCellDisplayY(DragPosition);
 
-        e.Graphics.FillRectangle(_dragDrawBrush, DragDrawSideMargin,
-            positionY - DragDrawHeight / 2, Width - DragDrawSideMargin * 2, DragDrawHeight);
+        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
+            e.Graphics.FillRectangle(b, DragDrawSideMargin,
+                positionY - DragDrawHeight / 2, Width - DragDrawSideMargin * 2, DragDrawHeight);
     }
 
     protected override void OnSizeChanged(EventArgs e)
@@ -445,11 +484,19 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     private void BaseMouseDown(object sender, MouseEventArgs e)
     {
-        var row = CurrentRow;
+        if (e.Button != MouseButtons.Right || _contextMenu == null)
+            return;
 
-        if (row != null && ContextMenuStrip != null && e.Button == MouseButtons.Right)
-            ContextMenuStrip.Show(Cursor.Position);
-            
+        var ht = _base.HitTest(e.X, e.Y);
+        if (ht.RowIndex >= 0)
+        {
+            _base.ClearSelection();
+            _base.Rows[ht.RowIndex].Selected = true;
+            _base.CurrentCell = _base.Rows[ht.RowIndex].Cells[Math.Max(0, ht.ColumnIndex)];
+        }
+
+        if (_base.CurrentRow != null)
+            _contextMenu.Show(Cursor.Position);
     }
 
     private void _hScrollBar_ValueChanged(object sender, ScrollValueEventArgs e)
@@ -506,6 +553,8 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
         return result;
     }
+
+    private int _hoveredRowIndex = -1;
 
     private bool _updateScrollBarLayout;
 
@@ -677,7 +726,7 @@ public class LucidDataGridView : UserControl, ISupportInitialize
 
     [Category("Behavior")]
     [Description("Gets or sets the current ContextMenu")]
-    [DefaultValue(false)]
+    [DefaultValue(null)]
     public ContextMenuStrip ContextMenu
     {
         get { return _contextMenu; }
