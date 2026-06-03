@@ -4,12 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- `LucidDataGridView`: cell styles were `static readonly` and captured the theme at class-load time — they are now created per-instance in the constructor so theme changes and late theme registration work correctly
+- `LucidDataGridView`: alternating row colors were identical (`BackgroundSecondary` for both even and odd) — odd rows now use `BackgroundPrimary` for a visible stripe effect
+- `LucidDataGridView`: drag-row indicator used a hardcoded `LightGray` hatch brush — it now draws a solid `Accent`-colored bar and is no longer a static field
+- `LucidDataGridView`: right-click context menu showed for `CurrentRow` rather than the row actually clicked — `BaseMouseDown` now selects the hit-tested row before showing the menu
+- `LucidDataGridView`: `ContextMenu` property had `[DefaultValue(false)]` — corrected to `[DefaultValue(null)]`
+- `LucidDataGridView`: unused `SolidBrush` allocation in `_base_CellPainting` removed
+
+### Added
+- `LucidDataGridView`: row hover highlight — hovering over a row shows a `SurfaceDefault` background; only the two affected rows are invalidated per move so performance is unchanged
+
 ### Changed
 - `LucidDropdownList`: visual style aligned with `LucidComboBox` — flat `BackgroundTertiary` fill, `SurfaceHighlight` border (accent on focus/pressed), shared `scrollbar_arrow_hot` icon
 - `LucidDropdownList`: dropdown now uses a custom `ToolStripDropDown` panel with a `LucidScrollBar` instead of `ContextMenuStrip`, enabling proper scrollbar-based scrolling when items exceed `MaxHeight`
 
 ### Sample
 - Added `LucidDropdownList` to the inputs section in the sample gallery
+- Added `LucidDataGridView` to the sample gallery with a controls-overview table demonstrating alternating rows, hover highlight, and the drag indicator
 
 ## [2.1.0] - 2026-06-02
 

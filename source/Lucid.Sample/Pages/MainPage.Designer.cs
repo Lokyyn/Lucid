@@ -51,6 +51,8 @@ partial class MainPage
         lucidRadioButton2 = new Lucid.Controls.LucidRadioButton();
         lucidNumericUpDown1 = new Lucid.Controls.LucidNumericUpDown();
         lucidDropdownList1 = new Lucid.Controls.LucidDropdownList();
+        lbDataGridView = new Lucid.Controls.LucidLabel();
+        lucidDataGridView1 = new Lucid.Controls.GridView.LucidDataGridView();
         lucidButtonNormal = new Lucid.Controls.LucidButton();
         lbTreeView = new Lucid.Controls.LucidLabel();
         lucidTreeView1 = new Lucid.Controls.LucidTreeView();
@@ -69,6 +71,7 @@ partial class MainPage
         lbTTDemo2 = new Lucid.Controls.LucidLabel();
         lbTTDemo3 = new Lucid.Controls.LucidLabel();
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)lucidDataGridView1).BeginInit();
         lucidScrollableControl1.SuspendLayout();
         SuspendLayout();
         // 
@@ -308,9 +311,27 @@ partial class MainPage
         lucidNumericUpDown1.Size = new Size(100, 23);
         lucidNumericUpDown1.TabIndex = 25;
         lucidNumericUpDown1.Value = new decimal(new int[] { 42, 0, 0, 0 });
-        // 
+        //
+        // lbDataGridView
+        //
+        lbDataGridView.AutoSize = true;
+        lbDataGridView.BackColor = Color.Transparent;
+        lbDataGridView.ForeColor = Color.FromArgb(221, 225, 231);
+        lbDataGridView.Location = new Point(27, 600);
+        lbDataGridView.Name = "lbDataGridView";
+        lbDataGridView.TabIndex = 43;
+        lbDataGridView.Text = "DataGridView  —  right-click row for context menu  ·  drag rows to reorder  ·  click column header to sort";
+        //
+        // lucidDataGridView1
+        //
+        lucidDataGridView1.AllowUserToAddRows = false;
+        lucidDataGridView1.Location = new Point(27, 618);
+        lucidDataGridView1.Name = "lucidDataGridView1";
+        lucidDataGridView1.Size = new Size(1080, 200);
+        lucidDataGridView1.TabIndex = 44;
+        //
         // lucidButtonNormal
-        // 
+        //
         lucidButtonNormal.BackColor = Color.Transparent;
         lucidButtonNormal.ButtonStyle = Lucid.Controls.LucidButtonStyle.Rounded;
         lucidButtonNormal.Location = new Point(150, 550);
@@ -506,6 +527,8 @@ partial class MainPage
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(lucidDataGridView1);
+        Controls.Add(lbDataGridView);
         Controls.Add(lbTTDemo3);
         Controls.Add(lbTTDemo2);
         Controls.Add(lbTTDemo1);
@@ -544,7 +567,7 @@ partial class MainPage
         Controls.Add(lucidChipControl1);
         DockText = "MainPage";
         Name = "MainPage";
-        Size = new Size(1127, 642);
+        Size = new Size(1127, 840);
         Controls.SetChildIndex(_hScrollBar, 0);
         Controls.SetChildIndex(_vScrollBar, 0);
         Controls.SetChildIndex(lucidChipControl1, 0);
@@ -583,7 +606,10 @@ partial class MainPage
         Controls.SetChildIndex(lbTTDemo1, 0);
         Controls.SetChildIndex(lbTTDemo2, 0);
         Controls.SetChildIndex(lbTTDemo3, 0);
+        Controls.SetChildIndex(lbDataGridView, 0);
+        Controls.SetChildIndex(lucidDataGridView1, 0);
         ((System.ComponentModel.ISupportInitialize)lucidNumericUpDown1).EndInit();
+        ((System.ComponentModel.ISupportInitialize)lucidDataGridView1).EndInit();
         lucidScrollableControl1.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
@@ -630,4 +656,6 @@ partial class MainPage
     private Controls.LucidLabel lbTTDemo1;
     private Controls.LucidLabel lbTTDemo2;
     private Controls.LucidLabel lbTTDemo3;
+    private Controls.LucidLabel lbDataGridView;
+    private Controls.GridView.LucidDataGridView lucidDataGridView1;
 }
