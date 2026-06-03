@@ -1,4 +1,4 @@
-﻿using Lucid.Theming;
+using Lucid.Theming;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -20,8 +20,9 @@ public class LucidDropdownList : Control
     private ObservableCollection<LucidDropdownItem> _items = new ObservableCollection<LucidDropdownItem>();
     private LucidDropdownItem _selectedItem;
 
-    private LucidContextMenu _menu = new LucidContextMenu();
-    private bool _menuOpen = false;
+    private ToolStripDropDown _popup;
+    private DropdownPanel _panel;
+    private bool _popupOpen = false;
 
     private bool _showBorder = true;
 
@@ -38,10 +39,7 @@ public class LucidDropdownList : Control
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public ObservableCollection<LucidDropdownItem> Items
-    {
-        get { return _items; }
-    }
+    public ObservableCollection<LucidDropdownItem> Items => _items;
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -51,7 +49,7 @@ public class LucidDropdownList : Control
         set
         {
             _selectedItem = value;
-            SelectedItemChanged?.Invoke(this, new EventArgs());
+            SelectedItemChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -68,17 +66,11 @@ public class LucidDropdownList : Control
         }
     }
 
-    protected override Size DefaultSize
-    {
-        get { return new Size(100, 26); }
-    }
+    protected override Size DefaultSize => new Size(100, 26);
 
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public LucidControlState ControlState
-    {
-        get { return _controlState; }
-    }
+    public LucidControlState ControlState => _controlState;
 
     [Category("Appearance")]
     [Description("Determines the height of the individual list view items.")]
@@ -89,21 +81,17 @@ public class LucidDropdownList : Control
         set
         {
             _itemHeight = value;
-            ResizeMenu();
+            _panel.ItemHeight = value;
         }
     }
 
     [Category("Appearance")]
     [Description("Determines the maximum height of the dropdown panel.")]
-    [DefaultValue(130)]
+    [DefaultValue(180)]
     public int MaxHeight
     {
         get { return _maxHeight; }
-        set
-        {
-            _maxHeight = value;
-            ResizeMenu();
-        }
+        set { _maxHeight = value; }
     }
 
     [Category("Behavior")]
@@ -127,8 +115,24 @@ public class LucidDropdownList : Control
                  ControlStyles.Selectable |
                  ControlStyles.UserMouse, true);
 
-        _menu.AutoSize = false;
-        _menu.Closed += Menu_Closed;
+        _panel = new DropdownPanel(_items, _itemHeight);
+        _panel.ItemClicked += Panel_ItemClicked;
+
+        var host = new ToolStripControlHost(_panel)
+        {
+            Padding = Padding.Empty,
+            Margin = Padding.Empty,
+            AutoSize = false
+        };
+
+        _popup = new ToolStripDropDown
+        {
+            Padding = Padding.Empty,
+            AutoSize = false,
+            DropShadowEnabled = true
+        };
+        _popup.Items.Add(host);
+        _popup.Closed += Popup_Closed;
 
         Items.CollectionChanged += Items_CollectionChanged;
         SelectedItemChanged += LucidDropdownList_SelectedItemChanged;
@@ -140,20 +144,9 @@ public class LucidDropdownList : Control
 
     #region Method Region
 
-    private ToolStripMenuItem GetMenuItem(LucidDropdownItem item)
-    {
-        foreach (ToolStripMenuItem menuItem in _menu.Items)
-        {
-            if ((LucidDropdownItem)menuItem.Tag == item)
-                return menuItem;
-        }
-
-        return null;
-    }
-
     private void SetControlState(LucidControlState controlState)
     {
-        if (_menuOpen)
+        if (_popupOpen)
             return;
 
         if (_controlState != controlState)
@@ -165,51 +158,36 @@ public class LucidDropdownList : Control
 
     private void ShowMenu()
     {
-        if (_menu.Visible)
+        if (_popupOpen)
             return;
 
         SetControlState(LucidControlState.Pressed);
+        _popupOpen = true;
 
-        _menuOpen = true;
+        _panel.SelectedItem = _selectedItem;
+        ResizePopup();
 
         var pos = new Point(0, ClientRectangle.Bottom);
-
-        if (_dropdownDirection == ToolStripDropDownDirection.AboveLeft || _dropdownDirection == ToolStripDropDownDirection.AboveRight)
+        if (_dropdownDirection == ToolStripDropDownDirection.AboveLeft ||
+            _dropdownDirection == ToolStripDropDownDirection.AboveRight)
             pos.Y = 0;
 
-        _menu.Show(this, pos, _dropdownDirection);
-
-        if (SelectedItem != null)
-        {
-            var selectedItem = GetMenuItem(SelectedItem);
-            selectedItem.Select();
-        }
+        _popup.Show(this, pos, _dropdownDirection);
+        _panel.ScrollToSelected();
     }
 
-    private void ResizeMenu()
+    private void ResizePopup()
     {
         var width = ClientRectangle.Width;
-        var height = (_menu.Items.Count * _itemHeight) + 4;
+        var totalHeight = _items.Count * _itemHeight;
+        var panelHeight = totalHeight > _maxHeight ? _maxHeight : Math.Max(totalHeight, _itemHeight);
 
-        if (height > _maxHeight)
-            height = _maxHeight;
+        _panel.Size = new Size(width, panelHeight);
+        _panel.UpdateScrollBar(totalHeight, panelHeight);
 
-        // Dirty: Check what the autosized items are
-        foreach (ToolStripMenuItem item in _menu.Items)
-        {
-            item.AutoSize = true;
-
-            if (item.Size.Width > width)
-                width = item.Size.Width;
-
-            item.AutoSize = false;
-        }
-
-        // Force the size
-        foreach (ToolStripMenuItem item in _menu.Items)
-            item.Size = new Size(width - 1, _itemHeight);
-
-        _menu.Size = new Size(width, height);
+        var host = (ToolStripControlHost)_popup.Items[0];
+        host.Size = new Size(width, panelHeight);
+        _popup.Size = new Size(width, panelHeight);
     }
 
     #endregion
@@ -220,93 +198,45 @@ public class LucidDropdownList : Control
     {
         if (e.Action == NotifyCollectionChangedAction.Add)
         {
-            foreach (LucidDropdownItem item in e.NewItems)
-            {
-                var menuItem = new ToolStripMenuItem(item.Text)
-                {
-                    Image = item.Icon,
-                    AutoSize = false,
-                    Height = _itemHeight,
-                    Font = Font,
-                    Tag = item,
-                    TextAlign = ContentAlignment.MiddleLeft
-                };
-
-                _menu.Items.Add(menuItem);
-                menuItem.Click += Item_Select;
-
-                if (SelectedItem == null)
-                    SelectedItem = item;
-            }
+            if (_selectedItem == null && _items.Count > 0)
+                SelectedItem = _items[0];
         }
         else if (e.Action == NotifyCollectionChangedAction.Remove)
         {
-            foreach (LucidDropdownItem item in e.OldItems)
-            {
-                foreach (ToolStripMenuItem menuItem in _menu.Items)
-                {
-                    if ((LucidDropdownItem)menuItem.Tag == item)
-                    {
-                        menuItem.Click -= Item_Select;
-                        _menu.Items.Remove(menuItem);
-                    }
-                }
-            }
+            if (e.OldItems != null && e.OldItems.Contains(_selectedItem))
+                SelectedItem = _items.Count > 0 ? _items[0] : null;
         }
         else if (e.Action == NotifyCollectionChangedAction.Reset)
         {
-            var listCount = _menu.Items.Count;
-
-            for (int i = 0; i < listCount; i++)
-            {
-                var menuItem = _menu.Items[0];
-
-                if (menuItem != null)
-                {
-                    menuItem.Click -= Item_Select;
-                    _menu.Items.Remove(menuItem);
-                }
-            }
+            SelectedItem = null;
         }
 
-        ResizeMenu();
+        _panel.Invalidate();
+        Invalidate();
     }
 
-    private void Item_Select(object sender, EventArgs e)
+    private void Panel_ItemClicked(object sender, LucidDropdownItem item)
     {
-        var menuItem = sender as ToolStripMenuItem;
-        if (menuItem == null)
-            return;
-
-        var dropdownItem = (LucidDropdownItem)menuItem.Tag;
-        if (_selectedItem != dropdownItem)
-            SelectedItem = dropdownItem;
+        if (_selectedItem != item)
+            SelectedItem = item;
+        _popup.Close();
     }
 
     private void LucidDropdownList_SelectedItemChanged(object sender, EventArgs e)
     {
-        foreach (ToolStripMenuItem item in _menu.Items)
-        {
-            if ((LucidDropdownItem)item.Tag == SelectedItem)
-            {
-                item.BackColor = ThemeProvider.Theme.Colors.AccentSecondary;
-                item.Font = new Font(Font, FontStyle.Bold);
-            }
-            else
-            {
-                item.BackColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
-                item.Font = new Font(Font, FontStyle.Regular);
-            }
-        }
-
+        _panel.SelectedItem = _selectedItem;
+        _panel.Invalidate();
         Invalidate();
     }
 
-    protected override void OnResize(EventArgs e)
+    private void Popup_Closed(object sender, ToolStripDropDownClosedEventArgs e)
     {
-        base.OnResize(e);
+        _popupOpen = false;
 
-        ResizeMenu();
+        if (!ClientRectangle.Contains(PointToClient(MousePosition)))
+            SetControlState(LucidControlState.Normal);
+        else
+            SetControlState(LucidControlState.Hover);
     }
 
     protected override void OnMouseMove(MouseEventArgs e)
@@ -314,36 +244,26 @@ public class LucidDropdownList : Control
         base.OnMouseMove(e);
 
         if (e.Button == MouseButtons.Left)
-        {
-            if (ClientRectangle.Contains(e.Location))
-                SetControlState(LucidControlState.Pressed);
-            else
-                SetControlState(LucidControlState.Hover);
-        }
+            SetControlState(ClientRectangle.Contains(e.Location) ? LucidControlState.Pressed : LucidControlState.Hover);
         else
-        {
             SetControlState(LucidControlState.Hover);
-        }
     }
 
     protected override void OnMouseDown(MouseEventArgs e)
     {
         base.OnMouseDown(e);
-
         ShowMenu();
     }
 
     protected override void OnMouseUp(MouseEventArgs e)
     {
         base.OnMouseUp(e);
-
         SetControlState(LucidControlState.Normal);
     }
 
     protected override void OnMouseLeave(EventArgs e)
     {
         base.OnMouseLeave(e);
-
         SetControlState(LucidControlState.Normal);
     }
 
@@ -351,16 +271,13 @@ public class LucidDropdownList : Control
     {
         base.OnMouseCaptureChanged(e);
 
-        var location = Cursor.Position;
-
-        if (!ClientRectangle.Contains(location))
+        if (!ClientRectangle.Contains(PointToClient(Cursor.Position)))
             SetControlState(LucidControlState.Normal);
     }
 
     protected override void OnGotFocus(EventArgs e)
     {
         base.OnGotFocus(e);
-
         Invalidate();
     }
 
@@ -368,9 +285,7 @@ public class LucidDropdownList : Control
     {
         base.OnLostFocus(e);
 
-        var location = Cursor.Position;
-
-        if (!ClientRectangle.Contains(location))
+        if (!ClientRectangle.Contains(PointToClient(Cursor.Position)))
             SetControlState(LucidControlState.Normal);
         else
             SetControlState(LucidControlState.Hover);
@@ -384,16 +299,6 @@ public class LucidDropdownList : Control
             ShowMenu();
     }
 
-    private void Menu_Closed(object sender, ToolStripDropDownClosedEventArgs e)
-    {
-        _menuOpen = false;
-
-        if (!ClientRectangle.Contains(MousePosition))
-            SetControlState(LucidControlState.Normal);
-        else
-            SetControlState(LucidControlState.Hover);
-    }
-
     #endregion
 
     #region Render Region
@@ -401,114 +306,271 @@ public class LucidDropdownList : Control
     protected override void OnPaint(PaintEventArgs e)
     {
         var g = e.Graphics;
+        var rect = ClientRectangle;
 
-        // Draw background
-        using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
+        var borderColor = ThemeProvider.Theme.Colors.SurfaceHighlight;
+        var fillColor = ThemeProvider.Theme.Colors.BackgroundTertiary;
+
+        if (_controlState == LucidControlState.Pressed || Focused)
+            borderColor = ThemeProvider.Theme.Colors.Accent;
+
+        using (var b = new SolidBrush(fillColor))
         {
-            g.FillRectangle(b, ClientRectangle);
+            g.FillRectangle(b, rect);
         }
 
-        // Draw normal state
-        if (ControlState == LucidControlState.Normal)
+        if (ShowBorder)
         {
-            if (ShowBorder)
+            using (var p = new Pen(borderColor, 1))
             {
-                using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault, 1))
-                {
-                    var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
-                    g.DrawRectangle(p, modRect);
-                }
-            }
-        }
-
-        // Draw hover state
-        if (ControlState == LucidControlState.Hover)
-        {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
-            {
-                g.FillRectangle(b, ClientRectangle);
-            }
-
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundPrimary))
-            {
-                var arrowRect = new Rectangle(ClientRectangle.Right - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Top, DropdownIcons.small_arrow.Width + 8, ClientRectangle.Height);
-                g.FillRectangle(b, arrowRect);
-            }
-
-            using (var p = new Pen(ThemeProvider.Theme.Colors.Accent, 1))
-            {
-                var modRect = new Rectangle(ClientRectangle.Left, ClientRectangle.Top, ClientRectangle.Width - 1 - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Height - 1);
+                var modRect = new Rectangle(rect.Left, rect.Top, rect.Width - 1, rect.Height - 1);
                 g.DrawRectangle(p, modRect);
             }
         }
 
-        // Draw pressed state
-        if (ControlState == LucidControlState.Pressed)
-        {
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BorderDefault))
-            {
-                g.FillRectangle(b, ClientRectangle);
-            }
+        var icon = ScrollIcons.scrollbar_arrow_hot;
+        g.DrawImageUnscaled(icon,
+            rect.Right - icon.Width - (ThemeProvider.Theme.Sizes.Padding / 2),
+            rect.Top + (rect.Height / 2) - (icon.Height / 2));
 
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.Accent))
-            {
-                var arrowRect = new Rectangle(ClientRectangle.Right - DropdownIcons.small_arrow.Width - 8, ClientRectangle.Top, DropdownIcons.small_arrow.Width + 8, ClientRectangle.Height);
-                g.FillRectangle(b, arrowRect);
-            }
-        }
-
-        // Draw dropdown arrow
-        using (var img = DropdownIcons.small_arrow)
-        {
-            g.DrawImageUnscaled(img, ClientRectangle.Right - img.Width - 4, ClientRectangle.Top + (ClientRectangle.Height / 2) - (img.Height / 2));
-        }
-
-        // Draw selected item
         if (SelectedItem != null)
         {
-            // Draw Icon
             var hasIcon = SelectedItem.Icon != null;
             var hasIconColor = SelectedItem.IconColor != Color.Empty;
 
             if (hasIcon && !hasIconColor)
             {
-                g.DrawImage(SelectedItem.Icon, new Point(ClientRectangle.Left + 5, ClientRectangle.Top + (ClientRectangle.Height / 2) - (_iconSize / 2)));
-                //g.DrawImageUnscaled(SelectedItem.Icon, new Point(ClientRectangle.Left + 5, ClientRectangle.Top + (ClientRectangle.Height / 2) - (_iconSize / 2)));
+                g.DrawImage(SelectedItem.Icon, new Point(rect.Left + 5, rect.Top + (rect.Height / 2) - (_iconSize / 2)));
             }
             else if (hasIconColor)
             {
                 using (var b = new SolidBrush(SelectedItem.IconColor))
                 using (var p = new Pen(SelectedItem.IconColor))
                 {
-                    var rect = new Rectangle(ClientRectangle.Left + 5, ClientRectangle.Top + (ClientRectangle.Height / 2) - 8, 16, 16);
-                    g.DrawRectangle(p, rect);
-                    g.FillRectangle(b, rect);
+                    var iconRect = new Rectangle(rect.Left + 5, rect.Top + (rect.Height / 2) - 8, 16, 16);
+                    g.DrawRectangle(p, iconRect);
+                    g.FillRectangle(b, iconRect);
                 }
             }
 
-            // Draw Text
-            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
-            using (var bDisabled = new SolidBrush(ThemeProvider.Theme.Colors.TextDisabled))
+            var padding = 2;
+            var textRect = new Rectangle(
+                rect.Left + padding,
+                rect.Top + padding,
+                rect.Width - icon.Width - (ThemeProvider.Theme.Sizes.Padding / 2) - (padding * 2),
+                rect.Height - (padding * 2));
+
+            if (hasIcon || hasIconColor)
+            {
+                textRect.X += _iconSize + 7;
+                textRect.Width -= _iconSize + 7;
+            }
+
+            var textColor = Enabled ? ThemeProvider.Theme.Colors.TextPrimary : ThemeProvider.Theme.Colors.TextDisabled;
+            using (var b = new SolidBrush(textColor))
             {
                 var stringFormat = new StringFormat
                 {
+                    LineAlignment = StringAlignment.Center,
                     Alignment = StringAlignment.Near,
-                    LineAlignment = StringAlignment.Center
+                    FormatFlags = StringFormatFlags.NoWrap,
+                    Trimming = StringTrimming.EllipsisCharacter
                 };
-
-                var rect = new Rectangle(ClientRectangle.Left + 2, ClientRectangle.Top, ClientRectangle.Width - 16, ClientRectangle.Height);
-
-                if (hasIcon || hasIconColor)
-                {
-                    rect.X += _iconSize + 7;
-                    rect.Width -= _iconSize + 7;
-                }
-                
-                if (Enabled)
-                    g.DrawString(SelectedItem.Text, Font, b, rect, stringFormat);
-                else
-                    g.DrawString(SelectedItem.Text, Font, bDisabled, rect, stringFormat);
+                g.DrawString(SelectedItem.Text, Font, b, textRect, stringFormat);
             }
+        }
+    }
+
+    #endregion
+
+    #region DropdownPanel
+
+    private class DropdownPanel : Control
+    {
+        public event EventHandler<LucidDropdownItem> ItemClicked;
+
+        private readonly ObservableCollection<LucidDropdownItem> _items;
+        private int _itemHeight;
+        private int _hoveredIndex = -1;
+        private readonly LucidScrollBar _scrollBar;
+        private const int ScrollBarWidth = 14;
+        private readonly int _iconSize = 16;
+
+        public LucidDropdownItem SelectedItem { get; set; }
+
+        public int ItemHeight
+        {
+            get { return _itemHeight; }
+            set { _itemHeight = value; Invalidate(); }
+        }
+
+        private bool ScrollbarVisible => _scrollBar.Visible;
+        private int ItemAreaWidth => ScrollbarVisible ? Width - ScrollBarWidth : Width;
+        private int ScrollOffset => ScrollbarVisible ? _scrollBar.Value : 0;
+
+        public DropdownPanel(ObservableCollection<LucidDropdownItem> items, int itemHeight)
+        {
+            _items = items;
+            _itemHeight = itemHeight;
+
+            SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer |
+                     ControlStyles.AllPaintingInWmPaint, true);
+
+            _scrollBar = new LucidScrollBar
+            {
+                ScrollOrientation = LucidScrollOrientation.Vertical,
+                Width = ScrollBarWidth,
+                Visible = false
+            };
+            _scrollBar.ValueChanged += (s, e) => Invalidate();
+            Controls.Add(_scrollBar);
+        }
+
+        public void UpdateScrollBar(int totalHeight, int visibleHeight)
+        {
+            var needsScrollbar = totalHeight > visibleHeight;
+            _scrollBar.Visible = needsScrollbar;
+
+            if (needsScrollbar)
+            {
+                _scrollBar.SetBounds(Width - ScrollBarWidth, 0, ScrollBarWidth, visibleHeight);
+                _scrollBar.Minimum = 0;
+                _scrollBar.Maximum = totalHeight;
+                _scrollBar.ViewSize = visibleHeight;
+                var maxScroll = totalHeight - visibleHeight;
+                if (_scrollBar.Value > maxScroll)
+                    _scrollBar.Value = maxScroll;
+            }
+            else
+            {
+                _scrollBar.Value = 0;
+            }
+        }
+
+        public void ScrollToSelected()
+        {
+            if (SelectedItem == null || !ScrollbarVisible) return;
+            var idx = _items.IndexOf(SelectedItem);
+            if (idx < 0) return;
+            var itemTop = idx * _itemHeight;
+            var itemBottom = itemTop + _itemHeight;
+            if (itemTop < ScrollOffset)
+                _scrollBar.Value = itemTop;
+            else if (itemBottom > ScrollOffset + Height)
+                _scrollBar.Value = itemBottom - Height;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            var g = e.Graphics;
+            var scrollOffset = ScrollOffset;
+            var itemWidth = ItemAreaWidth;
+
+            using (var b = new SolidBrush(ThemeProvider.Theme.Colors.BackgroundSecondary))
+                g.FillRectangle(b, ClientRectangle);
+
+            using (var p = new Pen(ThemeProvider.Theme.Colors.BorderDefault))
+                g.DrawRectangle(p, new Rectangle(0, 0, itemWidth - 1, Height - 1));
+
+            for (int i = 0; i < _items.Count; i++)
+            {
+                var item = _items[i];
+                var y = i * _itemHeight - scrollOffset;
+
+                if (y + _itemHeight <= 0 || y >= Height) continue;
+
+                var itemRect = new Rectangle(0, y, itemWidth, _itemHeight);
+
+                Color bgColor;
+                if (item == SelectedItem)
+                    bgColor = ThemeProvider.Theme.Colors.AccentSecondary;
+                else if (i == _hoveredIndex)
+                    bgColor = ThemeProvider.Theme.Colors.Accent;
+                else
+                    bgColor = ThemeProvider.Theme.Colors.BackgroundSecondary;
+
+                using (var b = new SolidBrush(bgColor))
+                    g.FillRectangle(b, itemRect);
+
+                var xOffset = 4;
+
+                if (item.Icon != null && item.IconColor == Color.Empty)
+                {
+                    g.DrawImage(item.Icon, new Point(itemRect.Left + 5, itemRect.Top + (itemRect.Height / 2) - (_iconSize / 2)));
+                    xOffset = _iconSize + 9;
+                }
+                else if (item.IconColor != Color.Empty)
+                {
+                    using (var b = new SolidBrush(item.IconColor))
+                    using (var p = new Pen(item.IconColor))
+                    {
+                        var iconRect = new Rectangle(itemRect.Left + 5, itemRect.Top + (itemRect.Height / 2) - 8, 16, 16);
+                        g.DrawRectangle(p, iconRect);
+                        g.FillRectangle(b, iconRect);
+                    }
+                    xOffset = _iconSize + 9;
+                }
+
+                using (var b = new SolidBrush(ThemeProvider.Theme.Colors.TextPrimary))
+                {
+                    var sf = new StringFormat
+                    {
+                        LineAlignment = StringAlignment.Center,
+                        Alignment = StringAlignment.Near,
+                        FormatFlags = StringFormatFlags.NoWrap,
+                        Trimming = StringTrimming.EllipsisCharacter
+                    };
+                    var textRect = new Rectangle(itemRect.Left + xOffset, itemRect.Top, itemWidth - xOffset - 4, itemRect.Height);
+                    g.DrawString(item.Text, Font, b, textRect, sf);
+                }
+            }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            if (e.X >= ItemAreaWidth)
+            {
+                if (_hoveredIndex != -1) { _hoveredIndex = -1; Invalidate(); }
+                return;
+            }
+
+            var idx = HitTest(e.Y);
+            if (idx != _hoveredIndex)
+            {
+                _hoveredIndex = idx;
+                Invalidate();
+            }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            _hoveredIndex = -1;
+            Invalidate();
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            if (e.X >= ItemAreaWidth) return;
+            var idx = HitTest(e.Y);
+            if (idx >= 0 && idx < _items.Count)
+                ItemClicked?.Invoke(this, _items[idx]);
+        }
+
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            base.OnMouseWheel(e);
+            if (ScrollbarVisible)
+                _scrollBar.Value -= e.Delta / 10;
+        }
+
+        private int HitTest(int y)
+        {
+            var idx = (y + ScrollOffset) / _itemHeight;
+            return idx >= 0 ? idx : -1;
         }
     }
 

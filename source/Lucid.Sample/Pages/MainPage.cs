@@ -48,6 +48,7 @@ public partial class MainPage : LucidDocument
 
         SetUpChipControl();
         SetUpComboBox();
+        SetUpDropdownList();
         SetUpTreeView();
         SetUpTextBoxes();
         SetUpPerformanceToolTips();
@@ -78,6 +79,20 @@ public partial class MainPage : LucidDocument
     {
         lucidComboBox1.Items.AddRange(new object[] { "Dark Theme", "Light Theme", "Custom Theme", "Some other", "item", "in this", "control.", "This", "list", "has", "many", "entries" });
         lucidComboBox1.SelectedIndex = 0;
+    }
+
+    private void SetUpDropdownList()
+    {
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Dark Theme"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Light Theme"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Custom Theme"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Some"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("More"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Items"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("in"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("this"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Control"));
+        lucidDropdownList1.Items.Add(new Controls.LucidDropdownItem("Amazing!"));
     }
 
     private void SetUpTreeView()
